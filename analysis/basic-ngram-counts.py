@@ -8,8 +8,25 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import ScalarFormatter
 
 
+# Return and plot the most common n-grams, for a given n, up to this number:
 cutoff_total = 15
-ngram_n_max_interesting = 20  # at this length, mostly get count of 1
+# Highest integer n-gram length where the most common n-gram occurs >1 time
+# (simplest to find this manually by inspection of generated graphs):
+ngram_n_max_interesting = 20
+
+
+def get_standard_names_as_text_blob(name_under_data_dir):
+    '''TODO
+     '''
+    # Grab all the newline-delimited names (w/ underscores replaced by spaces)
+    with open("../data/" + name_under_data_dir, "r") as all_raw_names:
+        names = all_raw_names.readlines()
+
+    # Replace newline with dot (standard NLP sentence delimiter), to simplify:
+    names = ". ".join(names)
+    names = names.replace("\n", "")
+    # Create the textblob core object, a TextBlob, of all the names:
+    return TextBlob(names)
 
 
 def get_ngram_counts(names, ngram_size, get_x_most_common=None):
@@ -26,185 +43,265 @@ def get_ngram_counts(names, ngram_size, get_x_most_common=None):
     ngram_counts = Counter(
         [tuple(wordlist) for wordlist in ngrams])  # need tuple for hashability
 
+    known_long_name = (
+        'tendency of mole concentration of particulate organic matter '
+        'expressed as carbon in sea water due to net primary production by'
+    )
+    validate_known_long_ngram = tuple(known_long_name.split()[:ngram_size])
+
+    # Quick and basic validity check at this point, before plots made etc.:
+    assert ngram_counts.get(validate_known_long_ngram, False), (
+        "Something is not right as a known n-gram is not being counted.")
+    # Also check that n-grams are not being taken across name boundaries:
+    assert not ngram_counts.get(('azimuth', 'angstrom'), False), (
+        "n-grams have been taken across name boundaries which is not right.")
+
     if get_x_most_common:
         ngram_counts = dict(ngram_counts.most_common(get_x_most_common))
-    else:
+    else:  # take all, including n-grams only occurring once across the names
         dict(ngram_counts)
 
-    # Format to get phrase instead of tuple of words as keys:
+    # Format to get phrase e.g. "in air" instead of tuple of words as keys:
     ngram_counts = {
         " ".join(phrase): count for phrase, count in ngram_counts.items()}
     return ngram_counts
 
 
-def get_and_remove_any_n_ngram_counts(names):
-    '''TODO
+def get_and_remove_any_n_ngram_counts_iteration(names):
+    '''Return most common n-grams of any n, removing most common when found.
     '''
     most_common_any_n_ngrams = []
     max_count = 0
-    # This time remove ngrams as they are found!
-    names_sentences = names.sentences
-    # reversed(...) is important here.
+    # Use reversed() so that ngrams with same max. count of higher-n appear
+    # before those of lower-n, as the higher-n counts are more interesting:
     for size in reversed(range(2, ngram_n_max_interesting)):
-        # Get n-grams at this size
+        # Get n-grams at this size:
         size_n_ngrams = []
-        for name in names_sentences:
+        for name in names.sentences:
             ngrams_of_size = name.ngrams(size)
             size_n_ngrams.extend(ngrams_of_size)
+
+        # Find max count at this size and if more or equal to max for any
+        # size n, add name(s) to the most_common_any_n_ngrams:
         most_common_size_n = Counter(
             [tuple(wordlist) for wordlist in size_n_ngrams]).most_common(1)
-
-        # TODO: ensure nothing draws, as will need to add both!
         ngram_max_count = most_common_size_n[0][1]
-
-        if ngram_max_count >= max_count:  # take longer one
+        if ngram_max_count >= max_count:
             most_common_any_n_ngrams.append(most_common_size_n)
             max_count = ngram_max_count
 
-    # Determine most common over any size:
-    final_most_common_any_n_ngrams = sorted(
+    # Determine most common name(s) over any size:
+    most_common_any_n_ngrams = sorted(
         most_common_any_n_ngrams, key=lambda item: item[0][1], reverse=True)
-    # TODO: manage this mess; need to catch counts of equal value post-sort
-    if (final_most_common_any_n_ngrams[0][0][1] ==
-            final_most_common_any_n_ngrams[1][0][1]):
-        print("\nNote, duplicates:", final_most_common_any_n_ngrams[:2])
-        if (final_most_common_any_n_ngrams[0][0][0][:-1] ==
-                final_most_common_any_n_ngrams[1][0][0]):
-            pass
-        if (final_most_common_any_n_ngrams[1][0][1] ==
-                final_most_common_any_n_ngrams[2][0][1]):
-            print("\nFURTHER DUPLICATES, CHECK HOW FAR EQUAL MAX. GOES...",
-                  final_most_common_any_n_ngrams)
 
-    return final_most_common_any_n_ngrams[0], names  # any_n_ngram_counts
+    # Grab those with the highest count. Note there may be multiple names
+    # with the highest so we need to cater for potentially >1 name.
+    # TODO: data structure conversion is pretty inefficient here, try to find
+    # a better way to retrieve the ngrams with highest count:
+    final_most_common_any_n_ngrams = {
+        count_object[0][0]: count_object[0][1] for count_object in
+        most_common_any_n_ngrams
+    }
+
+    highest_counts = max(final_most_common_any_n_ngrams.values())
+    overall_most_common = [(ngram, value) for ngram, value in
+                           final_most_common_any_n_ngrams.items() if
+                           value == highest_counts]
+
+    if len(overall_most_common) > 1:
+        print(
+            "WARNING: there are multiple ngrams with the max. count for this "
+            "iteration, namely: '{}'. Check they emerge in the graph.".format(
+                "', '". join(
+                    list([" ".join(info[0]) for info in overall_most_common])
+                )
+            )
+        )
+
+    return overall_most_common, names
 
 
-def recursive_get_and_remove_any_n_ngram_counts(names, get_x_most_common):
+def get_and_remove_any_n_ngram_counts(names, get_x_most_common):
     '''TODO
     '''
     # Get most common n-gram of any size:
     overall_most_common_ngrams = []
     use_names = names
     while len(overall_most_common_ngrams) < get_x_most_common:
-        packed_most_freq_ngram, all_names = get_and_remove_any_n_ngram_counts(
-            use_names)
-        most_common_n_gram = packed_most_freq_ngram
-        overall_most_common_ngrams.append(most_common_n_gram)
+        packed_most_freq_ngrams, all_names = (
+            get_and_remove_any_n_ngram_counts_iteration(use_names))
+        overall_most_common_ngrams.extend(packed_most_freq_ngrams)
 
-        # Remove that most common n-gram from all names ready to go again:
-        most_common_ngram_raw = " ".join(most_common_n_gram[0][0])
-        new_names = []
+        # Remove this most common n-gram from all names ready to go again:
+        reduced_names = []
         for name in all_names.sentences:
-            if most_common_ngram_raw in name:
-                name = name.replace(most_common_ngram_raw, "")
-                name = name.replace("  ", " ")
-            new_names.append(name)
-        new_names = "\n".join([str(name) for name in new_names])
-        use_names = TextBlob(new_names)
+            for most_freq_ngram_info in packed_most_freq_ngrams:
+                str_ngram = " ".join(most_freq_ngram_info[0])
+                if str_ngram in name:
+                    name = name.replace(str_ngram, "")
+                    name = name.replace("  ", " ")
+            reduced_names.append(name)
+        reduced_names = "\n".join([str(name) for name in reduced_names])
+
+        # Now use the reduced set of names as input, rather than the originals:
+        use_names = TextBlob(reduced_names)
 
     # Format to get phrase instead of tuple of words as keys:
-    ngram_counts = {
-        entry[0][0]: entry[0][1] for entry in overall_most_common_ngrams}
-    ngram_counts = {
-        " ".join(phrase): count for phrase, count in ngram_counts.items()}
-    print(ngram_counts)
+    ngram_counts = {" ".join(ngram_info[0]): ngram_info[1] for ngram_info in
+                    overall_most_common_ngrams}
+
     return ngram_counts
 
 
-def plot_ngram_counts(ngram_counts, cutoff_number=None, ngram_n=None):
+def set_up_plot_of_ngram_counts(
+        ngram_counts, use_colour='thistle'):
     '''TODO
     '''
     plt.rcdefaults()
     fig, ax = plt.subplots()
+
     names = list(ngram_counts.keys())
     counts = list(ngram_counts.values())
-    ax.barh(names, counts)
 
+    ax.barh(names, counts, color=use_colour)
+
+    return fig, ax, names, counts
+
+
+def save_and_show_plot_of_ngram_counts(fig, ax, size, title):
+    '''TODO
+    '''
+    fig.set_size_inches(*size)
+    plt.savefig(title, dpi=400)
+    plt.show()
+
+
+def plot_ngram_counts(
+        ngram_counts, cutoff_number, ngram_n, threshold_ratio=0.2):
+    '''TODO
+    '''
+    # At n~12, n-grams become so long that they get cut-off by either side of
+    # of the canvas, so must effectively centre them by placing inside left:
+    put_all_labels_inside_left = False
+    if ngram_n > 11:  # point at which (in 10.07.20 data) labels get too long
+        put_all_labels_inside_left = True
+
+    fig, ax, names, counts = set_up_plot_of_ngram_counts(ngram_counts)
+
+    plt.axis('tight')
+    plt.margins(0, 0.05)
+
+    # `cutoff` is the point at which we switch the name labels to point right
+    # and into the graph instead pointing left from the right end of the bar
+    # (which looks nicer, but when a bar gets too small relative to the plot
+    # width, essentially the longest bar, the name gets cut off to the left.)
+    cutoff = threshold_ratio * max(counts)
     # The n-gram names can be rather long, and often get cut off from the left
-    # side of the bar plot, so instead plot them inside the bars themselves:
-    # much clearer to read and compare:
+    # side of the bar plot, so instead (assuming they are not n~12 where so
+    # long they are nearly plot width) plot them inside the bars themselves:
     for i, (name, count) in enumerate(ngram_counts.items()):
+
+        # Firstly amend formatting to accommodate very long labels after n~12:
+        ha = 'right'
+        use_x = count
+        if count < cutoff:
+            ha = 'left'
+        if put_all_labels_inside_left:
+            use_x = 0
+            ha = 'left'
+
         label = "{} ({})".format(name, count)
         plt.text(
-            s=label, x=count, y=i,
-            color="black", verticalalignment="center",
-            horizontalalignment="right", size=10,
+            s=label, x=use_x, y=i,
+            color="indigo", verticalalignment="center",
+            horizontalalignment=ha, size=10, wrap=True
         )
     plt.yticks([])
 
-    # Labelling:
     ax.set_title(
         '{} most common n-grams of size {} for the CF Standard Names'.format(
             cutoff_number, ngram_n)
     )
     ax.set_xlabel('Frequency across all standard names in current table')
 
-    fig.set_size_inches(12, 6)
-    plt.savefig(
-        "../results/ngrams/most-common-{}-grams.png".format(ngram_n), dpi=400)
-    plt.show()
+    save_and_show_plot_of_ngram_counts(
+        fig, ax, (12, 6),
+        "../results/ngrams/most-common-{}-grams.png".format(ngram_n)
+    )
 
 
 def plot_recursive_ngram_counts(ngram_counts):
     '''TODO
     '''
-    plt.rcdefaults()
-    fig, ax = plt.subplots()
-    names = list(ngram_counts.keys())
-    counts = list(ngram_counts.values())
-    ax.barh(names, counts, color='lightcoral')
+    fig, ax, names, counts = set_up_plot_of_ngram_counts(
+        ngram_counts, use_colour=['lightgreen', 'lightsteelblue'])
 
     # Axes formatting:
     ax.set_xscale('log')
     ax.xaxis.set_major_formatter(ScalarFormatter())
+    ax.xaxis.set_minor_formatter(ScalarFormatter())
+    ax.tick_params(which='major', length=12)
     ax.set_yticklabels(names)
     ax.tick_params(axis="y", direction="in", pad=-10)
     plt.setp(ax.get_yticklabels(), ha="left")
-    for i, (name, count) in enumerate(ngram_counts.items()):
+
+    for index, (name, count) in enumerate(ngram_counts.items()):
+        # Match colours as roughly darker versions of alternating bar colours:
+        colour = 'forestgreen'
+        ha = 'left'
+        if index % 2:
+            colour = 'midnightblue'
+            ha = 'right'
+
+        # Prevent leftmost and rightmost name labels from being cut off canvas
+        if count < 45:
+            ha = 'left'
+        elif count > 1000:
+            ha = 'right'
+
         label = "{} ({})".format(name, count)
         plt.text(
-            s=label, x=count, y=i,
-            color="black", verticalalignment="center",
-            ha="left", size=10,
+            s=label, x=count, y=index,
+            color=colour, verticalalignment="center",
+            ha=ha, size=11,
         )
     plt.yticks([])
 
     # Labelling:
     ax.set_title(
-        '{} most common n-grams of *any* size for the '
+        '{} most common n-grams of any size for the '
         'CF Standard Names'.format(len(names))
     )
-    ax.set_xlabel('Frequency across all standard names in current table')
+    ax.text(
+        0.7, 0.95,
+        'Note that the colours of the bars\n and their labels do not have\n '
+        'any meaning; they are plotted\n in alternating colours to make it\n '
+        'easier to distinguish neighbouring\n bars and their labels.',
+        transform=ax.transAxes, verticalalignment='top'
+    )
+    ax.set_xlabel(
+        'Frequency across all standard names in current table (log scale)')
 
-    fig.set_size_inches(12, 12)
-    plt.savefig(
-        "../results/ngrams/recursive-n-grams-of-any-n.png", dpi=400)
-    plt.show()
+    save_and_show_plot_of_ngram_counts(
+        fig, ax, (12, 12),
+        "../results/ngrams/recursive-n-grams-of-any-n.png"
+    )
 
 
-# Grab all of the newline-delimited names (with underscores replaced by spaces)
-with open("../data/all-raw-names-10.07.20-gen.txt", "r") as all_raw_names:
-    names = all_raw_names.readlines()
+names_blob = get_standard_names_as_text_blob("all-raw-names-10.07.20-gen.txt")
 
 
-# Replace newline with dot for standard NLP sentence delimiter, to simplify:
-names = ". ".join(names)
-names = names.replace("\n", "")
-# Create the textblob core object, a TextBlob, of all the names:
-names_object = TextBlob(names)
-
-# Find, plot and save the most common ngrams from 2 (bigram) to cutoff number:
+# 1. Find, return, plot and save the most common ngrams from a bigram (n=2)
+# to n=ngram_n_max_interesting number:
 for ngram_size in range(2, ngram_n_max_interesting + 1):
     # Get counts and conduct an assertion check
-    counts = get_ngram_counts(names_object, ngram_size, cutoff_total)
-    try:
-        counts['azimuth angstrom']  # implies ngrams taken across names (bad)
-        raise AssertionError("ngrams taken across name boundaries")
-    except KeyError:
-        pass  # no such key (good/correct)
-
+    counts = get_ngram_counts(names_blob, ngram_size, cutoff_total)
+    pprint(counts)
     plot_ngram_counts(counts, cutoff_total, ngram_size)
 
-# Find, plot and save the 50 most common ngrams of any size, with removal:
-plot_recursive_ngram_counts(
-    recursive_get_and_remove_any_n_ngram_counts(names_object, 50))
+
+# 2. Find, return, plot and save the most common ngrams of any size (any n),
+# removing the most common one(s) before finding for the next most common:
+any_n_most_common = get_and_remove_any_n_ngram_counts(names_blob, 60)
+pprint(any_n_most_common)
+plot_recursive_ngram_counts(any_n_most_common)
