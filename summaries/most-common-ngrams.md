@@ -117,7 +117,10 @@ for enhanced readability):
 #### *n*-grams of higher *n*
 
 After *n*=20 there are no more *n*-grams that occur more than once across
-all of the names. Hence further plots are not of relevance.
+all of the names, so further plots are not of interest. As an illustration,
+here is the plot of the next *n*, *n*=21:
+
+![21-gram](../results/ngrams/most-common-21-grams.png)
 
 
 ### *n*-grams of any *n* with recursive removal
@@ -125,17 +128,31 @@ all of the names. Hence further plots are not of relevance.
 This time, consider *n*-grams of any length and follow a process of
 iterative removal, as follows:
 
-1. find the most common *n*-gram of any length for the names, where a longer
-   *n*-gram is preferred (i.e. chosen over) to a shorter one with equal count,
-   since any *n*-gram contained in a larger *n+N*-gram (for integer `N >= 1`)
-   will necessarily have at minimum the same count as the *n+N*-gram.
-2. remove this most-common *n*-gram from all names;
-3. go back to step (1), taking the names reduced under (2) as the new input
-   names;
-4. continue this process until the *X* most common *n*-grams of any length,
-   excluding previous most-common *n*-grams, are found.
+1. Find the *n*-grams of any length that occur most frequently within the
+   full table of standard names (where underscores have been replaced with
+   whitespace to mimic natural text for enhanced readability).
+2. If there is a single *n*-gram with the maximum frequency count in step (1),
+   use that as the input to step (3). Otherwise, in the case that multiple
+   *n*-grams are most common, take from this sub-list the *n*-gram(s) with
+   the highest *n* as inputs to step (3). Note the *n*-grams of lower
+   *n* discarded at this stage will be picked up in another iteration of
+   steps (1-) unless it is an *n*-gram contained in a larger *n+N*-gram
+   (for integer `N >= 1`) e.g. 'savanna and grassland' contained in
+   'savanna and grassland fires' where the removal in step (3) will mean the
+   *n*-gram is fully removed from the input names to the next iteration.
+   (That way we keep and plot the longer *n+N*-gram for the results rather
+   than the shorter one with the same count. This is preferred because the
+   longer *n+N*-gram is more interesting, being a longer contiguous sequence.
+3. Remove this most-common *n*-gram(2) determined in step (2) from all names
+   and henceforth use the resultant reduced names as the names input;
+4. Go back to step (1), taking the names reduced under (2) as the new input
+   names.
+5. Continue this process until the *X* most common *n*-grams of any length,
+   excluding previous most-common *n*-grams which are incrementally removed,
+   are found.
 
-The results for the most common `X=50` are as follows:
+The results for the most common `X=60`, found by the above process, are as
+follows:
 
 ![any-n-gram](../results/ngrams/recursive-n-grams-of-any-n.png)
 

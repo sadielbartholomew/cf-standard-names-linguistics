@@ -12,7 +12,7 @@ from matplotlib.ticker import ScalarFormatter
 cutoff_total = 15
 # Highest integer n-gram length where the most common n-gram occurs >1 time
 # (simplest to find this manually by inspection of generated graphs):
-ngram_n_max_interesting = 20
+ngram_n_max_interesting = 21
 
 
 def get_standard_names_as_text_blob(name_under_data_dir):
@@ -50,11 +50,17 @@ def get_ngram_counts(names, ngram_size, get_x_most_common=None):
     validate_known_long_ngram = tuple(known_long_name.split()[:ngram_size])
 
     # Quick and basic validity check at this point, before plots made etc.:
-    assert ngram_counts.get(validate_known_long_ngram, False), (
-        "Something is not right as a known n-gram is not being counted.")
+    if ngram_size <= len(known_long_name.split()):
+        assert ngram_counts.get(validate_known_long_ngram, False), (
+            "Something is not right as a known n-gram is not being counted.")
     # Also check that n-grams are not being taken across name boundaries:
-    assert not ngram_counts.get(('azimuth', 'angstrom'), False), (
-        "n-grams have been taken across name boundaries which is not right.")
+    bad_sub_ngram = ' '.join(('azimuth', 'angstrom'))
+    for ngram_info in ngram_counts:
+        ngram_string = ' '.join(ngram_info)
+        assert bad_sub_ngram not in ngram_string, (
+            'n-grams seem to have been taken across name boundaries which '
+            'is not right.'
+        )
 
     if get_x_most_common:
         ngram_counts = dict(ngram_counts.most_common(get_x_most_common))
@@ -72,9 +78,7 @@ def get_and_remove_any_n_ngram_counts_iteration(names):
     '''
     most_common_any_n_ngrams = []
     max_count = 0
-    # Use reversed() so that ngrams with same max. count of higher-n appear
-    # before those of lower-n, as the higher-n counts are more interesting:
-    for size in reversed(range(2, ngram_n_max_interesting)):
+    for size in range(2, ngram_n_max_interesting):
         # Get n-grams at this size:
         size_n_ngrams = []
         for name in names.sentences:
@@ -108,26 +112,34 @@ def get_and_remove_any_n_ngram_counts_iteration(names):
                            final_most_common_any_n_ngrams.items() if
                            value == highest_counts]
 
-    if len(overall_most_common) > 1:
+    if len(overall_most_common) > 1:  # see get_and_remove_any_n_ngram_counts
         print(
-            "WARNING: there are multiple ngrams with the max. count for this "
-            "iteration, namely: '{}'. Check they emerge in the graph.".format(
+            "WARNING: there are multiple n-grams with the max. count for this "
+            "iteration, namely: '{}'. Will remove and store only the n-grams "
+            "in this list which have the highest n in this iteration: ".format(
                 "', '". join(
                     list([" ".join(info[0]) for info in overall_most_common])
                 )
-            )
+            ),
+            end=''  # print of 'hightest n' n-gram(s) follows below
         )
+        max_ngram_length = len(
+            max(overall_most_common, key=lambda n: len(n[0]))[0])
+        overall_most_common = [ngram_info for ngram_info in
+                               overall_most_common if
+                               len(ngram_info[0]) == max_ngram_length]
+        print(overall_most_common)
 
     return overall_most_common, names
 
 
-def get_and_remove_any_n_ngram_counts(names, get_x_most_common):
+def get_and_remove_any_n_ngram_counts(names, get_minimum_of_x_most_common):
     '''TODO
     '''
     # Get most common n-gram of any size:
     overall_most_common_ngrams = []
     use_names = names
-    while len(overall_most_common_ngrams) < get_x_most_common:
+    while len(overall_most_common_ngrams) < get_minimum_of_x_most_common:
         packed_most_freq_ngrams, all_names = (
             get_and_remove_any_n_ngram_counts_iteration(use_names))
         overall_most_common_ngrams.extend(packed_most_freq_ngrams)
@@ -259,9 +271,17 @@ def plot_recursive_ngram_counts(ngram_counts):
         elif count > 1000:
             ha = 'right'
 
+        # Add some padding between data bar and text label
+        use_x = count
+        pad_factor = 0.05
+        if ha == 'left':
+            use_x *= 1 + pad_factor
+        else:
+            use_x *= 1 - pad_factor
+
         label = "{} ({})".format(name, count)
         plt.text(
-            s=label, x=count, y=index,
+            s=label, x=use_x, y=index,
             color=colour, verticalalignment="center",
             ha=ha, size=11,
         )
@@ -274,10 +294,15 @@ def plot_recursive_ngram_counts(ngram_counts):
     )
     ax.text(
         0.7, 0.95,
-        'Note that the colours of the bars\n and their labels do not have\n '
-        'any meaning; they are plotted\n in alternating colours to make it\n '
-        'easier to distinguish neighbouring\n bars and their labels.',
-        transform=ax.transAxes, verticalalignment='top'
+        "\n".join((
+            'Note the colours of the bars',
+            'and their labels do not have',
+            'any meaning; they are plotted',
+            'in alternating colours to make it',
+            'easier to distinguish neighbouring',
+            'bars and their labels.',
+        )),
+        transform=ax.transAxes, verticalalignment='top', size=11
     )
     ax.set_xlabel(
         'Frequency across all standard names in current table (log scale)')
