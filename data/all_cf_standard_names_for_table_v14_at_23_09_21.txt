@@ -1,0 +1,2072 @@
+age of stratospheric air
+air density
+air potential temperature
+air pressure
+air pressure anomaly
+air pressure at cloud base
+air pressure at cloud top
+air pressure at convective cloud base
+air pressure at convective cloud top
+air pressure at freezing level
+air pressure at sea level
+air temperature
+air temperature anomaly
+air temperature at cloud top
+air temperature lapse rate
+air temperature threshold
+altimeter range
+altimeter range correction due to dry troposphere
+altimeter range correction due to ionosphere
+altimeter range correction due to wet troposphere
+altitude
+altitude at top of dry convection
+angle of emergence
+angle of incidence
+angle of rotation from east to x
+angle of rotation from east to y
+angstrom exponent of ambient aerosol in air
+area fraction
+area fraction below surface
+area type
+atmosphere absolute vorticity
+atmosphere absorption optical thickness due to ambient aerosol
+atmosphere absorption optical thickness due to black carbon ambient aerosol
+atmosphere absorption optical thickness due to dust ambient aerosol
+atmosphere absorption optical thickness due to particulate organic matter ambient aerosol
+atmosphere absorption optical thickness due to seasalt ambient aerosol
+atmosphere absorption optical thickness due to sulfate ambient aerosol
+atmosphere boundary layer thickness
+atmosphere cloud condensed water content
+atmosphere cloud ice content
+atmosphere cloud liquid water content
+atmosphere convective cloud condensed water content
+atmosphere convective cloud liquid water content
+atmosphere net upward convective mass flux
+atmosphere downdraft convective mass flux
+atmosphere dry energy content
+atmosphere dry static energy content
+atmosphere eastward stress due to gravity wave drag
+atmosphere energy content
+atmosphere enthalpy content
+atmosphere heat diffusivity
+atmosphere horizontal streamfunction
+atmosphere horizontal velocity potential
+atmosphere hybrid height coordinate
+atmosphere hybrid sigma pressure coordinate
+atmosphere kinetic energy content
+atmosphere ln pressure coordinate
+atmosphere mass content of acetic acid
+atmosphere mass content of aceto nitrile
+atmosphere mass content of alkanes
+atmosphere mass content of alkenes
+atmosphere mass content of alpha hexachlorocyclohexane
+atmosphere mass content of alpha pinene
+atmosphere mass content of ammonia
+atmosphere mass content of ammonium dry aerosol
+atmosphere mass content of anthropogenic nmvoc expressed as carbon
+atmosphere mass content of aromatic compounds
+atmosphere mass content of atomic bromine
+atmosphere mass content of atomic chlorine
+atmosphere mass content of atomic nitrogen
+atmosphere mass content of benzene
+atmosphere mass content of beta pinene
+atmosphere mass content of biogenic nmvoc expressed as carbon
+atmosphere mass content of black carbon dry aerosol
+atmosphere mass content of bromine chloride
+atmosphere mass content of bromine monoxide
+atmosphere mass content of bromine nitrate
+atmosphere mass content of brox expressed as bromine
+atmosphere mass content of butane
+atmosphere mass content of carbon dioxide
+atmosphere mass content of carbon monoxide
+atmosphere mass content of carbon tetrachloride
+atmosphere mass content of cfc11
+atmosphere mass content of cfc113
+atmosphere mass content of cfc113a
+atmosphere mass content of cfc114
+atmosphere mass content of cfc115
+atmosphere mass content of cfc12
+atmosphere mass content of chlorine dioxide
+atmosphere mass content of chlorine monoxide
+atmosphere mass content of chlorine nitrate
+atmosphere mass content of clox expressed as chlorine
+atmosphere mass content of dichlorine peroxide
+atmosphere mass content of dimethyl sulfide
+atmosphere mass content of dinitrogen pentoxide
+atmosphere mass content of dust dry aerosol
+atmosphere mass content of ethane
+atmosphere mass content of ethanol
+atmosphere mass content of ethene
+atmosphere mass content of ethyne
+atmosphere mass content of formaldehyde
+atmosphere mass content of formic acid
+atmosphere mass content of gaseous divalent mercury
+atmosphere mass content of gaseous elemental mercury
+atmosphere mass content of halon1202
+atmosphere mass content of halon1211
+atmosphere mass content of halon1301
+atmosphere mass content of halon2402
+atmosphere mass content of hcc140a
+atmosphere mass content of hcfc141b
+atmosphere mass content of hcfc142b
+atmosphere mass content of hcfc22
+atmosphere mass content of hexachlorobiphenyl
+atmosphere mass content of hox expressed as hydrogen
+atmosphere mass content of hydrogen bromide
+atmosphere mass content of hydrogen chloride
+atmosphere mass content of hydrogen cyanide
+atmosphere mass content of hydrogen peroxide
+atmosphere mass content of hydroperoxyl radical
+atmosphere mass content of hydroxyl radical
+atmosphere mass content of hypobromous acid
+atmosphere mass content of hypochlorous acid
+atmosphere mass content of inorganic bromine
+atmosphere mass content of inorganic chlorine
+atmosphere mass content of isoprene
+atmosphere mass content of limonene
+atmosphere mass content of mercury dry aerosol
+atmosphere mass content of methane
+atmosphere mass content of methanol
+atmosphere mass content of methyl bromide
+atmosphere mass content of methyl chloride
+atmosphere mass content of methyl hydroperoxide
+atmosphere mass content of methyl peroxy radical
+atmosphere mass content of molecular hydrogen
+atmosphere mass content of nitrate dry aerosol
+atmosphere mass content of nitrate radical
+atmosphere mass content of nitric acid
+atmosphere mass content of nitric acid trihydrate ambient aerosol
+atmosphere mass content of nitrogen monoxide
+atmosphere mass content of nitrous acid
+atmosphere mass content of nitrous oxide
+atmosphere mass content of nmvoc expressed as carbon
+atmosphere mass content of nox expressed as nitrogen
+atmosphere mass content of noy expressed as nitrogen
+atmosphere mass content of oxygenated hydrocarbons
+atmosphere mass content of ozone
+atmosphere mass content of particulate organic matter dry aerosol
+atmosphere mass content of peroxy radicals
+atmosphere mass content of peroxyacetyl nitrate
+atmosphere mass content of peroxynitric acid
+atmosphere mass content of primary particulate organic matter dry aerosol
+atmosphere mass content of propane
+atmosphere mass content of propene
+atmosphere mass content of radon
+atmosphere mass content of seasalt dry aerosol
+atmosphere mass content of secondary particulate organic matter dry aerosol
+atmosphere mass content of sulfate ambient aerosol
+atmosphere mass content of sulfate dry aerosol
+atmosphere mass content of sulfate expressed as sulfur dry aerosol
+atmosphere mass content of sulfur dioxide
+atmosphere mass content of terpenes
+atmosphere mass content of toluene
+atmosphere mass content of water in ambient aerosol
+atmosphere mass content of water vapor
+atmosphere mass content of xylene
+atmosphere mass of air per unit area
+atmosphere mass per unit area
+atmosphere moles of acetic acid 
+atmosphere moles of aceto nitrile
+atmosphere moles of alpha hexachlorocyclohexane 
+atmosphere moles of alpha pinene
+atmosphere moles of ammonia
+atmosphere moles of anthropogenic nmvoc expressed as carbon
+atmosphere moles of atomic bromine
+atmosphere moles of atomic chlorine
+atmosphere moles of atomic nitrogen
+atmosphere moles of benzene
+atmosphere moles of beta pinene
+atmosphere moles of biogenic nmvoc expressed as carbon
+atmosphere moles of bromine chloride
+atmosphere moles of bromine monoxide
+atmosphere moles of bromine nitrate
+atmosphere moles of brox expressed as bromine
+atmosphere moles of butane
+atmosphere moles of carbon dioxide
+atmosphere moles of carbon monoxide
+atmosphere moles of carbon tetrachloride
+atmosphere moles of cfc11
+atmosphere moles of cfc113
+atmosphere moles of cfc113a
+atmosphere moles of cfc114
+atmosphere moles of cfc115
+atmosphere moles of cfc12
+atmosphere moles of chlorine dioxide
+atmosphere moles of chlorine monoxide
+atmosphere moles of chlorine nitrate
+atmosphere moles of clox expressed as chlorine
+atmosphere moles of dichlorine peroxide
+atmosphere moles of dimethyl sulfide
+atmosphere moles of dinitrogen pentoxide
+atmosphere moles of ethane
+atmosphere moles of ethanol
+atmosphere moles of ethene
+atmosphere moles of ethyne
+atmosphere moles of formaldehyde
+atmosphere moles of formic acid
+atmosphere moles of gaseous divalent mercury
+atmosphere moles of gaseous elemental mercury
+atmosphere moles of halon1202
+atmosphere moles of halon1211
+atmosphere moles of halon1301
+atmosphere moles of halon2402
+atmosphere moles of hcc140a
+atmosphere moles of hcfc141b
+atmosphere moles of hcfc142b
+atmosphere moles of hcfc22
+atmosphere moles of hexachlorobiphenyl
+atmosphere moles of hox expressed as hydrogen
+atmosphere moles of hydrogen bromide
+atmosphere moles of hydrogen chloride
+atmosphere moles of hydrogen cyanide
+atmosphere moles of hydrogen peroxide
+atmosphere moles of hydroperoxyl radical
+atmosphere moles of hydroxyl radical
+atmosphere moles of hypobromous acid
+atmosphere moles of hypochlorous acid
+atmosphere moles of inorganic bromine
+atmosphere moles of inorganic chlorine
+atmosphere moles of isoprene
+atmosphere moles of limonene
+atmosphere moles of methane
+atmosphere moles of methanol
+atmosphere moles of methyl bromide
+atmosphere moles of methyl chloride
+atmosphere moles of methyl hydroperoxide
+atmosphere moles of methyl peroxy radical
+atmosphere moles of molecular hydrogen
+atmosphere moles of nitrate radical
+atmosphere moles of nitric acid
+atmosphere moles of nitric acid trihydrate ambient aerosol
+atmosphere moles of nitrogen dioxide
+atmosphere moles of nitrogen monoxide
+atmosphere moles of nitrous acid
+atmosphere moles of nitrous oxide
+atmosphere moles of nmvoc expressed as carbon
+atmosphere moles of nox expressed as nitrogen
+atmosphere moles of noy expressed as nitrogen
+atmosphere moles of ozone
+atmosphere moles of peroxyacetyl nitrate
+atmosphere moles of peroxynitric acid
+atmosphere moles of propane
+atmosphere moles of propene
+atmosphere moles of radon
+atmosphere moles of sulfur dioxide
+atmosphere moles of toluene
+atmosphere moles of water vapor
+atmosphere moles of xylene
+atmosphere momentum diffusivity
+atmosphere net rate of absorption of longwave energy
+atmosphere net rate of absorption of shortwave energy
+atmosphere net upward deep convective mass flux
+atmosphere net upward shallow convective mass flux
+atmosphere northward stress due to gravity wave drag
+atmosphere number content of aerosol particles
+atmosphere number content of cloud droplets
+atmosphere number content of ice crystals
+atmosphere optical thickness due to ambient aerosol
+atmosphere optical thickness due to black carbon ambient aerosol
+atmosphere optical thickness due to cloud
+atmosphere optical thickness due to convective cloud
+atmosphere optical thickness due to dust ambient aerosol
+atmosphere optical thickness due to particulate organic matter ambient aerosol
+atmosphere optical thickness due to pm10 ambient aerosol
+atmosphere optical thickness due to pm1 ambient aerosol
+atmosphere optical thickness due to pm2p5 ambient aerosol
+atmosphere optical thickness due to seasalt ambient aerosol
+atmosphere optical thickness due to stratiform cloud
+atmosphere optical thickness due to water in ambient aerosol
+atmosphere potential energy content
+atmosphere relative vorticity
+atmosphere sigma coordinate
+atmosphere sleve coordinate
+atmosphere specific convective available potential energy
+atmosphere sulfate content
+atmosphere updraft convective mass flux
+atmosphere water content
+atmosphere water vapor content
+backscattering ratio
+baroclinic eastward sea water velocity
+baroclinic northward sea water velocity
+barotropic eastward sea water velocity
+barotropic northward sea water velocity
+barotropic sea water x velocity
+barotropic sea water y velocity
+baseflow amount
+beaufort wind force
+bedrock altitude
+bedrock altitude change due to isostatic adjustment
+bioluminescent photon rate in sea water
+biomass burning carbon flux
+bolus eastward sea water velocity
+bolus northward sea water velocity
+bolus sea water x velocity
+bolus sea water y velocity
+bolus upward sea water velocity
+brightness temperature
+brunt vaisala frequency in air
+canopy and surface water amount
+canopy height
+canopy temperature
+canopy throughfall flux
+canopy water amount
+cell area
+cell thickness
+change in atmosphere energy content due to change in sigma coordinate wrt surface pressure
+change in energy content of atmosphere layer due to change in sigma coordinate wrt surface pressure
+change over time in atmosphere water content due to advection
+change over time in surface snow amount
+cloud albedo
+cloud area fraction
+cloud area fraction in atmosphere layer
+cloud base altitude
+cloud condensed water content of atmosphere layer
+cloud ice content of atmosphere layer
+cloud ice mixing ratio
+cloud liquid water content of atmosphere layer
+cloud liquid water mixing ratio
+convective cloud longwave emissivity
+cloud top altitude
+convective cloud area fraction
+convective cloud area fraction in atmosphere layer
+convective cloud base altitude
+convective cloud base height
+convective cloud top altitude
+convective cloud top height
+convective precipitation amount
+convective precipitation flux
+convective precipitation rate
+convective rainfall amount
+convective rainfall flux
+convective rainfall rate
+convective snowfall amount
+convective snowfall flux
+coriolis parameter
+correction for model negative specific humidity
+depth
+depth at maximum upward derivative of sea water potential temperature
+depth at shallowest local minimum in vertical profile of mole concentration of dissolved molecular oxygen in sea water
+depth of isosurface of sea water potential temperature
+dew point depression
+dew point temperature
+difference of air pressure from model reference
+dimensionless exner function
+direction of radial vector away from instrument
+direction of sea ice displacement
+direction of sea ice velocity
+direction of sea water velocity
+dissipation in atmosphere boundary layer
+divergence of sea ice velocity
+divergence of wind
+downward dry static energy flux due to diffusion
+downward eastward momentum flux in air
+downward eastward momentum flux in air due to diffusion
+downward eastward stress at sea ice base
+downward heat flux at ground level in snow
+downward heat flux at ground level in soil
+downward heat flux in air
+downward heat flux in floating ice
+downward heat flux in sea ice
+downward heat flux in soil
+downward northward momentum flux in air
+downward northward momentum flux in air due to diffusion
+downward northward stress at sea ice base
+downward sea ice basal salt flux
+downward water vapor flux in air due to diffusion
+downward x stress at sea ice base
+downward y stress at sea ice base
+downwelling longwave flux in air
+downwelling longwave flux in air assuming clear sky
+downwelling longwave radiance in air
+downwelling photon flux in sea water
+downwelling photon radiance in sea water
+downwelling photon spherical irradiance in sea water
+downwelling photosynthetic photon flux in sea water
+downwelling photosynthetic photon radiance in sea water
+downwelling photosynthetic photon spherical irradiance in sea water
+downwelling photosynthetic radiance in sea water
+downwelling photosynthetic radiative flux in sea water
+downwelling photosynthetic spherical irradiance in sea water
+downwelling radiance in sea water
+downwelling radiative flux in sea water
+downwelling shortwave flux in air
+downwelling shortwave flux in air assuming clear sky
+downwelling shortwave flux in sea water
+downwelling shortwave radiance in air
+downwelling spectral photon flux in sea water
+downwelling spectral photon radiance in sea water
+downwelling spectral photon spherical irradiance in sea water
+downwelling spectral radiance in air
+downwelling spectral radiance in sea water
+downwelling spectral radiative flux in air
+downwelling spectral radiative flux in sea water
+downwelling spectral spherical irradiance in sea water
+downwelling spherical irradiance in sea water
+dry energy content of atmosphere layer
+dry static energy content of atmosphere layer
+duration of sunshine
+dynamic tropopause potential temperature
+eastward atmosphere dry static energy transport across unit distance
+eastward atmosphere water transport across unit distance
+eastward atmosphere water vapor transport across unit distance
+eastward mass flux of air
+eastward momentum flux correction
+eastward sea ice displacement
+eastward sea ice velocity
+eastward sea water velocity
+eastward sea water velocity assuming no tide
+eastward transformed eulerian mean air velocity
+eastward water vapor flux
+eastward water vapor transport across unit distance in atmosphere layer
+eastward wind
+eastward wind shear
+effective radius of convective cloud ice particle
+effective radius of convective cloud liquid water particle
+effective radius of convective cloud rain particle
+effective radius of convective cloud snow particle
+effective radius of stratiform cloud graupel particle
+effective radius of stratiform cloud ice particle
+effective radius of stratiform cloud liquid water particle
+effective radius of stratiform cloud rain particle
+effective radius of stratiform cloud snow particle
+enthalpy content of atmosphere layer
+equilibrium line altitude
+equivalent potential temperature
+equivalent pressure of atmosphere ozone content
+equivalent reflectivity factor
+equivalent temperature
+equivalent thickness at stp of atmosphere ozone content
+ertel potential vorticity
+floating ice thickness
+forecast period
+forecast reference time
+fractional saturation of oxygen in sea water
+freezing level altitude
+freezing temperature of sea water
+frozen water content of soil layer
+geoid height above reference ellipsoid
+geopotential
+geopotential height
+geopotential height anomaly
+geostrophic eastward wind
+geostrophic northward wind
+global average sea level change
+global average steric sea level change
+global average thermosteric sea level change
+grid latitude
+grid longitude
+gross primary productivity of carbon
+heat flux correction
+heat flux into sea water due to iceberg thermodynamics
+heat flux into sea water due to newtonian relaxation
+heat flux into sea water due to sea ice thermodynamics
+heat flux into sea water due to snow thermodynamics
+height
+height above reference ellipsoid
+height above sea floor
+height at cloud top
+heterotrophic respiration carbon flux
+histogram of backscattering ratio over height above reference ellipsoid
+histogram of equivalent reflectivity factor over height above reference ellipsoid
+horizontal atmosphere dry energy transport
+horizontal dry energy transport in atmosphere layer
+humidity mixing ratio
+integral of air temperature deficit wrt time
+integral of air temperature excess wrt time
+integral of sea water potential temperature wrt depth expressed as heat content
+integral of sea water temperature wrt depth in ocean layer
+integral of surface downward eastward stress wrt time
+integral of surface downward latent heat flux wrt time
+integral of surface downward northward stress wrt time
+integral of surface downward sensible heat flux wrt time
+integral of surface downwelling longwave flux in air wrt time
+integral of surface downwelling shortwave flux in air wrt time
+integral of surface net downward longwave flux wrt time
+integral of surface net downward shortwave flux wrt time
+integral of toa net downward shortwave flux wrt time
+integral of toa outgoing longwave flux wrt time
+integral wrt depth of tendency of sea water alkalinity expressed as mole equivalent
+integral wrt depth of tendency of sea water alkalinity expressed as mole equivalent due to biological processes
+isccp cloud area fraction
+isotropic longwave radiance in air
+isotropic shortwave radiance in air
+isotropic spectral radiance in air
+kinetic energy content of atmosphere layer
+lagrangian tendency of air pressure
+lagrangian tendency of atmosphere sigma coordinate
+land area fraction
+land binary mask
+land ice area fraction
+land ice basal melt rate
+land ice basal x velocity
+land ice basal y velocity
+land ice calving rate
+land ice lwe basal melt rate
+land ice lwe calving rate
+land ice lwe surface specific mass balance
+land ice sigma coordinate
+land ice surface specific mass balance
+land ice temperature
+land ice thickness
+land ice vertical mean x velocity
+land ice vertical mean y velocity
+land ice x velocity
+land ice y velocity
+large scale cloud area fraction
+large scale graupel flux
+large scale precipitation amount
+large scale precipitation flux
+large scale rainfall amount
+large scale rainfall flux
+large scale rainfall rate
+large scale snowfall amount
+large scale snowfall flux
+latitude
+leaf area index
+liquid water content of snow layer
+liquid water content of soil layer
+litter carbon content
+litter carbon flux
+longitude
+lwe convective precipitation rate
+lwe convective snowfall rate
+lwe large scale precipitation rate
+lwe large scale snowfall rate
+lwe precipitation rate
+lwe snowfall rate
+lwe thickness of atmosphere water vapor content
+lwe thickness of canopy water amount
+lwe thickness of convective precipitation amount
+lwe thickness of convective snowfall amount
+lwe thickness of frozen water content of soil layer
+lwe thickness of large scale precipitation amount
+lwe thickness of large scale snowfall amount
+lwe thickness of moisture content of soil layer
+lwe thickness of precipitation amount
+lwe thickness of snowfall amount
+lwe thickness of soil moisture content
+lwe thickness of surface snow amount
+lwe thickness of water evaporation amount
+lwe water evaporation rate
+magnitude of derivative of position wrt model level number
+magnitude of derivative of position wrt x coordinate index
+magnitude of derivative of position wrt y coordinate index
+magnitude of surface downward stress
+mass concentration of acetic acid in air
+mass concentration of aceto nitrile in air
+mass concentration of alkanes in air
+mass concentration of alkenes in air
+mass concentration of alpha hexachlorocyclohexane in air
+mass concentration of alpha pinene in air
+mass concentration of ammonia in air
+mass concentration of ammonium dry aerosol in air
+mass concentration of anthropogenic nmvoc expressed as carbon in air
+mass concentration of aromatic compounds in air
+mass concentration of atomic bromine in air
+mass concentration of atomic chlorine in air
+mass concentration of atomic nitrogen in air
+mass concentration of benzene in air
+mass concentration of beta pinene in air
+mass concentration of biogenic nmvoc expressed as carbon in air
+mass concentration of black carbon dry aerosol in air
+mass concentration of bromine chloride in air
+mass concentration of bromine monoxide in air
+mass concentration of bromine nitrate in air
+mass concentration of brox expressed as bromine in air
+mass concentration of butane in air
+mass concentration of calcareous phytoplankton expressed as chlorophyll in sea water
+mass concentration of carbon dioxide in air
+mass concentration of carbon monoxide in air
+mass concentration of carbon tetrachloride in air
+mass concentration of cfc11 in air
+mass concentration of cfc113 in air
+mass concentration of cfc113a in air
+mass concentration of cfc114 in air
+mass concentration of cfc115 in air
+mass concentration of cfc12 in air
+mass concentration of chlorine dioxide in air
+mass concentration of chlorine monoxide in air
+mass concentration of chlorine nitrate in air
+mass concentration of chlorophyll a in sea water
+mass concentration of chlorophyll in sea water
+mass concentration of clox expressed as chlorine in air
+mass concentration of condensed water in soil
+mass concentration of diatoms expressed as carbon in sea water
+mass concentration of diatoms expressed as chlorophyll in sea water
+mass concentration of diatoms expressed as nitrogen in sea water
+mass concentration of diazotrophs expressed as chlorophyll in sea water
+mass concentration of dichlorine peroxide in air
+mass concentration of dimethyl sulfide in air
+mass concentration of dinitrogen pentoxide in air
+mass concentration of dust dry aerosol in air
+mass concentration of ethane in air
+mass concentration of ethanol in air
+mass concentration of ethene in air
+mass concentration of ethyne in air
+mass concentration of flagellates expressed as carbon in sea water
+mass concentration of flagellates expressed as nitrogen in sea water
+mass concentration of formaldehyde in air
+mass concentration of formic acid in air
+mass concentration of gaseous divalent mercury in air
+mass concentration of gaseous elemental mercury in air
+mass concentration of halon1202 in air
+mass concentration of halon1211 in air
+mass concentration of halon1301 in air
+mass concentration of halon2402 in air
+mass concentration of hcc140a in air
+mass concentration of hcfc141b in air
+mass concentration of hcfc142b in air
+mass concentration of hcfc22 in air
+mass concentration of hexachlorobiphenyl in air
+mass concentration of hox expressed as hydrogen in air
+mass concentration of hydrogen bromide in air
+mass concentration of hydrogen chloride in air
+mass concentration of hydrogen cyanide in air
+mass concentration of hydrogen peroxide in air
+mass concentration of hydroperoxyl radical in air
+mass concentration of hydroxyl radical in air
+mass concentration of hypobromous acid in air
+mass concentration of hypochlorous acid in air
+mass concentration of inorganic bromine in air
+mass concentration of inorganic chlorine in air
+mass concentration of inorganic nitrogen in sea water
+mass concentration of isoprene in air
+mass concentration of limonene in air
+mass concentration of mercury dry aerosol in air
+mass concentration of methane in air
+mass concentration of methanol in air
+mass concentration of methyl bromide in air
+mass concentration of methyl chloride in air
+mass concentration of methyl hydroperoxide in air
+mass concentration of methyl peroxy radical in air
+mass concentration of miscellaneous phytoplankton expressed as chlorophyll in sea water
+mass concentration of molecular hydrogen in air
+mass concentration of nitrate dry aerosol in air
+mass concentration of nitrate radical in air
+mass concentration of nitric acid in air
+mass concentration of nitric acid trihydrate ambient aerosol in air
+mass concentration of nitrogen dioxide in air
+mass concentration of nitrogen monoxide in air
+mass concentration of nitrous acid in air
+mass concentration of nitrous oxide in air
+mass concentration of nmvoc expressed as carbon in air
+mass concentration of nox expressed as nitrogen in air
+mass concentration of noy expressed as nitrogen in air
+mass concentration of organic detritus expressed as carbon in sea water
+mass concentration of organic detritus expressed as nitrogen in sea water
+mass concentration of oxygen in sea water
+mass concentration of oxygenated hydrocarbons in air
+mass concentration of ozone in air
+mass concentration of particulate organic matter dry aerosol in air
+mass concentration of peroxy radicals in air
+mass concentration of peroxyacetyl nitrate in air
+mass concentration of peroxynitric acid in air
+mass concentration of phosphate in sea water
+mass concentration of phytoplankton expressed as chlorophyll in sea water
+mass concentration of picophytoplankton expressed as chlorophyll in sea water
+mass concentration of primary particulate organic matter dry aerosol in air
+mass concentration of propane in air
+mass concentration of propene in air
+mass concentration of radon in air
+mass concentration of seasalt dry aerosol in air
+mass concentration of secondary particulate organic matter dry aerosol in air
+mass concentration of silicate in sea water
+mass concentration of sulfate ambient aerosol in air
+mass concentration of sulfate dry aerosol in air
+mass concentration of sulfur dioxide in air
+mass concentration of suspended matter in sea water
+mass concentration of terpenes in air
+mass concentration of toluene in air
+mass concentration of water in ambient aerosol in air
+mass concentration of water vapor in air
+mass concentration of xylene in air
+mass fraction of acetic acid in air
+mass fraction of aceto nitrile in air
+mass fraction of alkanes in air
+mass fraction of alkenes in air
+mass fraction of alpha hexachlorocyclohexane in air
+mass fraction of alpha pinene in air
+mass fraction of ammonia in air
+mass fraction of ammonium dry aerosol in air
+mass fraction of anthropogenic nmvoc expressed as carbon in air
+mass fraction of aromatic compounds in air
+mass fraction of atomic bromine in air
+mass fraction of atomic chlorine in air
+mass fraction of atomic nitrogen in air
+mass fraction of benzene in air
+mass fraction of beta pinene in air
+mass fraction of biogenic nmvoc expressed as carbon in air
+mass fraction of black carbon dry aerosol in air
+mass fraction of bromine chloride in air
+mass fraction of bromine monoxide in air
+mass fraction of bromine nitrate in air
+mass fraction of brox expressed as bromine in air
+mass fraction of butane in air
+mass fraction of carbon dioxide in air
+mass fraction of carbon monoxide in air
+mass fraction of carbon tetrachloride in air
+mass fraction of cfc11 in air
+mass fraction of cfc113 in air
+mass fraction of cfc113a in air
+mass fraction of cfc114 in air
+mass fraction of cfc115 in air
+mass fraction of cfc12 in air
+mass fraction of chlorine dioxide in air
+mass fraction of chlorine monoxide in air
+mass fraction of chlorine nitrate in air
+mass fraction of cloud condensed water in air
+mass fraction of cloud ice in air
+mass fraction of cloud liquid water in air
+mass fraction of clox expressed as chlorine in air
+mass fraction of convective cloud condensed water in air
+mass fraction of convective cloud ice in air
+mass fraction of convective cloud liquid water in air
+mass fraction of dichlorine peroxide in air
+mass fraction of dimethyl sulfide in air
+mass fraction of dinitrogen pentoxide in air
+mass fraction of dust dry aerosol in air
+mass fraction of ethane in air
+mass fraction of ethanol in air
+mass fraction of ethene in air
+mass fraction of ethyne in air
+mass fraction of formaldehyde in air
+mass fraction of formic acid in air
+mass fraction of frozen water in soil moisture
+mass fraction of gaseous divalent mercury in air
+mass fraction of gaseous elemental mercury in air
+mass fraction of graupel in air
+mass fraction of halon1202 in air
+mass fraction of halon1211 in air
+mass fraction of halon1301 in air
+mass fraction of halon2402 in air
+mass fraction of hcc140a in air
+mass fraction of hcfc141b in air
+mass fraction of hcfc142b in air
+mass fraction of hcfc22 in air
+mass fraction of hexachlorobiphenyl in air
+mass fraction of hox expressed as hydrogen in air
+mass fraction of hydrogen bromide in air
+mass fraction of hydrogen chloride in air
+mass fraction of hydrogen cyanide in air
+mass fraction of hydrogen peroxide in air
+mass fraction of hydroperoxyl radical in air
+mass fraction of hydroxyl radical in air
+mass fraction of hypobromous acid in air
+mass fraction of hypochlorous acid in air
+mass fraction of inorganic bromine in air
+mass fraction of inorganic chlorine in air
+mass fraction of isoprene in air
+mass fraction of limonene in air
+mass fraction of mercury dry aerosol in air
+mass fraction of methane in air
+mass fraction of methanol in air
+mass fraction of methyl bromide in air
+mass fraction of methyl chloride in air
+mass fraction of methyl hydroperoxide in air
+mass fraction of methyl peroxy radical in air
+mass fraction of molecular hydrogen in air
+mass fraction of nitrate dry aerosol in air
+mass fraction of nitrate radical in air
+mass fraction of nitric acid in air
+mass fraction of nitric acid trihydrate ambient aerosol in air
+mass fraction of nitrogen dioxide in air
+mass fraction of nitrogen monoxide in air
+mass fraction of nitrous acid in air
+mass fraction of nitrous oxide in air
+mass fraction of nmvoc expressed as carbon in air
+mass fraction of nox expressed as nitrogen in air
+mass fraction of noy expressed as nitrogen in air
+mass fraction of oxygenated hydrocarbons in air
+mass fraction of ozone in air
+mass fraction of particulate organic matter dry aerosol in air
+mass fraction of peroxy radicals in air
+mass fraction of peroxyacetyl nitrate in air
+mass fraction of peroxynitric acid in air
+mass fraction of pm1 ambient aerosol in air
+mass fraction of pm10 ambient aerosol in air
+mass fraction of pm2p5 ambient aerosol in air
+mass fraction of precipitation in air
+mass fraction of primary particulate organic matter dry aerosol in air
+mass fraction of propane in air
+mass fraction of propene in air
+mass fraction of radon in air
+mass fraction of rain in air
+mass fraction of seasalt dry aerosol in air
+mass fraction of secondary particulate organic matter dry aerosol in air
+mass fraction of snow in air
+mass fraction of stratiform cloud ice in air
+mass fraction of stratiform cloud liquid water in air
+mass fraction of sulfate dry aerosol in air
+mass fraction of sulfuric acid in air
+mass fraction of sulfur dioxide in air
+mass fraction of terpenes in air
+mass fraction of toluene in air
+mass fraction of unfrozen water in soil moisture
+mass fraction of water in air
+mass fraction of water in ambient aerosol in air
+mass fraction of xylene in air
+minimum depth of aragonite undersaturation in sea water
+minimum depth of calcite undersaturation in sea water
+minus one times surface upwelling longwave flux in air
+minus one times surface upwelling shortwave flux in air
+minus one times toa outgoing shortwave flux
+minus one times water flux into sea water from rivers
+model level number
+model level number at base of ocean mixed layer defined by sigma theta
+model level number at convective cloud base
+model level number at convective cloud top
+model level number at sea floor
+model level number at top of atmosphere boundary layer
+moisture content of soil layer
+moisture content of soil layer at field capacity
+mole concentration of acetic acid in air
+mole concentration of aceto nitrile in air
+mole concentration of alpha hexachlorocyclohexane in air
+mole concentration of alpha pinene in air
+mole concentration of ammonia in air
+mole concentration of ammonium in sea water
+mole concentration of anthropogenic nmvoc expressed as carbon in air
+mole concentration of aragonite expressed as carbon in sea water
+mole concentration of aragonite expressed as carbon in sea water at saturation
+mole concentration of atomic bromine in air
+mole concentration of atomic chlorine in air
+mole concentration of atomic nitrogen in air
+mole concentration of bacteria expressed as carbon in sea water
+mole concentration of benzene in air
+mole concentration of beta pinene in air
+mole concentration of biogenic nmvoc expressed as carbon in air
+mole concentration of bromine chloride in air
+mole concentration of bromine monoxide in air
+mole concentration of bromine nitrate in air
+mole concentration of brox expressed as bromine in air
+mole concentration of butane in air
+mole concentration of calcareous phytoplankton expressed as carbon in sea water
+mole concentration of calcite expressed as carbon in sea water
+mole concentration of calcite expressed as carbon in sea water at saturation
+mole concentration of carbonate expressed as carbon in sea water
+mole concentration of carbon dioxide in air
+mole concentration of carbon monoxide in air
+mole concentration of carbon tetrachloride in air
+mole concentration of cfc11 in air
+mole concentration of cfc113 in air
+mole concentration of cfc113a in air
+mole concentration of cfc114 in air
+mole concentration of cfc115 in air
+mole concentration of cfc12 in air
+mole concentration of chlorine dioxide in air
+mole concentration of chlorine monoxide in air
+mole concentration of chlorine nitrate in air
+mole concentration of clox expressed as chlorine in air
+mole concentration of diatoms expressed as carbon in sea water
+mole concentration of diatoms expressed as nitrogen in sea water
+mole concentration of diazotrophs expressed as carbon in sea water
+mole concentration of dichlorine peroxide in air
+mole concentration of dimethyl sulfide in air
+mole concentration of dimethyl sulfide in sea water
+mole concentration of dinitrogen pentoxide in air
+mole concentration of dissolved inorganic carbon in sea water
+mole concentration of dissolved iron in sea water
+mole concentration of dissolved molecular oxygen in sea water
+mole concentration of dissolved molecular oxygen in sea water at shallowest local minimum in vertical profile
+mole concentration of dissolved organic carbon in sea water
+mole concentration of ethane in air
+mole concentration of ethanol in air
+mole concentration of ethene in air
+mole concentration of ethyne in air
+mole concentration of formaldehyde in air
+mole concentration of formic acid in air
+mole concentration of gaseous divalent mercury in air
+mole concentration of gaseous elemental mercury in air
+mole concentration of halon1202 in air
+mole concentration of halon1211 in air
+mole concentration of halon1301 in air
+mole concentration of halon2402 in air
+mole concentration of hcc140a in air
+mole concentration of hcfc141b in air
+mole concentration of hcfc142b in air
+mole concentration of hcfc22 in air
+mole concentration of hexachlorobiphenyl in air
+mole concentration of hox expressed as hydrogen in air
+mole concentration of hydrogen bromide in air
+mole concentration of hydrogen chloride in air
+mole concentration of hydrogen cyanide in air
+mole concentration of hydrogen peroxide in air
+mole concentration of hydroperoxyl radical in air
+mole concentration of hydroxyl radical in air
+mole concentration of hypobromous acid in air
+mole concentration of hypochlorous acid in air
+mole concentration of inorganic bromine in air
+mole concentration of inorganic chlorine in air
+mole concentration of isoprene in air
+mole concentration of limonene in air
+mole concentration of mesozooplankton expressed as carbon in sea water
+mole concentration of mesozooplankton expressed as nitrogen in sea water
+mole concentration of methane in air
+mole concentration of methanol in air
+mole concentration of methyl bromide in air
+mole concentration of methyl chloride in air
+mole concentration of methyl hydroperoxide in air
+mole concentration of methyl peroxy radical in air
+mole concentration of microzooplankton expressed as carbon in sea water
+mole concentration of microzooplankton expressed as nitrogen in sea water
+mole concentration of miscellaneous phytoplankton expressed as carbon in sea water
+mole concentration of miscellaneous zooplankton expressed as carbon in sea water
+mole concentration of molecular hydrogen in air
+mole concentration of nitrate in sea water
+mole concentration of nitrate radical in air
+mole concentration of nitric acid in air
+mole concentration of nitric acid trihydrate ambient aerosol in air
+mole concentration of nitrogen dioxide in air
+mole concentration of nitrogen monoxide in air
+mole concentration of nitrous acid in air
+mole concentration of nitrous oxide in air
+mole concentration of nmvoc expressed as carbon in air
+mole concentration of nox expressed as nitrogen in air
+mole concentration of noy expressed as nitrogen in air
+mole concentration of organic detritus expressed as carbon in sea water
+mole concentration of organic detritus expressed as nitrogen in sea water
+mole concentration of organic detritus expressed as silicon in sea water
+mole concentration of ozone in air
+mole concentration of particulate matter expressed as silicon in sea water
+mole concentration of particulate organic matter expressed as iron in sea water
+mole concentration of particulate organic matter expressed as nitrogen in sea water
+mole concentration of particulate organic matter expressed as phosphorus in sea water
+mole concentration of peroxyacetyl nitrate in air
+mole concentration of peroxynitric acid in air
+mole concentration of phosphate in sea water
+mole concentration of phytoplankton expressed as carbon in sea water
+mole concentration of phytoplankton expressed as iron in sea water
+mole concentration of phytoplankton expressed as nitrogen in sea water
+mole concentration of phytoplankton expressed as phosphorus in sea water
+mole concentration of phytoplankton expressed as silicon in sea water
+mole concentration of picophytoplankton expressed as carbon in sea water
+mole concentration of propane in air
+mole concentration of propene in air
+mole concentration of radon in air
+mole concentration of silicate in sea water
+mole concentration of sulfur dioxide in air
+mole concentration of toluene in air
+mole concentration of water vapor in air
+mole concentration of xylene in air
+mole concentration of zooplankton expressed as carbon in sea water
+mole fraction of acetic acid in air
+mole fraction of aceto nitrile in air
+mole fraction of alpha hexachlorocyclohexane in air
+mole fraction of alpha pinene in air
+mole fraction of ammonia in air
+mole fraction of anthropogenic nmvoc expressed as carbon in air
+mole fraction of atomic bromine in air
+mole fraction of atomic chlorine in air
+mole fraction of atomic nitrogen in air
+mole fraction of benzene in air
+mole fraction of beta pinene in air
+mole fraction of biogenic nmvoc expressed as carbon in air
+mole fraction of bromine chloride in air
+mole fraction of bromine monoxide in air
+mole fraction of bromine nitrate in air
+mole fraction of brox expressed as bromine in air
+mole fraction of butane in air
+mole fraction of carbon dioxide in air
+mole fraction of carbon monoxide in air
+mole fraction of carbon tetrachloride in air
+mole fraction of cfc11 in air
+mole fraction of cfc113 in air
+mole fraction of cfc113a in air
+mole fraction of cfc114 in air
+mole fraction of cfc115 in air
+mole fraction of cfc12 in air
+mole fraction of chlorine dioxide in air
+mole fraction of chlorine monoxide in air
+mole fraction of chlorine nitrate in air
+mole fraction of clox expressed as chlorine in air
+mole fraction of dichlorine peroxide in air
+mole fraction of dimethyl sulfide in air
+mole fraction of dinitrogen pentoxide in air
+mole fraction of ethane in air
+mole fraction of ethanol in air
+mole fraction of ethene in air
+mole fraction of ethyne in air
+mole fraction of formaldehyde in air
+mole fraction of formic acid in air
+mole fraction of gaseous divalent mercury in air
+mole fraction of gaseous elemental mercury in air
+mole fraction of halon1202 in air
+mole fraction of halon1211 in air
+mole fraction of halon1301 in air
+mole fraction of halon2402 in air
+mole fraction of hcc140a in air
+mole fraction of hcfc141b in air
+mole fraction of hcfc142b in air
+mole fraction of hcfc22 in air
+mole fraction of hexachlorobiphenyl in air
+mole fraction of hox expressed as hydrogen in air
+mole fraction of hydrogen bromide in air
+mole fraction of hydrogen chloride in air
+mole fraction of hydrogen cyanide in air
+mole fraction of hydrogen peroxide in air
+mole fraction of hydroperoxyl radical in air
+mole fraction of hydroxyl radical in air
+mole fraction of hypobromous acid in air
+mole fraction of hypochlorous acid in air
+mole fraction of inorganic bromine in air
+mole fraction of inorganic chlorine in air
+mole fraction of isoprene in air
+mole fraction of limonene in air
+mole fraction of methane in air
+mole fraction of methanol in air
+mole fraction of methyl bromide in air
+mole fraction of methyl chloride in air
+mole fraction of methyl hydroperoxide in air
+mole fraction of methyl peroxy radical in air
+mole fraction of molecular hydrogen in air
+mole fraction of nitrate radical in air
+mole fraction of nitric acid in air
+mole fraction of nitric acid trihydrate ambient aerosol in air
+mole fraction of nitrogen dioxide in air
+mole fraction of nitrogen monoxide in air
+mole fraction of nitrous acid in air
+mole fraction of nitrous oxide in air
+mole fraction of nmvoc expressed as carbon in air
+mole fraction of nox expressed as nitrogen in air
+mole fraction of noy expressed as nitrogen in air
+mole fraction of ozone in air
+mole fraction of peroxyacetyl nitrate in air
+mole fraction of peroxynitric acid in air
+mole fraction of propane in air
+mole fraction of propene in air
+mole fraction of radon in air
+mole fraction of sulfur dioxide in air
+mole fraction of toluene in air
+mole fraction of water vapor in air
+mole fraction of xylene in air
+mole ratio of nitrate to phosphate in sea water
+moles of nitrate and nitrite per unit mass in sea water
+moles of nitrate per unit mass in sea water
+moles of nitrite per unit mass in sea water
+moles of oxygen per unit mass in sea water
+moles of phosphate per unit mass in sea water
+moles of silicate per unit mass in sea water
+moles of cfc11 per unit mass in sea water
+net downward longwave flux in air
+net downward longwave flux in air assuming clear sky
+net downward radiative flux at top of atmosphere model
+net downward shortwave flux in air
+net downward shortwave flux in air assuming clear sky
+net primary mole productivity of carbon by calcareous phytoplankton
+net primary mole productivity of carbon by diatoms
+net primary mole productivity of carbon by diazotrophs
+net primary mole productivity of carbon by miscellaneous phytoplankton
+net primary mole productivity of carbon by phytoplankton
+net primary mole productivity of carbon by picophytoplankton
+net primary mole productivity of carbon due to nitrate utilization
+net primary productivity of carbon
+net rate of absorption of longwave energy in atmosphere layer
+net rate of absorption of shortwave energy in atmosphere layer
+net upward longwave flux in air
+net upward longwave flux in air assuming clear sky
+net upward shortwave flux in air
+net upward shortwave flux in air assuming clear sky
+normalized difference vegetation index
+northward atmosphere dry static energy transport across unit distance
+northward atmosphere heat transport
+northward atmosphere water transport across unit distance
+northward atmosphere water vapor transport across unit distance
+northward eliassen palm flux in air
+northward heat flux in air due to eddy advection
+northward mass flux of air
+northward momentum flux correction
+northward ocean freshwater transport
+northward ocean freshwater transport due to bolus advection
+northward ocean freshwater transport due to diffusion
+northward ocean freshwater transport due to gyre
+northward ocean freshwater transport due to overturning
+northward ocean heat transport
+northward ocean heat transport due to bolus advection
+northward ocean heat transport due to diffusion
+northward ocean heat transport due to gyre
+northward ocean heat transport due to overturning
+northward ocean salt transport
+northward ocean salt transport due to bolus advection
+northward ocean salt transport due to diffusion
+northward ocean salt transport due to gyre
+northward ocean salt transport due to overturning
+northward sea ice displacement
+northward sea ice velocity
+northward sea water velocity
+northward sea water velocity assuming no tide
+northward transformed eulerian mean air velocity
+northward water vapor flux
+northward water vapor transport across unit distance in atmosphere layer
+northward wind
+northward wind shear
+number of days with air temperature above threshold
+number of days with air temperature below threshold
+number of days with lwe thickness of precipitation amount above threshold
+number of days with wind speed above threshold
+ocean barotropic mass streamfunction
+ocean barotropic streamfunction
+ocean heat x transport
+ocean heat x transport due to bolus advection
+ocean heat x transport due to diffusion
+ocean heat y transport
+ocean heat y transport due to bolus advection
+ocean heat y transport due to diffusion
+ocean integral of sea water temperature wrt depth
+ocean isopycnal layer thickness diffusivity
+ocean kinetic energy dissipation per unit area due to vertical friction
+ocean kinetic energy dissipation per unit area due to xy friction
+ocean mass content of dissolved inorganic carbon
+ocean mass x transport
+ocean mass x transport due to advection
+ocean mass x transport due to advection and bolus advection
+ocean mass y transport
+ocean mass y transport due to advection
+ocean mass y transport due to advection and bolus advection
+ocean meridional overturning mass streamfunction
+ocean meridional overturning mass streamfunction due to bolus advection
+ocean meridional overturning streamfunction
+ocean mixed layer thickness
+ocean mixed layer thickness defined by mixing scheme
+ocean mixed layer thickness defined by sigma t
+ocean mixed layer thickness defined by sigma theta
+ocean mixed layer thickness defined by temperature
+ocean mixed layer thickness defined by vertical tracer diffusivity
+ocean momentum xy biharmonic diffusivity
+ocean momentum xy laplacian diffusivity
+ocean montgomery potential
+ocean rigid lid pressure
+ocean rigid lid pressure expressed as sea surface height above geoid
+ocean salt x transport
+ocean salt y transport
+ocean s coordinate
+ocean sigma coordinate
+ocean tracer bolus biharmonic diffusivity
+ocean tracer bolus laplacian diffusivity
+ocean tracer epineutral biharmonic diffusivity
+ocean tracer epineutral laplacian diffusivity
+ocean tracer xy biharmonic diffusivity
+ocean tracer xy laplacian diffusivity
+ocean vertical diffusivity
+ocean vertical heat diffusivity
+ocean vertical momentum diffusivity
+ocean vertical momentum diffusivity due to background
+ocean vertical momentum diffusivity due to convection
+ocean vertical momentum diffusivity due to form drag
+ocean vertical momentum diffusivity due to tides
+ocean vertical salt diffusivity
+ocean vertical tracer diffusivity
+ocean vertical tracer diffusivity due to background
+ocean vertical tracer diffusivity due to convection
+ocean vertical tracer diffusivity due to tides
+ocean vertical tracer diffusivity due to wind mixing
+ocean volume
+ocean volume fraction
+ocean y overturning mass streamfunction
+ocean y overturning mass streamfunction due to bolus advection
+omnidirectional photosynthetic spherical irradiance in sea water
+omnidirectional spectral spherical irradiance in sea water
+optical thickness of atmosphere layer due to ambient aerosol
+planetary albedo
+plant respiration carbon flux
+platform course
+platform orientation
+platform pitch angle
+platform pitch rate
+platform roll angle
+platform roll rate
+platform speed wrt air
+platform speed wrt ground
+platform speed wrt sea water
+platform yaw angle
+platform yaw rate
+potential energy content of atmosphere layer
+potential vorticity of atmosphere layer
+potential vorticity of ocean layer
+precipitation amount
+precipitation flux
+precipitation flux onto canopy
+product of air temperature and omega
+product of air temperature and specific humidity
+product of eastward sea water velocity and salinity
+product of eastward sea water velocity and temperature
+product of eastward wind and air temperature
+product of eastward wind and geopotential height
+product of eastward wind and northward wind
+product of eastward wind and omega
+product of eastward wind and specific humidity
+product of eastward wind and upward air velocity
+product of geopotential height and omega
+product of northward sea water velocity and salinity
+product of northward sea water velocity and temperature
+product of northward wind and air temperature
+product of northward wind and geopotential height
+product of northward wind and omega
+product of northward wind and specific humidity
+product of northward wind and upward air velocity
+product of omega and air temperature
+product of omega and specific humidity
+product of specific humidity and omega
+product of upward air velocity and air temperature
+product of upward air velocity and specific humidity
+projection x coordinate
+projection y coordinate
+pseudo equivalent potential temperature
+pseudo equivalent temperature
+radial sea water velocity away from instrument
+radial velocity of scatterers away from instrument
+radiation frequency
+radiation wavelength
+rainfall amount
+rainfall flux
+rainfall rate
+ratio of x derivative of ocean rigid lid pressure to sea surface density
+ratio of y derivative of ocean rigid lid pressure to sea surface density
+realization
+reference sea water density for boussinesq approximation
+region
+relative humidity
+richardson number in sea water
+root depth
+runoff amount
+runoff amount excluding baseflow
+runoff flux
+salt flux into sea water from rivers
+scattering angle
+sea area
+sea area fraction
+sea floor depth below geoid
+sea floor depth below sea level
+sea floor depth below sea surface
+sea ice albedo
+sea ice amount
+sea ice area
+sea ice displacement
+sea ice area fraction
+sea ice draft
+sea ice extent
+sea ice freeboard
+sea ice mass
+sea ice speed
+sea ice temperature
+sea ice thickness
+sea ice transport across line
+sea ice volume
+sea ice x displacement
+sea ice x velocity
+sea ice y displacement
+sea ice y velocity
+sea surface density
+sea surface foundation temperature
+sea surface height above geoid
+sea surface height above reference ellipsoid
+sea surface height above sea level
+sea surface height amplitude due to earth tide
+sea surface height amplitude due to equilibrium ocean tide
+sea surface height amplitude due to geocentric ocean tide
+sea surface height amplitude due to non equilibrium ocean tide
+sea surface height amplitude due to pole tide
+sea surface height bias due to sea surface roughness
+sea surface height correction due to air pressure at low frequency
+sea surface height correction due to air pressure and wind at high frequency
+sea surface salinity
+sea surface skin temperature
+sea surface subskin temperature
+sea surface swell wave mean period from variance spectral density first frequency moment
+sea surface swell wave mean period from variance spectral density inverse frequency moment
+sea surface swell wave mean period from variance spectral density second frequency moment
+sea surface swell wave period
+sea surface swell wave significant height
+sea surface swell wave to direction
+sea surface swell wave zero upcrossing period
+sea surface temperature
+sea surface wave directional variance spectral density
+sea surface wave from direction
+sea surface wave mean period from variance spectral density first frequency moment
+sea surface wave mean period from variance spectral density inverse frequency moment
+sea surface wave mean period from variance spectral density second frequency moment
+sea surface wave period at variance spectral density maximum
+sea surface wave significant height
+sea surface wave to direction
+sea surface wave variance spectral density
+sea surface wave zero upcrossing period
+sea surface wind wave mean period from variance spectral density first frequency moment
+sea surface wind wave mean period from variance spectral density inverse frequency moment
+sea surface wind wave mean period from variance spectral density second frequency moment
+sea surface wind wave period
+sea surface wind wave significant height
+sea surface wind wave to direction
+sea surface wind wave zero upcrossing period
+sea water age since surface contact
+sea water alkalinity expressed as mole equivalent
+sea water density
+sea water electrical conductivity
+sea water mass
+sea water mass per unit area
+sea water ph reported on total scale
+sea water potential density
+sea water potential temperature
+sea water pressure
+sea water pressure at sea floor
+sea water pressure at sea water surface
+sea water salinity
+sea water sigma t
+sea water sigma theta
+sea water speed
+sea water temperature
+sea water volume
+sea water x velocity
+sea water y velocity
+secchi depth of sea water
+sinking mole flux of aragonite expressed as carbon in sea water
+sinking mole flux of calcite expressed as carbon in sea water
+sinking mole flux of particulate iron in sea water
+sinking mole flux of particulate organic matter expressed as carbon in sea water
+sinking mole flux of particulate organic nitrogen in sea water
+sinking mole flux of particulate organic phosphorus in sea water
+sinking mole flux of particulate silicon in sea water
+snow density
+snow grain size
+snow soot content
+snow temperature
+snow thermal energy content
+snowfall amount
+snowfall flux
+soil albedo
+soil carbon content
+soil frozen water content
+soil hydraulic conductivity at saturation
+soil moisture content
+soil moisture content at field capacity
+soil porosity
+soil respiration carbon flux
+soil suction at saturation
+soil temperature
+soil thermal capacity
+soil thermal conductivity
+soil type
+solar azimuth angle
+solar elevation angle
+solar zenith angle
+sound frequency
+sound intensity in air
+sound intensity in water
+sound intensity level in air
+sound intensity level in water
+sound pressure in air
+sound pressure in water
+sound pressure level in air
+sound pressure level in water
+specific dry energy of air
+specific gravitational potential energy
+specific humidity
+specific kinetic energy of air
+specific kinetic energy of sea water
+speed of sound in air
+speed of sound in sea water
+spell length of days with air temperature above threshold
+spell length of days with air temperature below threshold
+spell length of days with lwe thickness of precipitation amount above threshold
+spell length of days with lwe thickness of precipitation amount below threshold
+square of air temperature
+square of brunt vaisala frequency in air
+square of eastward wind
+square of geopotential height
+square of lagrangian tendency of air pressure
+square of northward wind
+square of ocean mixed layer thickness defined by sigma t
+square of sea surface height above geoid
+square of sea surface temperature
+square of upward air velocity
+square of upward ocean mass transport
+stratiform cloud area fraction in atmosphere layer
+stratiform cloud longwave emissivity
+subsurface runoff amount
+subsurface runoff flux
+sunlit binary mask
+surface air pressure
+surface albedo
+surface albedo assuming deep snow
+surface albedo assuming no snow
+surface altitude
+surface backwards scattering coefficient of radar wave
+surface brightness temperature
+surface carbon dioxide mole flux
+surface carbon dioxide partial pressure difference between air and sea water
+surface carbon dioxide partial pressure difference between sea water and air
+surface diffuse downwelling photosynthetic radiative flux in air
+surface downward eastward stress
+surface downward heat flux in air
+surface downward heat flux in sea water
+surface downward latent heat flux
+surface downward mass flux of carbon dioxide expressed as carbon
+surface downward mole flux of molecular oxygen
+surface downward northward stress
+surface downward sensible heat flux
+surface downward water flux
+surface downward x stress
+surface downward x stress correction
+surface downward y stress
+surface downward y stress correction
+surface downwelling longwave flux in air
+surface downwelling longwave flux in air assuming clear sky
+surface downwelling photon flux in sea water
+surface downwelling photon radiance in sea water
+surface downwelling photon spherical irradiance in sea water
+surface downwelling photosynthetic photon flux in air
+surface downwelling photosynthetic photon flux in sea water
+surface downwelling photosynthetic photon radiance in sea water
+surface downwelling photosynthetic photon spherical irradiance in sea water
+surface downwelling photosynthetic radiance in sea water
+surface downwelling photosynthetic radiative flux in air
+surface downwelling photosynthetic radiative flux in sea water
+surface downwelling photosynthetic spherical irradiance in sea water
+surface downwelling radiance in sea water
+surface downwelling radiative flux in sea water
+surface downwelling shortwave flux in air
+surface downwelling shortwave flux in air assuming clear sky
+surface downwelling spectral photon flux in sea water
+surface downwelling spectral photon radiance in sea water
+surface downwelling spectral photon spherical irradiance in sea water
+surface downwelling spectral radiance in sea water
+surface downwelling spectral radiative flux in air
+surface downwelling spectral radiative flux in sea water
+surface downwelling spectral spherical irradiance in sea water
+surface downwelling spherical irradiance in sea water
+surface drag coefficient for heat in air
+surface drag coefficient for momentum in air
+surface drag coefficient in air
+surface eastward sea water velocity
+surface geopotential
+surface geostrophic eastward sea water velocity
+surface geostrophic eastward sea water velocity assuming sea level for geoid
+surface geostrophic northward sea water velocity
+surface geostrophic northward sea water velocity assuming sea level for geoid
+surface geostrophic sea water x velocity
+surface geostrophic sea water x velocity assuming sea level for geoid
+surface geostrophic sea water y velocity
+surface geostrophic sea water y velocity assuming sea level for geoid
+surface longwave emissivity
+surface microwave emissivity
+surface molecular oxygen partial pressure difference between sea water and air
+surface net downward longwave flux
+surface net downward longwave flux assuming clear sky
+surface net downward radiative flux
+surface net downward shortwave flux
+surface net downward shortwave flux assuming clear sky
+surface net upward longwave flux
+surface net upward radiative flux
+surface net upward shortwave flux
+surface northward sea water velocity
+surface partial pressure of carbon dioxide in air
+surface partial pressure of carbon dioxide in sea water
+surface ratio of upwelling radiance emerging from sea water to downwelling radiative flux in air
+surface roughness length
+surface roughness length for heat in air
+surface roughness length for momentum in air
+surface runoff amount
+surface runoff flux
+surface snow amount
+surface snow and ice melt heat flux
+surface snow and ice sublimation flux
+surface snow area fraction
+surface snow melt amount
+surface snow melt and sublimation heat flux
+surface snow melt flux
+surface snow melt heat flux
+surface snow sublimation amount
+surface snow sublimation heat flux
+surface snow thickness
+surface specific humidity
+surface temperature
+surface temperature anomaly
+surface upward heat flux in air
+surface upward latent heat flux
+surface upward mole flux of dimethyl sulfide
+surface upward sensible heat flux
+surface upward water flux
+surface upward water vapor flux in air
+surface upwelling longwave flux in air
+surface upwelling longwave flux in air assuming clear sky
+surface upwelling photosynthetic photon flux in air
+surface upwelling radiance in air
+surface upwelling radiance in air emerging from sea water
+surface upwelling radiance in air reflected by sea water
+surface upwelling radiance in sea water
+surface upwelling shortwave flux in air
+surface upwelling shortwave flux in air assuming clear sky
+surface upwelling spectral radiance in air
+surface upwelling spectral radiance in air emerging from sea water
+surface upwelling spectral radiance in air reflected by sea water
+surface upwelling spectral radiance in sea water
+surface upwelling spectral radiative flux in air
+surface upwelling spectral radiative flux in sea water
+surface water amount
+temperature flux due to evaporation expressed as heat flux out of sea water
+temperature flux due to rainfall expressed as heat flux into sea water
+temperature flux due to runoff expressed as heat flux into sea water
+temperature of sensor for oxygen in sea water
+tendency of air density
+tendency of air pressure
+tendency of air temperature
+tendency of air temperature due to advection
+tendency of air temperature due to convection
+tendency of air temperature due to diabatic processes
+tendency of air temperature due to diffusion
+tendency of air temperature due to dry convection
+tendency of air temperature due to stratiform precipitation
+tendency of air temperature due to longwave heating
+tendency of air temperature due to longwave heating assuming clear sky
+tendency of air temperature due to model physics
+tendency of air temperature due to moist convection
+tendency of air temperature due to radiative heating
+tendency of air temperature due to shortwave heating
+tendency of air temperature due to shortwave heating assuming clear sky
+tendency of air temperature due to stratiform cloud and precipitation and boundary layer mixing
+tendency of air temperature due to turbulence
+tendency of atmosphere dry energy content
+tendency of atmosphere enthalpy content due to advection
+tendency of atmosphere kinetic energy content due to advection
+tendency of atmosphere mass content of acetic acid due to dry deposition
+tendency of atmosphere mass content of acetic acid due to wet deposition
+tendency of atmosphere mass content of aceto nitrile due to dry deposition
+tendency of atmosphere mass content of alpha hexachlorocyclohexane due to dry deposition
+tendency of atmosphere mass content of alpha hexachlorocyclohexane due to emission
+tendency of atmosphere mass content of alpha hexachlorocyclohexane due to re emission
+tendency of atmosphere mass content of alpha hexachlorocyclohexane due to wet deposition
+tendency of atmosphere mass content of alpha pinene due to emission
+tendency of atmosphere mass content of ammonia due to dry deposition
+tendency of atmosphere mass content of ammonia due to emission
+tendency of atmosphere mass content of ammonia due to wet deposition
+tendency of atmosphere mass content of ammonium dry aerosol due to dry deposition
+tendency of atmosphere mass content of ammonium dry aerosol due to wet deposition
+tendency of atmosphere mass content of benzene due to emission
+tendency of atmosphere mass content of beta pinene due to emission
+tendency of atmosphere mass content of black carbon dry aerosol due to dry deposition
+tendency of atmosphere mass content of black carbon dry aerosol due to emission
+tendency of atmosphere mass content of black carbon dry aerosol due to gravitational settling
+tendency of atmosphere mass content of black carbon dry aerosol due to turbulent deposition
+tendency of atmosphere mass content of black carbon dry aerosol due to wet deposition
+tendency of atmosphere mass content of butane due to emission
+tendency of atmosphere mass content of carbon dioxide due to emission
+tendency of atmosphere mass content of carbon monoxide due to dry deposition
+tendency of atmosphere mass content of carbon monoxide due to emission
+tendency of atmosphere mass content of carbon tetrachloride due to emission
+tendency of atmosphere mass content of cfc11 due to emission
+tendency of atmosphere mass content of cfc113 due to emission
+tendency of atmosphere mass content of cfc113a due to emission
+tendency of atmosphere mass content of cfc114 due to emission
+tendency of atmosphere mass content of cfc115 due to emission
+tendency of atmosphere mass content of cfc12 due to emission
+tendency of atmosphere mass content of dimethyl sulfide due to dry deposition
+tendency of atmosphere mass content of dimethyl sulfide due to emission
+tendency of atmosphere mass content of dimethyl sulfide due to wet deposition
+tendency of atmosphere mass content of dust dry aerosol due to dry deposition
+tendency of atmosphere mass content of dust dry aerosol due to emission
+tendency of atmosphere mass content of dust dry aerosol due to gravitational settling
+tendency of atmosphere mass content of dust dry aerosol due to turbulent deposition
+tendency of atmosphere mass content of dust dry aerosol due to wet deposition
+tendency of atmosphere mass content of ethane due to emission
+tendency of atmosphere mass content of ethanol due to emission
+tendency of atmosphere mass content of ethene due to emission
+tendency of atmosphere mass content of ethyne due to emission
+tendency of atmosphere mass content of formaldehyde due to dry deposition
+tendency of atmosphere mass content of formaldehyde due to emission
+tendency of atmosphere mass content of formic acid due to dry deposition
+tendency of atmosphere mass content of formic acid due to wet deposition
+tendency of atmosphere mass content of gaseous divalent mercury due to dry deposition
+tendency of atmosphere mass content of gaseous divalent mercury due to emission
+tendency of atmosphere mass content of gaseous divalent mercury due to wet deposition
+tendency of atmosphere mass content of gaseous elemental mercury due to dry deposition
+tendency of atmosphere mass content of gaseous elemental mercury due to emission
+tendency of atmosphere mass content of gaseous elemental mercury due to wet deposition
+tendency of atmosphere mass content of halon1202 due to emission
+tendency of atmosphere mass content of halon1211 due to emission
+tendency of atmosphere mass content of halon1301 due to emission
+tendency of atmosphere mass content of halon2402 due to emission
+tendency of atmosphere mass content of hcc140a due to emission
+tendency of atmosphere mass content of hcfc141b due to emission
+tendency of atmosphere mass content of hcfc142b due to emission
+tendency of atmosphere mass content of hcfc22 due to emission
+tendency of atmosphere mass content of hexachlorobiphenyl due to dry deposition
+tendency of atmosphere mass content of hexachlorobiphenyl due to emission
+tendency of atmosphere mass content of hexachlorobiphenyl due to re emission
+tendency of atmosphere mass content of hexachlorobiphenyl due to wet deposition
+tendency of atmosphere mass content of hydrogen cyanide due to dry deposition
+tendency of atmosphere mass content of hydrogen cyanide due to emission
+tendency of atmosphere mass content of hydrogen peroxide due to dry deposition
+tendency of atmosphere mass content of isoprene due to emission
+tendency of atmosphere mass content of limonene due to emission
+tendency of atmosphere mass content of mercury dry aerosol due to dry deposition
+tendency of atmosphere mass content of mercury dry aerosol due to emission
+tendency of atmosphere mass content of mercury dry aerosol due to wet deposition
+tendency of atmosphere mass content of methane due to emission
+tendency of atmosphere mass content of methanol due to emission
+tendency of atmosphere mass content of methyl bromide due to emission
+tendency of atmosphere mass content of methyl chloride due to emission
+tendency of atmosphere mass content of molecular hydrogen due to dry deposition
+tendency of atmosphere mass content of molecular hydrogen due to emission
+tendency of atmosphere mass content of nitrate dry aerosol due to dry deposition
+tendency of atmosphere mass content of nitric acid due to dry deposition
+tendency of atmosphere mass content of nitric acid due to wet deposition
+tendency of atmosphere mass content of nitrogen dioxide due to dry deposition
+tendency of atmosphere mass content of nitrogen dioxide due to emission
+tendency of atmosphere mass content of nitrogen monoxide due to emission 
+tendency of atmosphere mass content of nitrous acid due to dry deposition
+tendency of atmosphere mass content of nitrous acid due to emission
+tendency of atmosphere mass content of nitrous oxide due to dry deposition
+tendency of atmosphere mass content of nitrous oxide due to emission
+tendency of atmosphere mass content of nox expressed as nitrogen due to emission
+tendency of atmosphere mass content of ozone due to dry deposition
+tendency of atmosphere mass content of ozone due to dry deposition into stomata
+tendency of atmosphere mass content of particulate organic matter dry aerosol due to dry deposition
+tendency of atmosphere mass content of particulate organic matter dry aerosol due to gravitational settling
+tendency of atmosphere mass content of particulate organic matter dry aerosol due to net chemical production and emission
+tendency of atmosphere mass content of particulate organic matter dry aerosol due to turbulent deposition
+tendency of atmosphere mass content of particulate organic matter dry aerosol due to wet deposition
+tendency of atmosphere mass content of peroxyacetyl nitrate due to dry deposition
+tendency of atmosphere mass content of peroxynitric acid due to dry deposition
+tendency of atmosphere mass content of primary particulate organic matter dry aerosol due to dry deposition
+tendency of atmosphere mass content of primary particulate organic matter dry aerosol due to emission
+tendency of atmosphere mass content of primary particulate organic matter dry aerosol due to wet deposition
+tendency of atmosphere mass content of propane due to emission
+tendency of atmosphere mass content of propene due to emission
+tendency of atmosphere mass content of radon due to emission
+tendency of atmosphere mass content of seasalt dry aerosol due to dry deposition
+tendency of atmosphere mass content of seasalt dry aerosol due to emission
+tendency of atmosphere mass content of seasalt dry aerosol due to gravitational settling
+tendency of atmosphere mass content of seasalt dry aerosol due to turbulent deposition
+tendency of atmosphere mass content of seasalt dry aerosol due to wet deposition
+tendency of atmosphere mass content of secondary particulate organic matter dry aerosol due to dry deposition
+tendency of atmosphere mass content of secondary particulate organic matter dry aerosol due to net chemical production
+tendency of atmosphere mass content of secondary particulate organic matter dry aerosol due to wet deposition
+tendency of atmosphere mass content of sulfate dry aerosol due to dry deposition
+tendency of atmosphere mass content of sulfate dry aerosol due to emission
+tendency of atmosphere mass content of sulfate expressed as sulfur dry aerosol due to dry deposition
+tendency of atmosphere mass content of sulfate expressed as sulfur dry aerosol due to gravitational settling
+tendency of atmosphere mass content of sulfate expressed as sulfur dry aerosol due to turbulent deposition
+tendency of atmosphere mass content of sulfate expressed as sulfur dry aerosol due to wet deposition
+tendency of atmosphere mass content of sulfur dioxide due to dry deposition
+tendency of atmosphere mass content of sulfur dioxide due to emission
+tendency of atmosphere mass content of sulfur dioxide due to wet deposition
+tendency of atmosphere mass content of toluene due to emission
+tendency of atmosphere mass content of xylene due to emission
+tendency of atmosphere mass per unit area
+tendency of atmosphere mass per unit area due to advection
+tendency of atmosphere moles of acetic acid
+tendency of atmosphere moles of aceto nitrile
+tendency of atmosphere moles of alpha hexachlorocyclohexane
+tendency of atmosphere moles of alpha pinene
+tendency of atmosphere moles of ammonia
+tendency of atmosphere moles of anthropogenic nmvoc expressed as carbon
+tendency of atmosphere moles of atomic bromine
+tendency of atmosphere moles of atomic chlorine
+tendency of atmosphere moles of atomic nitrogen
+tendency of atmosphere moles of benzene
+tendency of atmosphere moles of beta pinene
+tendency of atmosphere moles of biogenic nmvoc expressed as carbon
+tendency of atmosphere moles of bromine chloride
+tendency of atmosphere moles of bromine monoxide
+tendency of atmosphere moles of bromine nitrate
+tendency of atmosphere moles of brox expressed as bromine
+tendency of atmosphere moles of butane
+tendency of atmosphere moles of carbon dioxide
+tendency of atmosphere moles of carbon monoxide
+tendency of atmosphere moles of carbon tetrachloride
+tendency of atmosphere moles of cfc11
+tendency of atmosphere moles of cfc113
+tendency of atmosphere moles of cfc113a
+tendency of atmosphere moles of cfc114
+tendency of atmosphere moles of cfc115
+tendency of atmosphere moles of cfc12
+tendency of atmosphere moles of chlorine dioxide
+tendency of atmosphere moles of chlorine monoxide
+tendency of atmosphere moles of chlorine nitrate
+tendency of atmosphere moles of clox expressed as chlorine
+tendency of atmosphere moles of dichlorine peroxide
+tendency of atmosphere moles of dimethyl sulfide
+tendency of atmosphere moles of dinitrogen pentoxide
+tendency of atmosphere moles of ethane
+tendency of atmosphere moles of ethanol
+tendency of atmosphere moles of ethene
+tendency of atmosphere moles of ethyne
+tendency of atmosphere moles of formaldehyde
+tendency of atmosphere moles of formic acid
+tendency of atmosphere moles of gaseous divalent mercury
+tendency of atmosphere moles of gaseous elemental mercury
+tendency of atmosphere moles of halon1202
+tendency of atmosphere moles of halon1211
+tendency of atmosphere moles of halon1301
+tendency of atmosphere moles of halon2402
+tendency of atmosphere moles of hcc140a
+tendency of atmosphere moles of hcfc141b
+tendency of atmosphere moles of hcfc142b
+tendency of atmosphere moles of hcfc22
+tendency of atmosphere moles of hexachlorobiphenyl
+tendency of atmosphere moles of hox expressed as hydrogen
+tendency of atmosphere moles of hydrogen bromide
+tendency of atmosphere moles of hydrogen chloride
+tendency of atmosphere moles of hydrogen cyanide
+tendency of atmosphere moles of hydrogen peroxide
+tendency of atmosphere moles of hydroperoxyl radical
+tendency of atmosphere moles of hydroxyl radical
+tendency of atmosphere moles of hypobromous acid
+tendency of atmosphere moles of hypochlorous acid
+tendency of atmosphere moles of inorganic bromine
+tendency of atmosphere moles of inorganic chlorine
+tendency of atmosphere moles of isoprene
+tendency of atmosphere moles of limonene
+tendency of atmosphere moles of methane
+tendency of atmosphere moles of methanol
+tendency of atmosphere moles of methyl bromide
+tendency of atmosphere moles of methyl chloride
+tendency of atmosphere moles of methyl hydroperoxide
+tendency of atmosphere moles of methyl peroxy radical
+tendency of atmosphere moles of molecular hydrogen
+tendency of atmosphere moles of nitrate radical
+tendency of atmosphere moles of nitric acid
+tendency of atmosphere moles of nitric acid trihydrate ambient aerosol
+tendency of atmosphere moles of nitrogen dioxide
+tendency of atmosphere moles of nitrogen monoxide
+tendency of atmosphere moles of nitrous acid
+tendency of atmosphere moles of nitrous oxide
+tendency of atmosphere moles of nmvoc expressed as carbon
+tendency of atmosphere moles of nox expressed as nitrogen
+tendency of atmosphere moles of noy expressed as nitrogen
+tendency of atmosphere moles of ozone
+tendency of atmosphere moles of peroxyacetyl nitrate
+tendency of atmosphere moles of peroxynitric acid
+tendency of atmosphere moles of propane
+tendency of atmosphere moles of propene
+tendency of atmosphere moles of radon
+tendency of atmosphere moles of sulfate dry aerosol
+tendency of atmosphere moles of sulfur dioxide
+tendency of atmosphere moles of toluene
+tendency of atmosphere moles of water vapor
+tendency of atmosphere moles of xylene
+tendency of atmosphere number content of aerosol particles due to dry deposition
+tendency of atmosphere number content of aerosol particles due to gravitational settling
+tendency of atmosphere number content of aerosol particles due to turbulent depostion
+tendency of atmosphere number content of aerosol particles due to wet deposition
+tendency of atmosphere potential energy content due to advection
+tendency of atmosphere water content due to advection
+tendency of atmosphere water vapor content
+tendency of atmosphere water vapor content due to advection
+tendency of atmosphere water vapor content due to convection
+tendency of atmosphere water vapor content due to deep convection
+tendency of atmosphere water vapor content due to shallow convection
+tendency of atmosphere water vapor content due to turbulence
+tendency of bedrock altitude
+tendency of dry energy content of atmosphere layer
+tendency of dry static energy content of atmosphere layer
+tendency of eastward wind
+tendency of eastward wind due to advection
+tendency of eastward wind due to convection
+tendency of eastward wind due to diffusion
+tendency of eastward wind due to eliassen palm flux divergence
+tendency of eastward wind due to gravity wave drag
+tendency of eastward wind due to nonorographic gravity wave drag
+tendency of eastward wind due to numerical artefacts
+tendency of eastward wind due to orographic gravity wave drag
+tendency of enthalpy content of atmosphere layer due to advection
+tendency of kinetic energy content of atmosphere layer due to advection
+tendency of land ice thickness
+tendency of mass fraction of cloud condensed water in air
+tendency of mass fraction of cloud condensed water in air due to advection
+tendency of mass fraction of cloud ice in air
+tendency of mass fraction of cloud ice in air due to advection
+tendency of mass fraction of cloud ice in air due to diffusion
+tendency of mass fraction of cloud liquid water in air
+tendency of mass fraction of cloud liquid water in air due to advection
+tendency of mass fraction of cloud liquid water in air due to diffusion
+tendency of mass fraction of stratiform cloud condensed water in air
+tendency of mass fraction of stratiform cloud condensed water in air due to advection
+tendency of mass fraction of stratiform cloud condensed water in air due to autoconversion to rain
+tendency of mass fraction of stratiform cloud condensed water in air due to autoconversion to snow
+tendency of mass fraction of stratiform cloud condensed water in air due to boundary layer mixing
+tendency of mass fraction of stratiform cloud condensed water in air due to cloud microphysics
+tendency of mass fraction of stratiform cloud condensed water in air due to condensation and evaporation
+tendency of mass fraction of stratiform cloud condensed water in air due to icefall
+tendency of mass fraction of stratiform cloud ice in air
+tendency of mass fraction of stratiform cloud ice in air due to accretion to snow
+tendency of mass fraction of stratiform cloud ice in air due to advection
+tendency of mass fraction of stratiform cloud ice in air due to aggregation
+tendency of mass fraction of stratiform cloud ice in air due to bergeron findeisen process from cloud liquid
+tendency of mass fraction of stratiform cloud ice in air due to boundary layer mixing
+tendency of mass fraction of stratiform cloud ice in air due to cloud microphysics
+tendency of mass fraction of stratiform cloud ice in air due to convective detrainment
+tendency of mass fraction of stratiform cloud ice in air due to deposition and sublimation
+tendency of mass fraction of stratiform cloud ice in air due to evaporation of melting ice
+tendency of mass fraction of stratiform cloud ice in air due to heterogeneous nucleation from cloud liquid water
+tendency of mass fraction of stratiform cloud ice in air due to heterogeneous nucleation from water vapor
+tendency of mass fraction of stratiform cloud ice in air due to homogeneous nucleation
+tendency of mass fraction of stratiform cloud ice in air due to icefall
+tendency of mass fraction of stratiform cloud ice in air due to melting to cloud liquid water
+tendency of mass fraction of stratiform cloud ice in air due to melting to rain
+tendency of mass fraction of stratiform cloud ice in air due to riming from cloud liquid water
+tendency of mass fraction of stratiform cloud ice in air due to riming from rain
+tendency of mass fraction of stratiform cloud liquid water in air
+tendency of mass fraction of stratiform cloud liquid water in air due to accretion to rain
+tendency of mass fraction of stratiform cloud liquid water in air due to accretion to snow
+tendency of mass fraction of stratiform cloud liquid water in air due to advection
+tendency of mass fraction of stratiform cloud liquid water in air due to autoconversion
+tendency of mass fraction of stratiform cloud liquid water in air due to bergeron findeisen process to cloud ice
+tendency of mass fraction of stratiform cloud liquid water in air due to boundary layer mixing
+tendency of mass fraction of stratiform cloud liquid water in air due to cloud microphysics
+tendency of mass fraction of stratiform cloud liquid water in air due to condensation and evaporation
+tendency of mass fraction of stratiform cloud liquid water in air due to condensation and evaporation from boundary layer mixing
+tendency of mass fraction of stratiform cloud liquid water in air due to condensation and evaporation from convection
+tendency of mass fraction of stratiform cloud liquid water in air due to condensation and evaporation from longwave heating
+tendency of mass fraction of stratiform cloud liquid water in air due to condensation and evaporation from pressure change
+tendency of mass fraction of stratiform cloud liquid water in air due to condensation and evaporation from shortwave heating
+tendency of mass fraction of stratiform cloud liquid water in air due to condensation and evaporation from turbulence
+tendency of mass fraction of stratiform cloud liquid water in air due to convective detrainment
+tendency of mass fraction of stratiform cloud liquid water in air due to heterogeneous nucleation
+tendency of mass fraction of stratiform cloud liquid water in air due to homogeneous nucleation
+tendency of mass fraction of stratiform cloud liquid water in air due to melting from cloud ice
+tendency of mass fraction of stratiform cloud liquid water in air due to riming
+tendency of middle atmosphere moles of carbon monoxide
+tendency of middle atmosphere moles of hcc140a
+tendency of middle atmosphere moles of methane
+tendency of middle atmosphere moles of methyl bromide
+tendency of middle atmosphere moles of methyl chloride
+tendency of middle atmosphere moles of molecular hydrogen
+tendency of mole concentration of aragonite expressed as carbon in sea water due to biological production
+tendency of mole concentration of aragonite expressed as carbon in sea water due to dissolution
+tendency of mole concentration of calcite expressed as carbon in sea water due to biological production
+tendency of mole concentration of calcite expressed as carbon in sea water due to dissolution
+tendency of mole concentration of dissolved inorganic carbon in sea water due to biological processes
+tendency of mole concentration of dissolved inorganic iron in sea water due to biological processes
+tendency of mole concentration of dissolved inorganic nitrogen in sea water due to biological processes
+tendency of mole concentration of dissolved inorganic phosphate in sea water due to biological processes
+tendency of mole concentration of dissolved inorganic silicate in sea water due to biological processes
+tendency of mole concentration of dissolved iron in sea water due to dissolution from inorganic particles
+tendency of mole concentration of dissolved iron in sea water due to grazing of phytoplankton
+tendency of mole concentration of dissolved iron in sea water due to scavenging by inorganic particles
+tendency of mole concentration of iron in sea water due to biological production
+tendency of mole concentration of particulate organic matter expressed as carbon in sea water due to net primary production
+tendency of mole concentration of particulate organic matter expressed as carbon in sea water due to net primary production by calcareous phytoplankton
+tendency of mole concentration of particulate organic matter expressed as carbon in sea water due to net primary production by diatoms
+tendency of mole concentration of particulate organic matter expressed as carbon in sea water due to net primary production by diazotrophs
+tendency of mole concentration of particulate organic matter expressed as carbon in sea water due to net primary production by miscellaneous phytoplankton
+tendency of mole concentration of particulate organic matter expressed as carbon in sea water due to net primary production by picophytoplankton
+tendency of mole concentration of particulate organic matter expressed as carbon in sea water due to nitrate utilization
+tendency of mole concentration of silicon in sea water due to biological production
+tendency of northward wind
+tendency of northward wind due to advection
+tendency of northward wind due to convection
+tendency of northward wind due to diffusion
+tendency of northward wind due to gravity wave drag
+tendency of ocean barotropic streamfunction
+tendency of ocean eddy kinetic energy content due to bolus transport
+tendency of ocean mole content of aragonite expressed as carbon due to biological production
+tendency of ocean mole content of calcite expressed as carbon due to biological production
+tendency of ocean mole content of carbon due to runoff and sediment dissolution
+tendency of ocean mole content of carbon due to sedimentation
+tendency of ocean mole content of dissolved inorganic carbon
+tendency of ocean mole content of dissolved inorganic carbon due to biological processes
+tendency of ocean mole content of dissolved inorganic iron
+tendency of ocean mole content of dissolved inorganic iron due to biological processes
+tendency of ocean mole content of dissolved inorganic nitrogen
+tendency of ocean mole content of dissolved inorganic nitrogen due to biological processes
+tendency of ocean mole content of dissolved inorganic phosphorus
+tendency of ocean mole content of dissolved inorganic phosphorus due to biological processes
+tendency of ocean mole content of dissolved inorganic silicon
+tendency of ocean mole content of dissolved inorganic silicon due to biological processes
+tendency of ocean mole content of elemental nitrogen due to denitrification and sedimentation
+tendency of ocean mole content of elemental nitrogen due to deposition and fixation and runoff
+tendency of ocean mole content of elemental nitrogen due to fixation
+tendency of ocean mole content of iron due to biological production
+tendency of ocean mole content of iron due to deposition and runoff and sediment dissolution
+tendency of ocean mole content of iron due to sedimentation
+tendency of ocean mole content of silicon due to biological production
+tendency of ocean potential energy content
+tendency of ocean potential energy content due to background
+tendency of ocean potential energy content due to tides
+tendency of potential energy content of atmosphere layer due to advection
+tendency of potential energy content of ocean layer due to convection
+tendency of potential energy content of ocean layer due to diffusion 
+tendency of sea ice area fraction due to dynamics
+tendency of sea ice area fraction due to thermodynamics
+tendency of sea ice thickness due to dynamics
+tendency of sea ice thickness due to thermodynamics
+tendency of sea water alkalinity expressed as mole equivalent due to biological processes
+tendency of sea water salinity
+tendency of sea water salinity due to advection
+tendency of sea water salinity due to bolus advection
+tendency of sea water salinity due to horizontal mixing
+tendency of sea water salinity due to sea ice thermodynamics
+tendency of sea water salinity due to vertical mixing
+tendency of sea water temperature
+tendency of sea water temperature due to advection
+tendency of sea water temperature due to bolus advection
+tendency of sea water temperature due to horizontal mixing
+tendency of sea water temperature due to vertical mixing
+tendency of specific humidity
+tendency of specific humidity due to advection
+tendency of specific humidity due to convection
+tendency of specific humidity due to diffusion
+tendency of specific humidity due to stratiform precipitation
+tendency of specific humidity due to model physics
+tendency of specific humidity due to stratiform cloud and precipitation and boundary layer mixing
+tendency of surface air pressure
+tendency of surface snow amount
+tendency of troposphere moles of carbon monoxide
+tendency of troposphere moles of hcc140a
+tendency of troposphere moles of hcfc22
+tendency of troposphere moles of methane
+tendency of troposphere moles of methyl bromide
+tendency of troposphere moles of methyl chloride
+tendency of troposphere moles of molecular hydrogen
+tendency of upward air velocity
+tendency of upward air velocity due to advection
+tendency of water vapor content of atmosphere layer
+tendency of water vapor content of atmosphere layer due to convection
+tendency of water vapor content of atmosphere layer due to deep convection
+tendency of water vapor content of atmosphere layer due to shallow convection
+tendency of water vapor content of atmosphere layer due to turbulence
+tendency of wind speed due to convection
+tendency of wind speed due to gravity wave drag
+thickness of convective rainfall amount
+thickness of convective snowfall amount
+thickness of large scale rainfall amount
+thickness of large scale snowfall amount
+thickness of rainfall amount
+thickness of snowfall amount
+thunderstorm probability
+time
+toa adjusted longwave forcing
+toa adjusted radiative forcing
+toa adjusted shortwave forcing
+toa bidirectional reflectance
+toa brightness temperature
+toa brightness temperature assuming clear sky
+toa cloud radiative effect
+toa incoming shortwave flux
+toa instantaneous longwave forcing
+toa instantaneous radiative forcing
+toa instantaneous shortwave forcing
+toa longwave cloud radiative effect
+toa net downward longwave flux
+toa net downward longwave flux assuming clear sky
+toa net downward radiative flux
+toa net downward shortwave flux
+toa net downward shortwave flux assuming clear sky
+toa net upward longwave flux
+toa net upward longwave flux assuming clear sky
+toa net upward shortwave flux
+toa outgoing longwave flux
+toa outgoing longwave flux assuming clear sky
+toa outgoing shortwave flux
+toa outgoing shortwave flux assuming clear sky
+toa shortwave cloud radiative effect
+transpiration amount
+transpiration flux
+tropopause adjusted longwave forcing
+tropopause adjusted radiative forcing
+tropopause adjusted shortwave forcing
+tropopause air pressure
+tropopause air temperature
+tropopause altitude
+tropopause downwelling longwave flux
+tropopause instantaneous longwave forcing
+tropopause instantaneous radiative forcing
+tropopause instantaneous shortwave forcing
+tropopause net downward longwave flux
+tropopause net downward shortwave flux
+tropopause upwelling shortwave flux
+upward air velocity
+upward dry static energy flux due to diffusion
+upward eastward stress at sea ice base
+upward eastward momentum flux in air due to nonorographic eastward gravity waves
+upward eastward momentum flux in air due to nonorographic westward gravity waves
+upward eastward momentum flux in air due to orographic gravity waves
+upward eliassen palm flux in air
+upward geothermal heat flux at sea floor
+upward heat flux at ground level in snow
+upward heat flux at ground level in soil
+upward heat flux in air
+upward mass flux of air
+upward northward stress at sea ice base
+upward ocean mass transport
+upward sea ice basal heat flux
+upward sea water velocity
+upward water vapor flux in air
+upward water vapor flux in air due to diffusion
+upwelling longwave flux in air
+upwelling longwave flux in air assuming clear sky
+upwelling longwave radiance in air
+upwelling shortwave flux in air
+upwelling shortwave flux in air assuming clear sky
+upwelling shortwave radiance in air
+upwelling spectral radiance in air
+upwelling spectral radiative flux in air
+upwelling spectral radiative flux in sea water
+vegetation area fraction
+vegetation carbon content
+vertical component of ocean xy tracer diffusivity
+virtual salt flux correction
+virtual salt flux into sea water
+virtual salt flux into sea water due to evaporation
+virtual salt flux into sea water due to newtonian relaxation
+virtual salt flux into sea water due to rainfall
+virtual salt flux into sea water due to sea ice thermodynamics
+virtual salt flux into sea water from rivers
+virtual temperature
+visibility in air
+volume absorption coefficient of radiative flux in sea water
+volume absorption coefficient of radiative flux in sea water due to dissolved organic matter
+volume attenuated backwards scattering function in air
+volume attenuated backwards scattering function in air assuming no aerosol or cloud
+volume attenuation coefficient of downwelling radiative flux in sea water
+volume backwards scattering coefficient of radiative flux in sea water
+volume beam attenuation coefficient of radiative flux in sea water
+volume fraction of clay in soil
+volume fraction of condensed water in soil pores
+volume fraction of frozen water in soil
+volume fraction of oxygen in sea water
+volume fraction of sand in soil
+volume fraction of silt in soil
+volume fraction of condensed water in soil
+volume fraction of condensed water in soil at critical point
+volume fraction of condensed water in soil at field capacity
+volume fraction of condensed water in soil at wilting point
+volume mixing ratio of oxygen at stp in sea water
+volume scattering coefficient of radiative flux in sea water
+volume scattering function of radiative flux in sea water
+water content of atmosphere layer
+water evaporation amount
+water evaporation amount from canopy
+water evaporation flux
+water evaporation flux from canopy
+water evaporation flux from soil
+water flux correction
+water flux into sea water
+water flux into sea water due to sea ice thermodynamics
+water flux into sea water from icebergs
+water flux into sea water from rivers
+water flux into sea water from rivers and surface downward water flux
+water flux into sea water without flux correction
+water flux out of sea ice and sea water
+water flux out of sea water
+water flux out of sea water due to newtonian relaxation
+water flux out of sea water due to sea ice thermodynamics
+water potential evaporation amount
+water potential evaporation flux
+water sublimation flux
+water vapor content of atmosphere layer
+water vapor pressure
+water vapor saturation deficit
+water volume transport into sea water from rivers
+wave frequency
+wet bulb temperature
+wind from direction
+wind mixing energy flux into sea water
+wind speed
+wind speed of gust
+wind speed shear
+wind to direction
+x derivative of ocean rigid lid pressure
+x wind
+y derivative of ocean rigid lid pressure
+y wind
+zenith angle
