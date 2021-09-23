@@ -7,19 +7,22 @@ from textblob import formats
 import matplotlib.pyplot as plt
 from matplotlib.ticker import ScalarFormatter
 
+SN_DATA_DIR_RELATIVE = "../data/"
+SN_DATA_FILE = "all_cf_standard_names_for_table_v78_at_23_09_21.txt"
+
 
 # Return and plot the most common n-grams, for a given n, up to this number:
-cutoff_total = 15
+CUTOFF_TOTAL = 15
 # Highest integer n-gram length where the most common n-gram occurs >1 time
 # (simplest to find this manually by inspection of generated graphs):
-ngram_n_max_interesting = 21
+NGRAM_N_MAX_INTERESTING = 21
 
 
-def get_standard_names_as_text_blob(name_under_data_dir):
+def get_standard_names_as_text_blob(name_in_data_dir):
     '''TODO
-     '''
+    '''
     # Grab all the newline-delimited names (w/ underscores replaced by spaces)
-    with open("../data/" + name_under_data_dir, "r") as all_raw_names:
+    with open(SN_DATA_DIR_RELATIVE + name_in_data_dir, "r") as all_raw_names:
         names = all_raw_names.readlines()
 
     # Replace newline with dot (standard NLP sentence delimiter), to simplify:
@@ -78,7 +81,7 @@ def get_and_remove_any_n_ngram_counts_iteration(names):
     '''
     most_common_any_n_ngrams = []
     max_count = 0
-    for size in range(2, ngram_n_max_interesting):
+    for size in range(2, NGRAM_N_MAX_INTERESTING):
         # Get n-grams at this size:
         size_n_ngrams = []
         for name in names.sentences:
@@ -313,16 +316,16 @@ def plot_recursive_ngram_counts(ngram_counts):
     )
 
 
-names_blob = get_standard_names_as_text_blob("all-raw-names-10.07.20-gen.txt")
+names_blob = get_standard_names_as_text_blob(SN_DATA_FILE)
 
 
 # 1. Find, return, plot and save the most common ngrams from a bigram (n=2)
-# to n=ngram_n_max_interesting number:
-for ngram_size in range(2, ngram_n_max_interesting + 1):
+# to n=NGRAM_N_MAX_INTERESTING number:
+for ngram_size in range(2, NGRAM_N_MAX_INTERESTING + 1):
     # Get counts and conduct an assertion check
-    counts = get_ngram_counts(names_blob, ngram_size, cutoff_total)
+    counts = get_ngram_counts(names_blob, ngram_size, CUTOFF_TOTAL)
     pprint(counts)
-    plot_ngram_counts(counts, cutoff_total, ngram_size)
+    plot_ngram_counts(counts, CUTOFF_TOTAL, ngram_size)
 
 
 # 2. Find, return, plot and save the most common ngrams of any size (any n),
