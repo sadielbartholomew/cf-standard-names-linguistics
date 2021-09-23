@@ -5,18 +5,20 @@
 An [*n*-gram](http://www.cs.columbia.edu/~kathy/NLP/ClassSlides/Class3-ngrams09/ngrams.pdf) is a sequence of length *n* of tokens (linguistic units). Here we
 take single words as the tokens to analyse.
 
-Note here we ignore 1-grams (*n*-grams with *n = 1*, i.e. single words) as
-these will be analysed in detail separately.
-
 
 ## Results
 
 ### *n*-grams of set *n* without removal
 
 The most frequent *n*-grams of words in the full current (10/07/20) Standard
-Names table of names for *n = 2* to *n = 15* words, are as follows (note the
+Names table of names for *n = 1* to *n = 20* words, are as follows (note the
 underscores in names have been replaced by whitespace to mimic natural text
 for enhanced readability):
+
+
+#### Unigrams (1-grams i.e. single words)
+
+![1-gram](../results/ngrams/most-common-1-grams.png)
 
 
 #### Bigrams (2-grams)

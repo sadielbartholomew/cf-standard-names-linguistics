@@ -81,6 +81,7 @@ def get_and_remove_any_n_ngram_counts_iteration(names):
     '''
     most_common_any_n_ngrams = []
     max_count = 0
+    # Need to start at 2 this time, else all words will be removed first!
     for size in range(2, NGRAM_N_MAX_INTERESTING):
         # Get n-grams at this size:
         size_n_ngrams = []
@@ -321,7 +322,7 @@ names_blob = get_standard_names_as_text_blob(SN_DATA_FILE)
 
 # 1. Find, return, plot and save the most common ngrams from a bigram (n=2)
 # to n=NGRAM_N_MAX_INTERESTING number:
-for ngram_size in range(2, NGRAM_N_MAX_INTERESTING + 1):
+for ngram_size in range(1, NGRAM_N_MAX_INTERESTING + 1):
     # Get counts and conduct an assertion check
     counts = get_ngram_counts(names_blob, ngram_size, CUTOFF_TOTAL)
     pprint(counts)
