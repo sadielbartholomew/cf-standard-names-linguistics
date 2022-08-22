@@ -10,10 +10,10 @@ take single words as the tokens to analyse.
 
 ### *n*-grams of set *n* without removal
 
-The most frequent *n*-grams of words in the full current (10/07/20) Standard
-Names table of names for *n = 1* to *n = 20* words, are as follows (note the
-underscores in names have been replaced by whitespace to mimic natural text
-for enhanced readability):
+The most frequent *n*-grams of words in the full current (version 79 with data
+extracted on 24/08/22) Standard Names table of names for *n = 1* to *n = 20*
+words, are as follows (note the underscores in names have been replaced
+by whitespace to mimic natural text for enhanced readability):
 
 
 #### Unigrams (1-grams i.e. single words)
