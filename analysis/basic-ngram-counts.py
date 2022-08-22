@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import ScalarFormatter
 
 SN_DATA_DIR_RELATIVE = "../data/"
-SN_DATA_FILE = "all_cf_standard_names_for_table_v78_at_23_09_21.txt"
+SN_DATA_FILE = "all_cf_standard_names_for_table_v79_at_24_08_22.txt"
 
 
 # Return and plot the most common n-grams, for a given n, up to this number:
