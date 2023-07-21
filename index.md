@@ -1,7 +1,8 @@
 # CF Conventions Standard Names Linguistic Analysis
 
-**Lexical & semantic analysis of the
-[CF Conventions Standard Names](https://cfconventions.org/standard-names.html).**
+**Lexical & semantic analysis, and visualisation, of the
+[CF Conventions](http://cfconventions.org/)
+[Standard Names](http://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html).**
 
 This aims to build upon work started by Jonathan Gregory, for example as
 outlined in ['Parsing CF standard names'](http://www.met.reading.ac.uk/~jonathan/CF_metadata/14.1/).

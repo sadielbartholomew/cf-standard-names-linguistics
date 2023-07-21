@@ -1,7 +1,7 @@
 # cf-standard-names-linguistics
 
 
-## Lexical and semantic analysis of the CF Conventions Standard Names
+## Lexical and semantic analysis, and visualisation, of the CF Conventions Standard Names
 
 ### Summaries of the analyses as they are incrementally conducted will be listed at:
 
