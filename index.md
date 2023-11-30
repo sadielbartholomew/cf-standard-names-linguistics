@@ -9,8 +9,8 @@ outlined in ['Parsing CF standard names'](http://www.met.reading.ac.uk/~jonathan
 
 ## Analyses (for v79)
 
-*Note: all analysis presented was conducted on version 79 of the Standard Name
-Table, with the names extracted from that official table on 24/08/22. It will
+*Note: all analysis presented was conducted on version 83 of the Standard Name
+Table, with the names extracted from that official table on 30/11/23. It will
 be updated to cover the latest state of the Table on a per-release
 basis.*
 

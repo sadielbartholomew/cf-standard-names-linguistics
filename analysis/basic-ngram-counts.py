@@ -7,8 +7,12 @@ from textblob import formats
 import matplotlib.pyplot as plt
 from matplotlib.ticker import ScalarFormatter
 
+
+# Note to get the data here you need to pull down the latest main branch of
+# the 'cf-convention.github.io' repo and use it to generate the new data
+# for the given version of the table using the external script.
 SN_DATA_DIR_RELATIVE = "../data/"
-SN_DATA_FILE = "all_cf_standard_names_for_table_v79_at_24_08_22.txt"
+SN_DATA_FILE = "all_cf_standard_names_for_table_v83_at_30_11_23.txt"
 
 
 # Return and plot the most common n-grams, for a given n, up to this number:
