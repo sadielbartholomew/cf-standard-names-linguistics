@@ -7,7 +7,7 @@
 This aims to build upon work started by Jonathan Gregory, for example as
 outlined in ['Parsing CF standard names'](http://www.met.reading.ac.uk/~jonathan/CF_metadata/14.1/).
 
-## Analyses (for v79)
+## Analyses (for v83)
 
 *Note: all analysis presented was conducted on version 83 of the Standard Name
 Table, with the names extracted from that official table on 30/11/23. It will
