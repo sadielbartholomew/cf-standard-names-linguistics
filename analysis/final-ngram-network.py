@@ -1,8 +1,10 @@
-import networkx as nx
 import matplotlib.pyplot as plt
+import networkx as nx
+import numpy as np
+from pprint import pprint
 
-
-SHORT_CIRCUIT_TO_N_NAMES = 50  # int to short circuit, or False to not
+SHORT_CIRCUIT_TO_N_NAMES = False  # int to short circuit, or False to not
+FREQUENCY_CUTOFF = 2
 
 SN_DATA_DIR_RELATIVE = "../data/"
 SN_DATA_FILE = "all_cf_standard_names_for_table_v83_at_30_11_23.txt"
@@ -31,6 +33,37 @@ def define_node_input_data():
         names = names[:SHORT_CIRCUIT_TO_N_NAMES]
 
     return names
+
+
+def find_min_and_max_name_length():
+    """Find the minimum- and maximum-length name(s) by word count."""
+    names = define_node_input_data()
+
+    # Easiest to find length in words via number of spaces in name plus 1
+    length_in_words = np.array([name.count(" ") + 1 for name in names])
+
+    print("USING FOR MIN/MAX LEN BY WORD\n", names)
+
+    wordlen_min = min(length_in_words)
+    wordlen_max = max(length_in_words)
+    wordlen_min_names = list(
+        [
+            names[index] for index in
+            np.where(length_in_words == wordlen_min)[0]
+        ]
+    )
+    wordlen_max_names = list(
+        [
+            names[index] for index in
+            np.where(length_in_words == wordlen_max)[0]
+        ]
+    )
+
+    range_of_wordlens = {
+        wordlen_min: wordlen_min_names, wordlen_max: wordlen_max_names}
+    pprint(range_of_wordlens)
+
+    return range_of_wordlens
 
 
 # ----------------------------------------------------------------------------
@@ -138,6 +171,7 @@ def create_sn_nrgam_graph(NAMES_DATA):
     # 7. Apply post-processing, e.g. to reposition node labels based on layout
     post_processing_of_graph(G, layout)
 
+    plt.show()
     # END
 
 
@@ -149,6 +183,18 @@ if __name__ == "__main__":
     # 0. Define data
     data = define_node_input_data()
 
-    # 1. Finally, plot the network graph!
-    create_sn_nrgam_graph(data)
-    plt.show()
+    # 1. Find the minimum and maximum n-gram length i.e. length by word count
+    word_length_ranges = find_min_and_max_name_length()
+
+    # 2. Use this range of n to set n-gram limits to find and intialise
+    #    data structure to use. Values are set to None until calculation.
+    min_n, max_n = word_length_ranges.keys()
+    max_n += 1  # since will input this to range, want to capture max wordlen
+    n_gram_counts_where_count_exceeds_cutoff = {
+        k: None for k in range(min_n, max_n) 
+    }
+    print("DATA STRUCTURE SKELETON IS:\n")
+    pprint(n_gram_counts_where_count_exceeds_cutoff)
+
+    # 2.. Finally, plot the network graph!
+    ###create_sn_nrgam_graph(data)
