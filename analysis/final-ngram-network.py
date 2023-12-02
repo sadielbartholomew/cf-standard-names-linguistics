@@ -9,12 +9,15 @@ from textblob import TextBlob
 from textblob import formats
 
 
-SHORT_CIRCUIT_TO_N_NAMES = 100 #False  # int to short circuit, or False to not
-FREQUENCY_CUTOFF = 5  # v >= FREQUENCY_CUTOFF for inclusion
+SHORT_CIRCUIT_TO_N_NAMES = False  #1000  # int to short circuit, or False to not
+FREQUENCY_CUTOFF = 50  # v >= FREQUENCY_CUTOFF for inclusion
+# samples to do: 1, 2, 3, 5, 10, 15, 25, 50, 100, 250, 500 
 
 SN_DATA_DIR_RELATIVE = "../data/"
 SN_DATA_FILE = "all_cf_standard_names_for_table_v83_at_30_11_23.txt"
 SN_DATA_IN_USE = SN_DATA_DIR_RELATIVE + SN_DATA_FILE
+
+SAVE_DIR = "calculated_data_to_persist"
 
 
 # ---------------------------------------------------------------------------
@@ -78,7 +81,11 @@ def get_range_of_n_to_check(word_length_ranges):
 
 
 def get_ngram_counts(names, ngram_size, cutoff_freq=1):
-    """Find all n-grams of given n across the names, with their counts."""
+    """Find all n-grams of given n across the names, with their counts.
+
+    Note: borrows heavily from 'get_ngram_counts' in 'basic-ngram-counts'
+    script. TODO: consolidate these into one function to use in both.
+    """
     names = TextBlob(names)
 
     # Note, can't simply do:
@@ -262,12 +269,13 @@ if __name__ == "__main__":
     pprint(all_ngram_data)
 
     # 4. Store the data to avoid re-generating
-    filename_to_write = (
-        f"all_ngram_counts_cutoff_{FREQUENCY_CUTOFF}_"
-        f"namestotal_{SHORT_CIRCUIT_TO_N_NAMES}.json"
-    )
-    with open(filename_to_write, "w") as f:
-        json.dump(all_ngram_data, f)
+    if not SHORT_CIRCUIT_TO_N_NAMES:
+        filename_to_write = (
+            f"{SAVE_DIR}/"
+            f"all_ngram_counts_with_cutoff_{FREQUENCY_CUTOFF}.json"
+        )
+        with open(filename_to_write, "w") as f:
+            json.dump(all_ngram_data, f)
 
     # 2.. Finally, plot the network graph!
     ###data = data.split(". ")
