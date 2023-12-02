@@ -141,6 +141,23 @@ def get_all_ngram_counts(init_data):
 
 
 # ----------------------------------------------------------------------------
+# DATA REFORMATTING FOR GRAPH ------------------------------------------------
+# ----------------------------------------------------------------------------
+
+def reformat_nodes_data(json_ngram_data):
+    """Take JSON of n-gram counts and convert it to node and edge form."""
+
+    all_nodes_keyed_by_id = {}
+    # 1. Flatten dict so all n-grams become values of a unique identified int
+    node_id = 1
+    for ngram_set in json_ngram_data.values():
+        for ngram, ngram_count in ngram_set.items():
+            all_nodes_keyed_by_id[node_id] = (ngram, ngram_count)
+            node_id += 1
+
+    return all_nodes_keyed_by_id
+
+# ----------------------------------------------------------------------------
 # GRAPH CREATION -------------------------------------------------------------
 # ----------------------------------------------------------------------------
 
@@ -152,15 +169,7 @@ def add_nodes_to_graph(graph, inputs_for_nodes):
 
 def create_edge_spec(nodes_added):
     """Define the data to encode the edges required to connect nodes."""
-    # DUMMY CONNECTIONS FOR NOW!
-    edge_to_edge_dummy = {n: n + 1 for n in range(1, len(nodes_added) - 1)}
-    ### print("DUMMY IS\n", edge_to_edge_dummy)
-
-    get_edges = [
-        (nodes_added[k], nodes_added[v]) for k, v in edge_to_edge_dummy.items()
-    ]
-    ### print("EDGE LIST IS\n", get_edges)
-    return get_edges
+    return []
 
 
 def add_edges_to_connect_nodes_in_graph(graph, edge_spec):
@@ -170,17 +179,21 @@ def add_edges_to_connect_nodes_in_graph(graph, edge_spec):
 
 def define_node_labels(nodes):
     """Define data for the labels to be applied on the graph nodes/edges."""
-    indices = range(1, len(nodes) + 1)
+    print("nodey", nodes, nodes[1], nodes[2])
+    labels_mapping = {k: v[0] for k, v in nodes.items()}
 
-    # MUST TAKE CARE: IDENTICAL LABELS WILL COMBINE THOSE NODES TO ONE!
-    labels = []
-    for index, n in enumerate(nodes):
-        get_first_letters_words = [f[0].upper() for f in n.split(" ")]
-        # CRUCIAL TO UE INDEX IN CASE OF DUPLICATES IN NAME!
-        labels.append(str(index) + ": " + "".join(get_first_letters_words))
+    # indices = range(1, len(nodes) + 1)
+    # # MUST TAKE CARE: IDENTICAL LABELS WILL COMBINE THOSE NODES TO ONE!
+    # labels = []
+    # for index, n in enumerate(nodes):
+    #     get_first_letters_words = [f[0].upper() for f in n.split(" ")]
+    #     # CRUCIAL TO UE INDEX IN CASE OF DUPLICATES IN NAME!
+    #     labels.append(str(index) + ": " + "".join(get_first_letters_words))
 
-    short_labels_for_nodes = {key: value for key, value in zip(nodes, labels)}
-    return short_labels_for_nodes
+    # short_labels_for_nodes = {key: value for key, value in zip(nodes, labels)}
+    # return short_labels_for_nodes
+    return labels_mapping
+
 
 
 def label_graph(graph, labels):
@@ -218,10 +231,10 @@ def draw_graph_with_layout(graph):
     return graph, layout
 
 
-def create_sn_nrgam_graph(NAMES_DATA):
+def create_sn_nrgam_graph(nodes):
     """Create a directed graph of n-gram links across the CF Standard Names."""
-    # DATA - DEFINE CURRENT INPUTS:
-    nodes = NAMES_DATA
+    print("GRAPH RAW DATA TO WORK WITH IS:")
+    pprint(nodes)
 
     # 0. Initiate graph
     G = nx.DiGraph()  # Directed graphs with self loops
@@ -230,9 +243,9 @@ def create_sn_nrgam_graph(NAMES_DATA):
     add_nodes_to_graph(G, nodes)
 
     # 2. Generate edges to add
-    edges = create_edge_spec(nodes)
+    ###edges = create_edge_spec(edges)
     # 3. Add those edges
-    add_edges_to_connect_nodes_in_graph(G, edges)
+    ###add_edges_to_connect_nodes_in_graph(G, edges)
 
     # 4. Generate labels to apply on the nodes and/or edges
     labels = define_node_labels(nodes)
@@ -269,15 +282,20 @@ if __name__ == "__main__":
     pprint(all_ngram_data)
 
     # 4. Store the data to avoid re-generating
-    if not SHORT_CIRCUIT_TO_N_NAMES:
-        filename_to_write = (
-            f"{SAVE_DIR}/"
-            f"all_ngram_counts_with_cutoff_{FREQUENCY_CUTOFF}.json"
-        )
-        with open(filename_to_write, "w") as f:
-            json.dump(all_ngram_data, f)
+    # if not SHORT_CIRCUIT_TO_N_NAMES:
+    #     filename_to_write = (
+    #         f"{SAVE_DIR}/"
+    #         f"all_ngram_counts_with_cutoff_{FREQUENCY_CUTOFF}.json"
+    #     )
+    #     with open(filename_to_write, "w") as f:
+    #         json.dump(all_ngram_data, f)
+    
+    # # 5. Load from file to save re-generating
+    # with open("") as data_input_file:
+    #     ngram_json = json.load(input_file)
 
-    # 2.. Finally, plot the network graph!
-    ###data = data.split(". ")
-    ###print("DATA TO USE FOR N-GRAMS GRAPH IS...\n")
-    ###create_sn_nrgam_graph(data)
+    # 4. Interface to data structure holding nodes and edge info.
+    ngram_data_nodes = reformat_nodes_data(all_ngram_data)
+    
+    # N. Finally, plot the network graph!
+    create_sn_nrgam_graph(ngram_data_nodes)  # No edges for now!
