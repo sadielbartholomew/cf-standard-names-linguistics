@@ -1,13 +1,20 @@
+from collections import Counter
+import json
+from pprint import pprint
+
 import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
-from pprint import pprint
+from textblob import TextBlob
+from textblob import formats
 
-SHORT_CIRCUIT_TO_N_NAMES = False  # int to short circuit, or False to not
-FREQUENCY_CUTOFF = 2
+
+SHORT_CIRCUIT_TO_N_NAMES = 100 #False  # int to short circuit, or False to not
+FREQUENCY_CUTOFF = 5  # v >= FREQUENCY_CUTOFF for inclusion
 
 SN_DATA_DIR_RELATIVE = "../data/"
 SN_DATA_FILE = "all_cf_standard_names_for_table_v83_at_30_11_23.txt"
+SN_DATA_IN_USE = SN_DATA_DIR_RELATIVE + SN_DATA_FILE
 
 
 # ---------------------------------------------------------------------------
@@ -17,17 +24,15 @@ SN_DATA_FILE = "all_cf_standard_names_for_table_v83_at_30_11_23.txt"
 def get_standard_names_as_text():
     """Take the names input data from file and convert format."""
     # Open and read the file with all table standard names
-    with open(SN_DATA_DIR_RELATIVE + SN_DATA_FILE, "r") as all_raw_names:
+    with open(SN_DATA_IN_USE, "r") as all_raw_names:
         names = all_raw_names.readlines()
 
-    formatted_names = [name.strip("\n") for name in names]
-    return formatted_names
+    return names
 
 
 def define_node_input_data():
     """Define and return *all* data to use as input to the graph."""
     names = get_standard_names_as_text()
-
     # For development, use a small subset of the data to reduce script run time
     if SHORT_CIRCUIT_TO_N_NAMES:
         names = names[:SHORT_CIRCUIT_TO_N_NAMES]
@@ -35,14 +40,13 @@ def define_node_input_data():
     return names
 
 
-def find_min_and_max_name_length():
+def find_min_and_max_name_length(names):
     """Find the minimum- and maximum-length name(s) by word count."""
-    names = define_node_input_data()
 
     # Easiest to find length in words via number of spaces in name plus 1
     length_in_words = np.array([name.count(" ") + 1 for name in names])
 
-    print("USING FOR MIN/MAX LEN BY WORD\n", names)
+    ### print("USING FOR MIN/MAX LEN BY WORD\n", names)
 
     wordlen_min = min(length_in_words)
     wordlen_max = max(length_in_words)
@@ -61,9 +65,72 @@ def find_min_and_max_name_length():
 
     range_of_wordlens = {
         wordlen_min: wordlen_min_names, wordlen_max: wordlen_max_names}
-    pprint(range_of_wordlens)
+    ### pprint(range_of_wordlens)
 
     return range_of_wordlens
+
+
+def get_range_of_n_to_check(word_length_ranges):
+    """Return the range of size n to check for n-grams of, as an iterator."""
+    _, max_n = word_length_ranges.keys()
+    max_n += 1  # since will input this to range, want to capture max wordlen
+    return range(1, max_n)
+
+
+def get_ngram_counts(names, ngram_size, cutoff_freq=1):
+    """Find all n-grams of given n across the names, with their counts."""
+    names = TextBlob(names)
+
+    # Note, can't simply do:
+    # ngram = names.ngrams(ngram_size)
+    # as it takes ngrams across sentences, i.e. start & end of names in order.
+    names_sentences = names.sentences
+    ngrams = []
+    for name in names_sentences:
+        ngrams.extend(name.ngrams(ngram_size))
+
+    ngram_counts = Counter(
+        [tuple(wordlist) for wordlist in ngrams])  # need tuple for hashability
+    ### print("FINAL NGRAM COUNTS ARE:\n", ngram_counts)
+
+    # (ONLY HELPS WITH FULL DATA SET VALIDATION - PASSES HARMLESSLY OTHERWISE!)
+    # Also check that n-grams are not being taken across name boundaries:
+    bad_sub_ngram = ' '.join(('azimuth', 'angstrom'))
+    for ngram_info in ngram_counts:
+        ngram_string = ' '.join(ngram_info)
+        assert bad_sub_ngram not in ngram_string, (
+            'n-grams seem to have been taken across name boundaries which '
+            'is not right.'
+        )
+
+    # Format to get phrase e.g. "in air" instead of tuple of words as keys:
+    ngram_counts = {
+        " ".join(phrase): count for phrase, count in ngram_counts.items()}
+
+    # Remove anything only ocuring once and not reecurring
+    ngram_counts = {
+        k: v for k, v in ngram_counts.items() if v >= cutoff_freq
+    }
+
+    return ngram_counts
+
+
+def get_all_ngram_counts(init_data):
+    """TODO."""
+    space_and_dot_delim_data = ". ".join(init_data)
+    data = space_and_dot_delim_data.replace("\n", "")
+    print("DATA TO USE FOR N-GRAMS CALC IS...")
+    pprint(data)
+
+    all_ngram_data = {}
+    for n_size in range_n:
+        ### print("CALC'ING", n_size)
+        counts = get_ngram_counts(data, n_size, FREQUENCY_CUTOFF)
+        # Filter out all n-gram keys where the dict is empty due to no n-grams
+        if counts:
+            all_ngram_data[n_size] = counts
+
+    return all_ngram_data
 
 
 # ----------------------------------------------------------------------------
@@ -72,7 +139,7 @@ def find_min_and_max_name_length():
 
 def add_nodes_to_graph(graph, inputs_for_nodes):
     """Add nodes to the graph."""
-    print("NODES ADDED\n", inputs_for_nodes)
+    ### print("NODES ADDED\n", inputs_for_nodes)
     graph.add_nodes_from(inputs_for_nodes)
 
 
@@ -80,12 +147,12 @@ def create_edge_spec(nodes_added):
     """Define the data to encode the edges required to connect nodes."""
     # DUMMY CONNECTIONS FOR NOW!
     edge_to_edge_dummy = {n: n + 1 for n in range(1, len(nodes_added) - 1)}
-    print("DUMMY IS\n", edge_to_edge_dummy)
+    ### print("DUMMY IS\n", edge_to_edge_dummy)
 
     get_edges = [
         (nodes_added[k], nodes_added[v]) for k, v in edge_to_edge_dummy.items()
     ]
-    print("EDGE LIST IS\n", get_edges)
+    ### print("EDGE LIST IS\n", get_edges)
     return get_edges
 
 
@@ -121,7 +188,7 @@ def post_processing_of_graph(graph, layout):
     offset = 0.02
     label_pos_vals = [(x, y + offset) for x, y in layout.values()]
     label_pos = dict(zip(layout.keys(), label_pos_vals))
-    print("LABEL POS IS\n", label_pos)
+    ### print("LABEL POS IS\n", label_pos)
 
     nx.draw_networkx_labels(graph, label_pos, font_size=6, alpha=0.7)
 
@@ -172,7 +239,6 @@ def create_sn_nrgam_graph(NAMES_DATA):
     post_processing_of_graph(G, layout)
 
     plt.show()
-    # END
 
 
 # ----------------------------------------------------------------------------
@@ -181,20 +247,29 @@ def create_sn_nrgam_graph(NAMES_DATA):
 
 if __name__ == "__main__":
     # 0. Define data
-    data = define_node_input_data()
+    orig_data = define_node_input_data()
 
     # 1. Find the minimum and maximum n-gram length i.e. length by word count
-    word_length_ranges = find_min_and_max_name_length()
-
+    word_length_ranges = find_min_and_max_name_length(orig_data)
     # 2. Use this range of n to set n-gram limits to find and intialise
     #    data structure to use. Values are set to None until calculation.
-    min_n, max_n = word_length_ranges.keys()
-    max_n += 1  # since will input this to range, want to capture max wordlen
-    n_gram_counts_where_count_exceeds_cutoff = {
-        k: None for k in range(min_n, max_n) 
-    }
-    print("DATA STRUCTURE SKELETON IS:\n")
-    pprint(n_gram_counts_where_count_exceeds_cutoff)
+    range_n = get_range_of_n_to_check(word_length_ranges)
+
+    # 3. Find all n-grams occuring more than the cutoff amount across the
+    #    names for all given n in the word_length_ranges range
+    all_ngram_data = get_all_ngram_counts(orig_data)
+    print("NGRAM DATA STRUCTURE CALC'ED IS:")
+    pprint(all_ngram_data)
+
+    # 4. Store the data to avoid re-generating
+    filename_to_write = (
+        f"all_ngram_counts_cutoff_{FREQUENCY_CUTOFF}_"
+        f"namestotal_{SHORT_CIRCUIT_TO_N_NAMES}.json"
+    )
+    with open(filename_to_write, "w") as f:
+        json.dump(all_ngram_data, f)
 
     # 2.. Finally, plot the network graph!
+    ###data = data.split(". ")
+    ###print("DATA TO USE FOR N-GRAMS GRAPH IS...\n")
     ###create_sn_nrgam_graph(data)
