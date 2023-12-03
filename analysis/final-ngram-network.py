@@ -20,7 +20,7 @@ SN_DATA_IN_USE = SN_DATA_DIR_RELATIVE + SN_DATA_FILE
 SAVE_DIR = "calculated_data_to_persist"
 
 # Filename or False to re-generate the data
-USE_PREV_DATA = f"{SAVE_DIR}/all_ngram_counts_with_cutoff_500.json"
+USE_PREV_DATA = f"{SAVE_DIR}/all_ngram_counts_with_cutoff_50.json"
 # Note: ~21,000 nodes for the 2 cutoff full-dataset graph!
 
 # Quick graph customisation
@@ -270,12 +270,12 @@ def post_processing_of_graph(graph, layout):
     nx.draw_networkx_labels(graph, label_pos, font_size=6, alpha=0.7)
 
 
-def draw_graph_with_layout(graph, node_sizes, node_colours):
+def draw_graph_with_layout(graph, node_sizes, node_colours, edge_colours):
     """Apply a layout and customisations to define how to draw the graph."""
     options = {
         ###"node_color": "tab:red",
         ###"node_size": 5,
-        "edge_color": "tab:gray",
+        ### "edge_color": "tab:gray",
         "alpha": 0.6,
         "with_labels": False,  # labels are set on later, False to avoid dupes
         "font_size": 4,
@@ -300,7 +300,8 @@ def draw_graph_with_layout(graph, node_sizes, node_colours):
 
     nx.draw(
         graph, layout, node_size=node_sizes,
-        node_color=node_colours, cmap=CMAP,
+        node_color=node_colours, edge_color=edge_colours,
+        cmap=CMAP, edge_cmap=CMAP,
         **options
     )
 
@@ -334,20 +335,26 @@ def create_sn_nrgam_graph(nodes, edges):
     # it from the nodes data dict.
     print("LABELS ARE:\n", labels)
     node_colours = [l.count(" ") + 1 for l in labels.values()]
+    
 
     # N. Add those edges
     add_edges_to_connect_nodes_in_graph(G, edges)
+    # Use the same colours for the edges as the node pointing to: 
+    edge_colours = [e[1].count(" ") + 1 for e in edges]
+    ### print("EDGE COLOURS ARE:", edge_colours)
 
     # N-2. <Numbering>
 
     # N-1. Customise the layout to use and plot the graph using it
     G, layout = draw_graph_with_layout(
-        G, node_sizes, node_colours)
+        G, node_sizes, node_colours, edge_colours)
 
     # N. Apply post-processing, e.g. to reposition node labels based on layout
     post_processing_of_graph(G, layout)
 
     plt.show()
+    # Note: for now, keep overwriting old outputs
+    plt.savefig("CURRENT_GRAPH_OUTPUT.png")
 
 
 # ----------------------------------------------------------------------------
