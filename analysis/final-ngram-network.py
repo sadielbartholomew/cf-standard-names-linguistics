@@ -307,7 +307,21 @@ def post_processing_of_graph(graph, layout):
         label_pos = dict(zip(layout.keys(), label_pos_vals))
         ### print("LABEL POS IS\n", label_pos)
 
-        nx.draw_networkx_labels(graph, label_pos, font_size=6, alpha=0.8)
+        labels = nx.draw_networkx_labels(graph, label_pos, font_size=6, alpha=0.8)
+
+        # ROTATING THE LABELS RADIALLY. Attribution for logic:
+        # https://gist.github.com/JamesPHoughton/55be4a6d30fe56ae163ada176c5c7553
+        theta = {k: np.arctan2(v[1], v[0]) * 180/np.pi for k, v in layout.items()}
+        for key,t in labels.items():
+            if 90 < theta[key] or theta[key] < -90 :
+                angle = 180 + theta[key]
+                t.set_ha("right")
+            else:
+                angle = theta[key]
+                t.set_ha("left")
+            t.set_va("center")
+            t.set_rotation(angle)
+            t.set_rotation_mode("anchor")
 
 
 def draw_graph_with_layout(graph, node_sizes, node_colours, edge_colours):
@@ -340,7 +354,9 @@ def draw_graph_with_layout(graph, node_sizes, node_colours, edge_colours):
 
     # NOT A TREE SO WON'T WORK!:
     ###layout = nx.nx_agraph.graphviz_layout(graph, prog="twopi", root=0)
-    layout = nx.shell_layout(graph)
+
+    # shell layout does concentric circles!
+    layout = nx.shell_layout(graph)  ###,scale=0.4)
     ###layout = nx.kamada_kawai_layout(graph)
 
     nx.draw(
