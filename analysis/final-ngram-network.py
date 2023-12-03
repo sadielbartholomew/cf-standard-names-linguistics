@@ -1,4 +1,5 @@
 from collections import Counter
+from itertools import pairwise  # Needs Py 3.10!
 import json
 from pprint import pprint
 
@@ -33,7 +34,7 @@ USE_PREV_DATA = (
 
 # Quick graph customisation
 LABELS_ON = True
-LABEL_OFFSET = 0.00  # 0.02-0.05 is good
+LABEL_OFFSET = 0.01  # 0.02-0.05 is good
 
 # Use rainbow colours - need lack of white tones or repeated tones at each
 # end of the spectrum, and strong bright variation in colour.
@@ -238,8 +239,27 @@ def generate_edges(json_ngram_data, all_nodes_keyed_by_id):
 
 def generate_dummy_egdes(json_ngram_data, all_nodes_keyed_by_id):
     """Create false edges not to be displayed to force a better layout."""
-    # TODO
-    return dummy_edges
+    # Only dummy egdes for now are to connect all of the n-gram central
+    # n-grams together in a circle - hence need a cyclic link system
+    # of (0, 1), (1, 2) ..., (N, 0).
+    dummy_links = list(pairwise(json_ngram_data["1"]))
+    dummy_links.append((dummy_links[0][0], dummy_links[-1][-1]))
+    print("DUMMY LINKS ARE:\n", list(dummy_links))
+
+    # TODO create helper function for this logic (if LABEL_IN switch as above)
+    if LABELS_ON:
+        return dummy_links
+    else:
+        # Now convert the links in 2-tuples of names to their node IDs ready to
+        # specifiy for the graph.
+        node_id_links = []
+        for link in links:
+            link_start, link_end = link
+            node_id_links.append(
+                (node_id_lookups[link_start], node_id_lookups[link_end]))
+
+    return dummy_links
+
 
 def add_nodes_to_graph(graph, inputs_for_nodes):
     """Add nodes to the graph."""
@@ -314,12 +334,13 @@ def draw_graph_with_layout(graph, node_sizes, node_colours, edge_colours):
     #
     # (not shell, all on a circle, though that is good to see all connections)
     # (not spring, is quite random) (not spectral, gives weird clustering)
+    # (shell is good for showing links between)
 
     # ONE OPTION: MULTIPARTITE IN LAYERS OF N-GRAM INCREASING SIZE?
 
     # NOT A TREE SO WON'T WORK!:
     ###layout = nx.nx_agraph.graphviz_layout(graph, prog="twopi", root=0)
-    layout = nx.spiral_layout(graph)
+    layout = nx.shell_layout(graph)
     ###layout = nx.kamada_kawai_layout(graph)
 
     nx.draw(
@@ -421,6 +442,7 @@ if __name__ == "__main__":
     # 4. Interface to data structure holding nodes and edge info.
     ngram_data_nodes = reformat_nodes_data(all_ngram_data)
     ngram_data_edges = generate_edges(all_ngram_data, ngram_data_nodes)
+    ### ngram_data_edges += generate_dummy_egdes(all_ngram_data, ngram_data_nodes)
 
     # N. Finally, plot the network graph!
     create_sn_nrgam_graph(ngram_data_nodes, ngram_data_edges)
@@ -429,7 +451,7 @@ if __name__ == "__main__":
     # variety of plots to compare.
     plt.savefig(
         f"{SAVE_DIR_PLOTS}/"
-        f"digraph_cutoff{FREQUENCY_CUTOFF}_labels{int(LABELS_ON)}_rad.png",
+        f"digraph_cutoff{FREQUENCY_CUTOFF}_labels{int(LABELS_ON)}_shell.png",
         dpi=SAVE_DPI,
     )
     plt.show()
