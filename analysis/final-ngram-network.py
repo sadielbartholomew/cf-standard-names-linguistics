@@ -20,11 +20,11 @@ SN_DATA_IN_USE = SN_DATA_DIR_RELATIVE + SN_DATA_FILE
 SAVE_DIR = "calculated_data_to_persist"
 
 # Filename or False to re-generate the data
-USE_PREV_DATA = f"{SAVE_DIR}/all_ngram_counts_with_cutoff_50.json"
+USE_PREV_DATA = f"{SAVE_DIR}/all_ngram_counts_with_cutoff_25.json"
 # Note: ~21,000 nodes for the 2 cutoff full-dataset graph!
 
 # Quick graph customisation
-LABELS_ON = False
+LABELS_ON = False  # BUG HERE IF TRUE
 CMAP = plt.cm.hsv  # rainbow colours - need lack of white and strong variation
 
 # ---------------------------------------------------------------------------
@@ -244,8 +244,9 @@ def define_node_labels(nodes):
 
 def sizes_for_nodes(graph, nodes):
     """TODO."""
-    scale_factor = 5  # make smaller by this amount so nodes aren't huge
-    nodes_size_mapping = [v[1]/scale_factor for v in nodes.values()]
+    # Make larger by this amount, Usually will want it <1 to reduce size.
+    scale_factor = 1/2
+    nodes_size_mapping = [v[1] * scale_factor for v in nodes.values()]
     return nodes_size_mapping
 
 
@@ -272,13 +273,28 @@ def draw_graph_with_layout(graph, node_sizes, node_colours):
         ###"node_color": "tab:red",
         ###"node_size": 5,
         "edge_color": "tab:gray",
-        "alpha": 0.9,
+        "alpha": 0.6,
         "with_labels": False,  # labels are set on later, False to avoid dupes
         "font_size": 4,
     }
 
-    # Specify graph layout here! E.g. 'spiral_', 'spring_', 'shell_', etc.
-    layout = nx.shell_layout(graph)
+    # Specify graph layout here!
+    # SEE ALL LAYOUT OPTIONS AT:
+    # https://networkx.org/documentation/stable/reference/...
+    # ...drawing.html#module-networkx.drawing.layout
+    #
+    # Good options seem to be:
+    # spiral (probs best to show whole structure of nodes, but NOT links)
+    # kamada_kawai_layout
+    #
+    # (not shell, all on a circle, though that is good to see all connections)
+    # (not spring, is quite random) (not spectral, gives weird clustering)
+
+    # ONE OPTION: MULTIPARTITE IN LAYERS OF N-GRAM INCREASING SIZE
+    ### layout = nx.spiral_layout(graph)
+    layout = nx.kamada_kawai_layout(graph)
+    ### nx.nx_agraph.graphviz_layout(graph, prog="twopi", args="")
+
     nx.draw(
         graph, layout, node_size=node_sizes,
         node_color=node_colours, cmap=CMAP,
