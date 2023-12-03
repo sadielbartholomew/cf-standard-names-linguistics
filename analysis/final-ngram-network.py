@@ -10,7 +10,7 @@ from textblob import formats
 
 
 SHORT_CIRCUIT_TO_N_NAMES = False  #1000  # int to short circuit, or False to not
-FREQUENCY_CUTOFF = 50  # v >= FREQUENCY_CUTOFF for inclusion
+FREQUENCY_CUTOFF = 5  # v >= FREQUENCY_CUTOFF for inclusion
 # samples to do: 1, 2, 3, 5, 10, 15, 25, 50, 100, 250, 500 
 
 SN_DATA_DIR_RELATIVE = "../data/"
@@ -18,14 +18,21 @@ SN_DATA_FILE = "all_cf_standard_names_for_table_v83_at_30_11_23.txt"
 SN_DATA_IN_USE = SN_DATA_DIR_RELATIVE + SN_DATA_FILE
 
 SAVE_DIR = "calculated_data_to_persist"
+SAVE_DIR_PLOTS = "raw_plots"
 
 # Filename or False to re-generate the data
-USE_PREV_DATA = f"{SAVE_DIR}/all_ngram_counts_with_cutoff_50.json"
-# Note: ~21,000 nodes for the 2 cutoff full-dataset graph!
+USE_PREV_DATA = (
+    f"{SAVE_DIR}/all_ngram_counts_with_cutoff_{FREQUENCY_CUTOFF}.json"
+)
+# Note: ~21,000 nodes for the 2 cutoff full-dataset graph! Graphs are big!
 
 # Quick graph customisation
-LABELS_ON = True  # BUG HERE IF TRUE
-CMAP = plt.cm.hsv  # rainbow colours - need lack of white and strong variation
+LABELS_ON = False  # BUG HERE IF TRUE
+# Use rainbow colours - need lack of white tones or repeated tones at each
+# end of the spectrum, and strong bright variation in colour.
+CMAP = plt.cm.rainbow  # tubro, rainbow, gist_rainbow, jet
+SAVE_DPI = 300
+
 
 # ---------------------------------------------------------------------------
 # DATA CREATION -------------------------------------------------------------
@@ -262,12 +269,13 @@ def label_graph(graph, labels):
 def post_processing_of_graph(graph, layout):
     """Actions to apply to modify the graph after layout specification."""
     # Offset the node labels so they are above the nodes and don't cover them
-    offset = 0.00
-    label_pos_vals = [(x, y + offset) for x, y in layout.values()]
-    label_pos = dict(zip(layout.keys(), label_pos_vals))
-    ### print("LABEL POS IS\n", label_pos)
+    if LABELS_ON:
+        offset = 0.05
+        label_pos_vals = [(x, y + offset) for x, y in layout.values()]
+        label_pos = dict(zip(layout.keys(), label_pos_vals))
+        ### print("LABEL POS IS\n", label_pos)
 
-    nx.draw_networkx_labels(graph, label_pos, font_size=6, alpha=0.7)
+        nx.draw_networkx_labels(graph, label_pos, font_size=6, alpha=0.8)
 
 
 def draw_graph_with_layout(graph, node_sizes, node_colours, edge_colours):
@@ -279,6 +287,8 @@ def draw_graph_with_layout(graph, node_sizes, node_colours, edge_colours):
         "alpha": 0.6,
         "with_labels": False,  # labels are set on later, False to avoid dupes
         "font_size": 4,
+        "linewidths": 1,  # adds a border to the node colours!
+        "edgecolors": "black",  # this is the colour of the node border!
     }
 
     # Specify graph layout here!
@@ -293,10 +303,12 @@ def draw_graph_with_layout(graph, node_sizes, node_colours, edge_colours):
     # (not shell, all on a circle, though that is good to see all connections)
     # (not spring, is quite random) (not spectral, gives weird clustering)
 
-    # ONE OPTION: MULTIPARTITE IN LAYERS OF N-GRAM INCREASING SIZE
-    ### layout = nx.spiral_layout(graph)
+    # ONE OPTION: MULTIPARTITE IN LAYERS OF N-GRAM INCREASING SIZE?
+
+    # NOT A TREE SO WON'T WORK!:
+    ###layout = nx.nx_agraph.graphviz_layout(graph, prog="twopi", root=0)
+    ###layout = nx.spiral_layout(graph)
     layout = nx.kamada_kawai_layout(graph)
-    ### nx.nx_agraph.graphviz_layout(graph, prog="twopi", args="")
 
     nx.draw(
         graph, layout, node_size=node_sizes,
@@ -339,8 +351,11 @@ def create_sn_nrgam_graph(nodes, edges):
 
     # N. Add those edges
     add_edges_to_connect_nodes_in_graph(G, edges)
-    # Use the same colours for the edges as the node pointing to: 
-    edge_colours = [e[1].count(" ") + 1 for e in edges]
+    # Use the same colours for the edges as the node pointing to:
+    if LABELS_ON:
+        edge_colours = [e[1].count(" ") + 1 for e in edges]
+    else:
+        edge_colours = [nodes[e[1]][0].count(" ") + 1 for e in edges]
     ### print("EDGE COLOURS ARE:", edge_colours)
 
     # N-2. <Numbering>
@@ -352,9 +367,8 @@ def create_sn_nrgam_graph(nodes, edges):
     # N. Apply post-processing, e.g. to reposition node labels based on layout
     post_processing_of_graph(G, layout)
 
-    plt.show()
-    # Note: for now, keep overwriting old outputs
-    plt.savefig("CURRENT_GRAPH_OUTPUT.png")
+    # Add a legend
+    # TODO.
 
 
 # ----------------------------------------------------------------------------
@@ -398,3 +412,12 @@ if __name__ == "__main__":
 
     # N. Finally, plot the network graph!
     create_sn_nrgam_graph(ngram_data_nodes, ngram_data_edges)
+
+    # Finally save and show the plot. Save per cutoff and label on/off to get
+    # variety of plots to compare.
+    plt.savefig(
+        f"{SAVE_DIR_PLOTS}/"
+        f"digraph_cutoff{FREQUENCY_CUTOFF}_labels{int(LABELS_ON)}_kk.png",
+        dpi=SAVE_DPI,
+    )
+    plt.show()
