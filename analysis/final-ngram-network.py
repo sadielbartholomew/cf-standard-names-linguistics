@@ -20,9 +20,12 @@ SN_DATA_IN_USE = SN_DATA_DIR_RELATIVE + SN_DATA_FILE
 SAVE_DIR = "calculated_data_to_persist"
 
 # Filename or False to re-generate the data
-USE_PREV_DATA = f"{SAVE_DIR}/all_ngram_counts_with_cutoff_25.json"
+USE_PREV_DATA = f"{SAVE_DIR}/all_ngram_counts_with_cutoff_50.json"
 # Note: ~21,000 nodes for the 2 cutoff full-dataset graph!
 
+# Quick graph customisation
+LABELS_ON = False
+CMAP = plt.cm.hsv  # rainbow colours - need lack of white and strong variation
 
 # ---------------------------------------------------------------------------
 # DATA CREATION -------------------------------------------------------------
@@ -161,6 +164,57 @@ def reformat_nodes_data(json_ngram_data):
 
     return all_nodes_keyed_by_id
 
+
+def reverse_nodes_id_dict(all_nodes_keyed_by_id):
+    """TODO.
+
+    TODO: shouldn't be necessary with a better data structure approach.
+    Reconsider approach to data wrangling later...
+    """
+    return {v[0]: k for k, v in all_nodes_keyed_by_id.items()}
+
+
+def generate_edges(json_ngram_data, all_nodes_keyed_by_id):
+    """TODO.
+
+    Note: probably performance heavy.
+    """
+    node_id_lookups = reverse_nodes_id_dict(all_nodes_keyed_by_id)
+
+    links = []
+    for n_size, n_grams in json_ngram_data.items():
+        # Get the n-gram and (n-1)-gram data to compare to find links for edges
+        n_size = int(n_size)  # TODO: why has this become a string?
+        n_one_less = n_size - 1
+        if n_size > 1 and str(n_one_less) in json_ngram_data:  # else pass
+            n_grams_for_n_one_less = json_ngram_data[str(n_one_less)]
+        else:
+            continue
+            
+        # Find all (n-1)-grams contained in any n-grams to add as edges
+        for smaller_ngram in n_grams_for_n_one_less.keys():
+            for larger_ngram in n_grams.keys():
+                if smaller_ngram in larger_ngram:
+                    print(
+                        "EDGE MATCH AT:\n", larger_ngram, "AND", smaller_ngram)
+                    links.append((smaller_ngram, larger_ngram))
+
+    print("FINAL LINKS LIST IS:\n")
+    pprint(links)
+
+    # Now convert the links in 2-tuples of names to their node IDs ready to
+    # specifiy for the graph.
+    node_id_links = []
+    for link in links:
+        smaller_ngram, larger_ngram = link
+        node_id_links.append(
+            (node_id_lookups[smaller_ngram], node_id_lookups[larger_ngram]))
+
+    print("FINAL NODE ID LINKS LIST IS:\n")
+    pprint(node_id_links)
+
+    return node_id_links
+
 # ----------------------------------------------------------------------------
 # GRAPH CREATION -------------------------------------------------------------
 # ----------------------------------------------------------------------------
@@ -217,8 +271,8 @@ def draw_graph_with_layout(graph, node_sizes, node_colours):
     options = {
         ###"node_color": "tab:red",
         ###"node_size": 5,
-        "edge_color": "tab:blue",
-        "alpha": 0.5,
+        "edge_color": "tab:gray",
+        "alpha": 0.9,
         "with_labels": False,  # labels are set on later, False to avoid dupes
         "font_size": 4,
     }
@@ -227,14 +281,14 @@ def draw_graph_with_layout(graph, node_sizes, node_colours):
     layout = nx.shell_layout(graph)
     nx.draw(
         graph, layout, node_size=node_sizes,
-        node_color=node_colours, cmap=plt.cm.hsv,
+        node_color=node_colours, cmap=CMAP,
         **options
     )
 
     return graph, layout
 
 
-def create_sn_nrgam_graph(nodes):
+def create_sn_nrgam_graph(nodes, edges):
     """Create a directed graph of n-gram links across the CF Standard Names."""
     print("GRAPH RAW DATA TO WORK WITH IS:")
     pprint(nodes)
@@ -245,15 +299,13 @@ def create_sn_nrgam_graph(nodes):
     # 1. Add nodes without links (edges) to graph
     add_nodes_to_graph(G, nodes)
 
-    # 2. Generate edges to add
-    ###edges = create_edge_spec(edges)
-    # 3. Add those edges
-    ###add_edges_to_connect_nodes_in_graph(G, edges)
+    # Create names as node labels
+    labels = define_node_labels(nodes)
 
     # 4. Generate labels to apply on the nodes and/or edges
-    labels = define_node_labels(nodes)
-    # 5. Add those labels
-    G = label_graph(G, labels)
+    if LABELS_ON:
+        # 5. Add those labels
+        G = label_graph(G, labels)
 
     # 6. Set-up node size proportional to the frequency of occurence.
     node_sizes = sizes_for_nodes(G, nodes)
@@ -263,6 +315,9 @@ def create_sn_nrgam_graph(nodes):
     # it from the nodes data dict.
     print("LABELS ARE:\n", labels)
     node_colours = [l.count(" ") + 1 for l in labels.values()]
+
+    # N. Add those edges
+    add_edges_to_connect_nodes_in_graph(G, edges)
 
     # N-2. <Numbering>
 
@@ -313,6 +368,7 @@ if __name__ == "__main__":
 
     # 4. Interface to data structure holding nodes and edge info.
     ngram_data_nodes = reformat_nodes_data(all_ngram_data)
-    
+    ngram_data_edges = generate_edges(all_ngram_data, ngram_data_nodes)
+
     # N. Finally, plot the network graph!
-    create_sn_nrgam_graph(ngram_data_nodes)  # No edges for now!
+    create_sn_nrgam_graph(ngram_data_nodes, ngram_data_edges)
