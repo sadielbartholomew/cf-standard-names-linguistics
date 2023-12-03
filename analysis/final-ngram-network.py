@@ -20,11 +20,11 @@ SN_DATA_IN_USE = SN_DATA_DIR_RELATIVE + SN_DATA_FILE
 SAVE_DIR = "calculated_data_to_persist"
 
 # Filename or False to re-generate the data
-USE_PREV_DATA = f"{SAVE_DIR}/all_ngram_counts_with_cutoff_25.json"
+USE_PREV_DATA = f"{SAVE_DIR}/all_ngram_counts_with_cutoff_500.json"
 # Note: ~21,000 nodes for the 2 cutoff full-dataset graph!
 
 # Quick graph customisation
-LABELS_ON = False  # BUG HERE IF TRUE
+LABELS_ON = True  # BUG HERE IF TRUE
 CMAP = plt.cm.hsv  # rainbow colours - need lack of white and strong variation
 
 # ---------------------------------------------------------------------------
@@ -186,11 +186,11 @@ def generate_edges(json_ngram_data, all_nodes_keyed_by_id):
         # Get the n-gram and (n-1)-gram data to compare to find links for edges
         n_size = int(n_size)  # TODO: why has this become a string?
         n_one_less = n_size - 1
-        if n_size > 1 and str(n_one_less) in json_ngram_data:  # else pass
+        if n_size >= 1 and str(n_one_less) in json_ngram_data:  # else pass
             n_grams_for_n_one_less = json_ngram_data[str(n_one_less)]
         else:
             continue
-            
+
         # Find all (n-1)-grams contained in any n-grams to add as edges
         for smaller_ngram in n_grams_for_n_one_less.keys():
             for larger_ngram in n_grams.keys():
@@ -202,18 +202,21 @@ def generate_edges(json_ngram_data, all_nodes_keyed_by_id):
     print("FINAL LINKS LIST IS:\n")
     pprint(links)
 
-    # Now convert the links in 2-tuples of names to their node IDs ready to
-    # specifiy for the graph.
-    node_id_links = []
-    for link in links:
-        smaller_ngram, larger_ngram = link
-        node_id_links.append(
-            (node_id_lookups[smaller_ngram], node_id_lookups[larger_ngram]))
+    if LABELS_ON:
+        return links
+    else:
+        # Now convert the links in 2-tuples of names to their node IDs ready to
+        # specifiy for the graph.
+        node_id_links = []
+        for link in links:
+            smaller_ngram, larger_ngram = link
+            node_id_links.append(
+                (node_id_lookups[smaller_ngram], node_id_lookups[larger_ngram]))
 
-    print("FINAL NODE ID LINKS LIST IS:\n")
-    pprint(node_id_links)
+        print("FINAL NODE ID LINKS LIST IS:\n")
+        pprint(node_id_links)
 
-    return node_id_links
+        return node_id_links
 
 # ----------------------------------------------------------------------------
 # GRAPH CREATION -------------------------------------------------------------
