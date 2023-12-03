@@ -10,8 +10,13 @@ from textblob import formats
 
 
 SHORT_CIRCUIT_TO_N_NAMES = False  #1000  # int to short circuit, or False to not
-FREQUENCY_CUTOFF = 5  # v >= FREQUENCY_CUTOFF for inclusion
-# samples to do: 1, 2, 3, 5, 10, 15, 25, 50, 100, 250, 500 
+
+
+# Note: ~21,000 nodes for the 2 cutoff full-dataset graph! Graphs are big!
+# CUTOFF OF 3 OR LESS IS TOO MEMORY-INTENSIVE! NEED TO USE JOB(?) ARCHER?
+FREQUENCY_CUTOFF = 250  # v >= FREQUENCY_CUTOFF for inclusion
+# samples to do: 1, 2, 3, 5, 10, 15, 25, 50, 100, 250, 500
+# NEW ONES: 300 - for spiral graph to add?
 
 SN_DATA_DIR_RELATIVE = "../data/"
 SN_DATA_FILE = "all_cf_standard_names_for_table_v83_at_30_11_23.txt"
@@ -24,14 +29,16 @@ SAVE_DIR_PLOTS = "raw_plots"
 USE_PREV_DATA = (
     f"{SAVE_DIR}/all_ngram_counts_with_cutoff_{FREQUENCY_CUTOFF}.json"
 )
-# Note: ~21,000 nodes for the 2 cutoff full-dataset graph! Graphs are big!
+
 
 # Quick graph customisation
-LABELS_ON = False  # BUG HERE IF TRUE
+LABELS_ON = True
+LABEL_OFFSET = 0.00  # 0.02-0.05 is good
+
 # Use rainbow colours - need lack of white tones or repeated tones at each
 # end of the spectrum, and strong bright variation in colour.
 CMAP = plt.cm.rainbow  # tubro, rainbow, gist_rainbow, jet
-SAVE_DPI = 300
+SAVE_DPI = 750  # publication needs 600 or above
 
 
 # ---------------------------------------------------------------------------
@@ -229,6 +236,11 @@ def generate_edges(json_ngram_data, all_nodes_keyed_by_id):
 # GRAPH CREATION -------------------------------------------------------------
 # ----------------------------------------------------------------------------
 
+def generate_dummy_egdes(json_ngram_data, all_nodes_keyed_by_id):
+    """Create false edges not to be displayed to force a better layout."""
+    # TODO
+    return dummy_edges
+
 def add_nodes_to_graph(graph, inputs_for_nodes):
     """Add nodes to the graph."""
     ### print("NODES ADDED\n", inputs_for_nodes)
@@ -270,7 +282,7 @@ def post_processing_of_graph(graph, layout):
     """Actions to apply to modify the graph after layout specification."""
     # Offset the node labels so they are above the nodes and don't cover them
     if LABELS_ON:
-        offset = 0.05
+        offset = LABEL_OFFSET
         label_pos_vals = [(x, y + offset) for x, y in layout.values()]
         label_pos = dict(zip(layout.keys(), label_pos_vals))
         ### print("LABEL POS IS\n", label_pos)
@@ -307,8 +319,8 @@ def draw_graph_with_layout(graph, node_sizes, node_colours, edge_colours):
 
     # NOT A TREE SO WON'T WORK!:
     ###layout = nx.nx_agraph.graphviz_layout(graph, prog="twopi", root=0)
-    ###layout = nx.spiral_layout(graph)
-    layout = nx.kamada_kawai_layout(graph)
+    layout = nx.spiral_layout(graph)
+    ###layout = nx.kamada_kawai_layout(graph)
 
     nx.draw(
         graph, layout, node_size=node_sizes,
@@ -417,7 +429,7 @@ if __name__ == "__main__":
     # variety of plots to compare.
     plt.savefig(
         f"{SAVE_DIR_PLOTS}/"
-        f"digraph_cutoff{FREQUENCY_CUTOFF}_labels{int(LABELS_ON)}_kk.png",
+        f"digraph_cutoff{FREQUENCY_CUTOFF}_labels{int(LABELS_ON)}_rad.png",
         dpi=SAVE_DPI,
     )
     plt.show()
