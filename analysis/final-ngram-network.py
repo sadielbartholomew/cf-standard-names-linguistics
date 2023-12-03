@@ -19,6 +19,10 @@ SN_DATA_IN_USE = SN_DATA_DIR_RELATIVE + SN_DATA_FILE
 
 SAVE_DIR = "calculated_data_to_persist"
 
+# Filename or False to re-generate the data
+USE_PREV_DATA = f"{SAVE_DIR}/all_ngram_counts_with_cutoff_25.json"
+# Note: ~21,000 nodes for the 2 cutoff full-dataset graph!
+
 
 # ---------------------------------------------------------------------------
 # DATA CREATION -------------------------------------------------------------
@@ -179,21 +183,16 @@ def add_edges_to_connect_nodes_in_graph(graph, edge_spec):
 
 def define_node_labels(nodes):
     """Define data for the labels to be applied on the graph nodes/edges."""
-    print("nodey", nodes, nodes[1], nodes[2])
     labels_mapping = {k: v[0] for k, v in nodes.items()}
 
-    # indices = range(1, len(nodes) + 1)
-    # # MUST TAKE CARE: IDENTICAL LABELS WILL COMBINE THOSE NODES TO ONE!
-    # labels = []
-    # for index, n in enumerate(nodes):
-    #     get_first_letters_words = [f[0].upper() for f in n.split(" ")]
-    #     # CRUCIAL TO UE INDEX IN CASE OF DUPLICATES IN NAME!
-    #     labels.append(str(index) + ": " + "".join(get_first_letters_words))
-
-    # short_labels_for_nodes = {key: value for key, value in zip(nodes, labels)}
-    # return short_labels_for_nodes
     return labels_mapping
 
+
+def sizes_for_nodes(graph, nodes):
+    """TODO."""
+    scale_factor = 5  # make smaller by this amount so nodes aren't huge
+    nodes_size_mapping = [v[1]/scale_factor for v in nodes.values()]
+    return nodes_size_mapping
 
 
 def label_graph(graph, labels):
@@ -205,7 +204,7 @@ def label_graph(graph, labels):
 def post_processing_of_graph(graph, layout):
     """Actions to apply to modify the graph after layout specification."""
     # Offset the node labels so they are above the nodes and don't cover them
-    offset = 0.02
+    offset = 0.00
     label_pos_vals = [(x, y + offset) for x, y in layout.values()]
     label_pos = dict(zip(layout.keys(), label_pos_vals))
     ### print("LABEL POS IS\n", label_pos)
@@ -213,20 +212,24 @@ def post_processing_of_graph(graph, layout):
     nx.draw_networkx_labels(graph, label_pos, font_size=6, alpha=0.7)
 
 
-def draw_graph_with_layout(graph):
+def draw_graph_with_layout(graph, node_sizes, node_colours):
     """Apply a layout and customisations to define how to draw the graph."""
     options = {
-        "node_color": "tab:red",
-        "node_size": 5,
+        ###"node_color": "tab:red",
+        ###"node_size": 5,
         "edge_color": "tab:blue",
-        "alpha": 0.7,
+        "alpha": 0.5,
         "with_labels": False,  # labels are set on later, False to avoid dupes
-        "font_size": 6,
+        "font_size": 4,
     }
 
     # Specify graph layout here! E.g. 'spiral_', 'spring_', 'shell_', etc.
     layout = nx.shell_layout(graph)
-    nx.draw(graph, layout, **options)
+    nx.draw(
+        graph, layout, node_size=node_sizes,
+        node_color=node_colours, cmap=plt.cm.hsv,
+        **options
+    )
 
     return graph, layout
 
@@ -252,10 +255,22 @@ def create_sn_nrgam_graph(nodes):
     # 5. Add those labels
     G = label_graph(G, labels)
 
-    # 6. Customise the layout to use and plot the graph using it
-    G, layout = draw_graph_with_layout(G)
+    # 6. Set-up node size proportional to the frequency of occurence.
+    node_sizes = sizes_for_nodes(G, nodes)
 
-    # 7. Apply post-processing, e.g. to reposition node labels based on layout
+    # 7. Colour nodes by n-gram size. It is simpler just to re-calculate
+    # the length based on the actual n-gram/name label rather than query
+    # it from the nodes data dict.
+    print("LABELS ARE:\n", labels)
+    node_colours = [l.count(" ") + 1 for l in labels.values()]
+
+    # N-2. <Numbering>
+
+    # N-1. Customise the layout to use and plot the graph using it
+    G, layout = draw_graph_with_layout(
+        G, node_sizes, node_colours)
+
+    # N. Apply post-processing, e.g. to reposition node labels based on layout
     post_processing_of_graph(G, layout)
 
     plt.show()
@@ -267,32 +282,34 @@ def create_sn_nrgam_graph(nodes):
 
 if __name__ == "__main__":
     # 0. Define data
-    orig_data = define_node_input_data()
+    # OR (ALTNERATIVE LATER) 3. Load from file to save re-generating
+    if USE_PREV_DATA:
+        with open(USE_PREV_DATA, "r") as data_input_file:
+            all_ngram_data = json.load(data_input_file)
+    else:
+        orig_data = define_node_input_data()
 
-    # 1. Find the minimum and maximum n-gram length i.e. length by word count
-    word_length_ranges = find_min_and_max_name_length(orig_data)
-    # 2. Use this range of n to set n-gram limits to find and intialise
-    #    data structure to use. Values are set to None until calculation.
-    range_n = get_range_of_n_to_check(word_length_ranges)
+        # 1. Find the minimum and maximum n-gram length i.e. length by word count
+        word_length_ranges = find_min_and_max_name_length(orig_data)
+        # 2. Use this range of n to set n-gram limits to find and intialise
+        #    data structure to use. Values are set to None until calculation.
+        range_n = get_range_of_n_to_check(word_length_ranges)
 
-    # 3. Find all n-grams occuring more than the cutoff amount across the
-    #    names for all given n in the word_length_ranges range
-    all_ngram_data = get_all_ngram_counts(orig_data)
+        # 3. Find all n-grams occuring more than the cutoff amount across the
+        #    names for all given n in the word_length_ranges range
+        all_ngram_data = get_all_ngram_counts(orig_data)
+
     print("NGRAM DATA STRUCTURE CALC'ED IS:")
     pprint(all_ngram_data)
 
     # 4. Store the data to avoid re-generating
-    # if not SHORT_CIRCUIT_TO_N_NAMES:
-    #     filename_to_write = (
-    #         f"{SAVE_DIR}/"
-    #         f"all_ngram_counts_with_cutoff_{FREQUENCY_CUTOFF}.json"
-    #     )
-    #     with open(filename_to_write, "w") as f:
-    #         json.dump(all_ngram_data, f)
-    
-    # # 5. Load from file to save re-generating
-    # with open("") as data_input_file:
-    #     ngram_json = json.load(input_file)
+    if not USE_PREV_DATA and not SHORT_CIRCUIT_TO_N_NAMES:
+        filename_to_write = (
+            f"{SAVE_DIR}/"
+            f"all_ngram_counts_with_cutoff_{FREQUENCY_CUTOFF}.json"
+        )
+        with open(filename_to_write, "w") as f:
+            json.dump(all_ngram_data, f)
 
     # 4. Interface to data structure holding nodes and edge info.
     ngram_data_nodes = reformat_nodes_data(all_ngram_data)
