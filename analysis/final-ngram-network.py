@@ -17,8 +17,8 @@ SHORT_CIRCUIT_TO_N_NAMES = False  #1000  # int to short circuit, or False to not
 
 # Note: ~21,000 nodes for the 2 cutoff full-dataset graph! Graphs are big!
 # CUTOFF OF 3 OR LESS IS TOO MEMORY-INTENSIVE! NEED TO USE JOB(?) ARCHER?
-FREQUENCY_CUTOFF = 50  # v >= FREQUENCY_CUTOFF for inclusion
-# samples to do: 1, 2, 3, 5, 10, 15, 25, 50, 100, 250, 300, 400, 500
+FREQUENCY_CUTOFF = 75  # v >= FREQUENCY_CUTOFF for inclusion
+# samples to do: 1, 2, 3, 5, 10, 15, 25, 50, 80, 100, 250, 300, 400, 500
 
 ONLY_N_ONE_LESS_EDGES = False
 HIDE_ONEGRAMS = True
@@ -33,7 +33,8 @@ SAVE_DIR_PLOTS = "raw_plots"
 
 # Filename or False to re-generate the data
 # BUG WHEN SET THIS OFF?
-USE_PREV_DATA = (
+USE_PREV_DATA = False
+a = (
     f"{SAVE_DIR}/all_ngram_counts_with_cutoff_{FREQUENCY_CUTOFF}.json"
 )
 
@@ -233,7 +234,8 @@ def generate_edges(
                             print(
                                 "EDGE MATCH AT:\n", larger_ngram, "AND",
                                 smaller_ngram)
-                            links.append((smaller_ngram, larger_ngram))
+                            # THIS GOVERNS EDGE DIRECTION!
+                            links.append((larger_ngram, smaller_ngram))
         else:
             n_links = []
             for size in range(1, n_size - 1):
@@ -258,7 +260,8 @@ def generate_edges(
                             print(
                                 "EDGE MATCH AT:\n", larger_ngram, "AND",
                                 smaller_ngram)
-                            links.append((smaller_ngram, larger_ngram))
+                            # THIS GOVERNS EDGE DIRECTION!
+                            links.append((larger_ngram, smaller_ngram))
             ### links.extend(n_links)
 
     print("FINAL LINKS LIST IS:\n")
@@ -527,7 +530,8 @@ if __name__ == "__main__":
         with open(USE_PREV_DATA, "r") as data_input_file:
             all_ngram_data = json.load(data_input_file)
     else:
-        orig_data = define_node_input_data()
+        # Convert dict to JSON for consistency with read-in data
+        orig_data = json.loads(json.dumps(define_node_input_data()))
 
         # 1. Find the minimum and maximum n-gram length i.e. length by word count
         word_length_ranges = find_min_and_max_name_length(orig_data)
@@ -554,7 +558,13 @@ if __name__ == "__main__":
 
     # FILTER OUT ONE-GRAMS
     if HIDE_ONEGRAMS:
-        del all_ngram_data["1"]
+        # WARNING: SOMETIMES THIS IS ANT INT, SOMETIMES A STRING.
+        # THINK THIS IS DUE TO JSON-IOFCATION VARIATION - I.E. BASED ON
+        # WHETHER GEN OR REGEN. INVESTIGATE.
+        try:
+            del all_ngram_data["1"]
+        except:
+            del all_ngram_data[1]
 
     # 4. Interface to data structure holding nodes and edge info.
     ngram_data_nodes = reformat_nodes_data(all_ngram_data)
