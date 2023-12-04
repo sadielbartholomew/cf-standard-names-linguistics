@@ -18,10 +18,10 @@ SHORT_CIRCUIT_TO_N_NAMES = False  #1000  # int to short circuit, or False to not
 # Note: ~21,000 nodes for the 2 cutoff full-dataset graph! Graphs are big!
 # CUTOFF OF 3 OR LESS IS TOO MEMORY-INTENSIVE! NEED TO USE JOB(?) ARCHER?
 # SADES 75 for final figure 1 plot 
-FREQUENCY_CUTOFF = 75  # v >= FREQUENCY_CUTOFF for inclusion
+FREQUENCY_CUTOFF = 100  # v >= FREQUENCY_CUTOFF for inclusion
 # samples to do: 1, 2, 3, 5, 10, 15, 25, 50, 80, 100, 250, 300, 400, 500
 
-ONLY_N_ONE_LESS_EDGES = False
+ONLY_N_ONE_LESS_EDGES = False  #True  #False
 HIDE_ONEGRAMS = True
 
 
@@ -224,45 +224,47 @@ def generate_edges(
             for smaller_ngram in n_grams_for_n_one_less.keys():
                 for larger_ngram in n_grams.keys():
                     # TODO: text-blob ify this edge analysis! don't
-                        # do manaually for the sub-grams...
-                        # CARE: avoid a bug with e.g. 'in' matching
-                        # 'intergal' by
-                        # NOTE SPACES DELIMIT AT THIS POINT
-                        if (
-                                " " + smaller_ngram in larger_ngram or
-                                smaller_ngram + " " in larger_ngram
-                        ):
-                            print(
-                                "EDGE MATCH AT:\n", larger_ngram, "AND",
-                                smaller_ngram)
-                            # THIS GOVERNS EDGE DIRECTION!
-                            links.append((larger_ngram, smaller_ngram))
+                    # do manaually for the sub-grams...
+                    # CARE: avoid a bug with e.g. 'in' matching
+                    # 'intergal' by
+                    # NOTE SPACES DELIMIT AT THIS POINT
+                    if (
+                            " " + smaller_ngram in larger_ngram or
+                            smaller_ngram + " " in larger_ngram
+                    ):
+                        print(
+                            "EDGE MATCH AT:\n", larger_ngram, "AND",
+                            smaller_ngram)
+                        # THIS GOVERNS EDGE DIRECTION!
+                        links.append((larger_ngram, smaller_ngram))
         else:
             n_links = []
-            for size in range(1, n_size - 1):
+            for size in range(1, int(n_size)):
                 if str(size) in json_ngram_data:  # else pass
                     n_grams_for_other_n = json_ngram_data[str(size)]
+                    # Find all (n-1)-grams contained in any n-grams to add as edges
+                    for smaller_ngram in n_grams_for_other_n.keys():
+                        for larger_ngram in n_grams.keys():
+                            # TODO: text-blob ify this edge analysis! don't
+                            # do manaually for the sub-grams...
+                            # CARE: avoid a bug with e.g. 'in' matching
+                            # 'intergal' by
+                            # NOTE SPACES DELIMIT AT THIS POINT
+                            if (
+                                    " " + smaller_ngram in larger_ngram or
+                                    smaller_ngram + " " in larger_ngram
+                            ):
+                                print(
+                                    "EDGE MATCH AT:\n", larger_ngram, "AND",
+                                    smaller_ngram)
+                                # THIS GOVERNS EDGE DIRECTION!
+                                links.append((larger_ngram, smaller_ngram))
+                
                 else:
-                    continue
+                    print("ERK!!!")
+                    pass
 
-                print("LOOK-SEEING AT MATCHES FOR", size)
-                # Find all (n-1)-grams contained in any n-grams to add as edges
-                for smaller_ngram in n_grams_for_other_n.keys():
-                    for larger_ngram in n_grams.keys():
-                        # TODO: text-blob ify this edge analysis! don't
-                        # do manaually for the sub-grams...
-                        # CARE: avoid a bug with e.g. 'in' matching
-                        # 'intergal' by
-                        # NOTE SPACES DELIMIT AT THIS POINT
-                        if (
-                                " " + smaller_ngram in larger_ngram or
-                                smaller_ngram + " " in larger_ngram
-                        ):
-                            print(
-                                "EDGE MATCH AT:\n", larger_ngram, "AND",
-                                smaller_ngram)
-                            # THIS GOVERNS EDGE DIRECTION!
-                            links.append((larger_ngram, smaller_ngram))
+
             ### links.extend(n_links)
 
     print("FINAL LINKS LIST IS:\n")
@@ -605,7 +607,7 @@ if __name__ == "__main__":
     # variety of plots to compare.
     plt.savefig(
         f"{SAVE_DIR_PLOTS}/"
-        f"digraph_cutoff{FREQUENCY_CUTOFF}_labels{int(LABELS_ON)}_NEWnoones.png",
+        f"digraph_cutoff{FREQUENCY_CUTOFF}_labels{int(LABELS_ON)}_sadie.png",
         dpi=SAVE_DPI,
         bbox_inches="tight",
         transparent=True,
