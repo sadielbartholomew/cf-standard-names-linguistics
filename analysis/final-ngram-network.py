@@ -17,10 +17,12 @@ SHORT_CIRCUIT_TO_N_NAMES = False  #1000  # int to short circuit, or False to not
 
 # Note: ~21,000 nodes for the 2 cutoff full-dataset graph! Graphs are big!
 # CUTOFF OF 3 OR LESS IS TOO MEMORY-INTENSIVE! NEED TO USE JOB(?) ARCHER?
-FREQUENCY_CUTOFF = 250  # v >= FREQUENCY_CUTOFF for inclusion
+FREQUENCY_CUTOFF = 100  # v >= FREQUENCY_CUTOFF for inclusion
 # samples to do: 1, 2, 3, 5, 10, 15, 25, 50, 100, 250, 300, 400, 500
 
-ONLY_N_ONE_LESS_EDGES = True
+ONLY_N_ONE_LESS_EDGES = False
+HIDE_ONEGRAMS = True
+
 
 SN_DATA_DIR_RELATIVE = "../data/"
 SN_DATA_FILE = "all_cf_standard_names_for_table_v83_at_30_11_23.txt"
@@ -234,12 +236,13 @@ def generate_edges(
                             links.append((smaller_ngram, larger_ngram))
         else:
             n_links = []
-            for size in (2, n_size - 1):
-                if n_size >= 1 and str(size) in json_ngram_data:  # else pass
+            for size in range(1, n_size - 1):
+                if str(size) in json_ngram_data:  # else pass
                     n_grams_for_other_n = json_ngram_data[str(size)]
                 else:
                     continue
 
+                print("LOOK-SEEING AT MATCHES FOR", size)
                 # Find all (n-1)-grams contained in any n-grams to add as edges
                 for smaller_ngram in n_grams_for_other_n.keys():
                     for larger_ngram in n_grams.keys():
@@ -255,8 +258,8 @@ def generate_edges(
                             print(
                                 "EDGE MATCH AT:\n", larger_ngram, "AND",
                                 smaller_ngram)
-                            n_links.append((smaller_ngram, larger_ngram))
-            links.extend(n_links)
+                            links.append((smaller_ngram, larger_ngram))
+            ### links.extend(n_links)
 
     print("FINAL LINKS LIST IS:\n")
     pprint(links)
@@ -416,7 +419,8 @@ def draw_graph_with_layout(
         linewidths=1, edgecolors="black",
     )
     nx.draw_networkx_edges(
-        graph, layout, edge_color=edge_colours, alpha=0.7, width=0.8,
+        graph, layout, alpha=0.7, width=0.8,
+        edge_color=edge_colours, 
         edge_cmap=CMAP,
     )
 
@@ -543,8 +547,13 @@ if __name__ == "__main__":
         with open(filename_to_write, "w") as f:
             json.dump(all_ngram_data, f)
 
+    # FILTER OUT ONE-GRAMS
+    if HIDE_ONEGRAMS:
+        del all_ngram_data["1"]
+
     # 4. Interface to data structure holding nodes and edge info.
     ngram_data_nodes = reformat_nodes_data(all_ngram_data)
+
     ngram_data_edges = generate_edges(
         all_ngram_data, ngram_data_nodes,
         only_compare_to_one_less=ONLY_N_ONE_LESS_EDGES
@@ -567,7 +576,7 @@ if __name__ == "__main__":
     # variety of plots to compare.
     plt.savefig(
         f"{SAVE_DIR_PLOTS}/"
-        f"digraph_cutoff{FREQUENCY_CUTOFF}_labels{int(LABELS_ON)}_NEWfin.png",
+        f"digraph_cutoff{FREQUENCY_CUTOFF}_labels{int(LABELS_ON)}_NEWnoones.png",
         dpi=SAVE_DPI,
         bbox_inches="tight",
     )
