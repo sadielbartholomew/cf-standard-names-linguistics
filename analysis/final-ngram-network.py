@@ -17,11 +17,11 @@ SHORT_CIRCUIT_TO_N_NAMES = False  #1000  # int to short circuit, or False to not
 
 # Note: ~21,000 nodes for the 2 cutoff full-dataset graph! Graphs are big!
 # CUTOFF OF 3 OR LESS IS TOO MEMORY-INTENSIVE! NEED TO USE JOB(?) ARCHER?
-FREQUENCY_CUTOFF = 10  # v >= FREQUENCY_CUTOFF for inclusion
+FREQUENCY_CUTOFF = 5  # v >= FREQUENCY_CUTOFF for inclusion
 # samples to do: 1, 2, 3, 5, 10, 15, 25, 50, 80, 100, 250, 300, 400, 500
 
 ONLY_N_ONE_LESS_EDGES = True
-HIDE_ONEGRAMS = True
+HIDE_ONEGRAMS = False
 
 
 SN_DATA_DIR_RELATIVE = "../data/"
