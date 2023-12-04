@@ -17,10 +17,10 @@ SHORT_CIRCUIT_TO_N_NAMES = False  #1000  # int to short circuit, or False to not
 
 # Note: ~21,000 nodes for the 2 cutoff full-dataset graph! Graphs are big!
 # CUTOFF OF 3 OR LESS IS TOO MEMORY-INTENSIVE! NEED TO USE JOB(?) ARCHER?
-FREQUENCY_CUTOFF = 75  # v >= FREQUENCY_CUTOFF for inclusion
+FREQUENCY_CUTOFF = 10  # v >= FREQUENCY_CUTOFF for inclusion
 # samples to do: 1, 2, 3, 5, 10, 15, 25, 50, 80, 100, 250, 300, 400, 500
 
-ONLY_N_ONE_LESS_EDGES = False
+ONLY_N_ONE_LESS_EDGES = True
 HIDE_ONEGRAMS = True
 
 
@@ -39,7 +39,7 @@ USE_PREV_DATA  = (
 )
 
 # Quick graph customisation
-LABELS_ON = True
+LABELS_ON = False
 LABEL_OFFSET = 0.00  # 0.02-0.05 is usually good
 
 # Use rainbow colours - need lack of white tones or repeated tones at each
@@ -380,17 +380,6 @@ def post_processing_of_graph(graph, layout):
 def draw_graph_with_layout(
         graph, node_sizes, node_colours, edge_colours, shells):
     """Apply a layout and customisations to define how to draw the graph."""
-    options = {
-        #"node_color": "tab:red",
-        #"node_size": 5,
-        # "edge_color": "tab:gray",
-        #alpha": 0.5,
-        "with_labels": False,  # labels are set on later, False to avoid dupes
-        ###"font_size": 3,  #4
-        "linewidths": 1,  # adds a border to the node colours!
-        "edgecolors": "black",  # this is the colour of the node border!
-    }
-
     # Specify graph layout here!
     # SEE ALL LAYOUT OPTIONS AT:
     # https://networkx.org/documentation/stable/reference/...
@@ -411,11 +400,12 @@ def draw_graph_with_layout(
 
     # shell layout does concentric circles!
     ###layout = nx.shell_layout(graph, nlist=shells)  ###,scale=0.4)
-    ###layout = nx.kamada_kawai_layout(graph)
+    layout = nx.kamada_kawai_layout(graph)
     ###layout = nx.spiral_layout(graph)
-    layout = nx.circular_layout(graph, scale=0.5)
+    ###layout = nx.circular_layout(graph, scale=0.5)
 
     # DRAW NODES AND EDGES SEPARATELY! so can control separate alpha, etc.
+    """
     nx.draw_networkx_nodes(
         graph, layout, alpha=0.4,
         node_size=node_sizes, node_color=node_colours, cmap=CMAP,
@@ -426,16 +416,25 @@ def draw_graph_with_layout(
         edge_color=edge_colours, 
         edge_cmap=CMAP,
     )
-
     """
+    options = {
+        #"node_color": "tab:red",
+        #"node_size": 5,
+        # "edge_color": "tab:gray",
+        #alpha": 0.5,
+        "with_labels": False,  # labels are set on later, False to avoid dupes
+        ###"font_size": 3,  #4
+        "linewidths": 1,  # adds a border to the node colours!
+        "edgecolors": "black",  # this is the colour of the node border!
+    }
     nx.draw(
         graph, layout,
         node_size=node_sizes, node_color=node_colours, # node info
-        edge_color=edge_colours, width=2,  # edge info including edge width
+        edge_color=edge_colours, width=1,  # edge info including edge width
+        alpha=0.6,
         cmap=CMAP, edge_cmap=CMAP,
         **options
     )
-    """
 
     return graph, layout
 
@@ -570,16 +569,18 @@ if __name__ == "__main__":
     )
     ### ngram_data_edges += generate_dummy_egdes(all_ngram_data, ngram_data_nodes)
 
-
-    plt.figure(figsize=(10, 6))
+    #-#-# plt.figure(figsize=(10, 6))
     # N. Finally, plot the network graph!
     create_sn_nrgam_graph(ngram_data_nodes, ngram_data_edges)
 
+    print("NUMBER OF NODES IS", len(ngram_data_nodes))
+    print("NUMBER OF EDGES IS", len(ngram_data_edges))
+
     # PyPlot config.
     # Labels likely to go off the plot area unless we adjust the margins:
-    plt.margins(x=0.4, y=0.4)
+    #-#-# plt.margins(x=0.4, y=0.4)
     plt.axis("off")
-    plt.autoscale()
+    #-#-# plt.autoscale()
     ###plt.tight_layout()
 
     # Finally save and show the plot. Save per cutoff and label on/off to get
@@ -589,5 +590,6 @@ if __name__ == "__main__":
         f"digraph_cutoff{FREQUENCY_CUTOFF}_labels{int(LABELS_ON)}_NEWnoones.png",
         dpi=SAVE_DPI,
         bbox_inches="tight",
+        transparent=True,
     )
     plt.show()
