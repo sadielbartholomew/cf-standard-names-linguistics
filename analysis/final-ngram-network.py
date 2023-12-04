@@ -210,7 +210,7 @@ def generate_edges(
     links = []
     for n_size, n_grams in json_ngram_data.items():
         # Get the n-gram and (n-1)-gram data to compare to find links for edges
-        n_size = int(n_size)  # TODO: why has this become a string?
+        n_size = int(n_size)
 
         if only_compare_to_one_less:
             n_one_less = n_size - 1
@@ -558,13 +558,7 @@ if __name__ == "__main__":
 
     # FILTER OUT ONE-GRAMS
     if HIDE_ONEGRAMS:
-        # WARNING: SOMETIMES THIS IS ANT INT, SOMETIMES A STRING.
-        # THINK THIS IS DUE TO JSON-IOFCATION VARIATION - I.E. BASED ON
-        # WHETHER GEN OR REGEN. INVESTIGATE.
-        try:
-            del all_ngram_data["1"]
-        except:
-            del all_ngram_data[1]
+        del all_ngram_data["1"]
 
     # 4. Interface to data structure holding nodes and edge info.
     ngram_data_nodes = reformat_nodes_data(all_ngram_data)
