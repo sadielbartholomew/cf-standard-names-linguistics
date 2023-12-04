@@ -17,7 +17,7 @@ SHORT_CIRCUIT_TO_N_NAMES = False  #1000  # int to short circuit, or False to not
 
 # Note: ~21,000 nodes for the 2 cutoff full-dataset graph! Graphs are big!
 # CUTOFF OF 3 OR LESS IS TOO MEMORY-INTENSIVE! NEED TO USE JOB(?) ARCHER?
-FREQUENCY_CUTOFF = 100  # v >= FREQUENCY_CUTOFF for inclusion
+FREQUENCY_CUTOFF = 50  # v >= FREQUENCY_CUTOFF for inclusion
 # samples to do: 1, 2, 3, 5, 10, 15, 25, 50, 100, 250, 300, 400, 500
 
 ONLY_N_ONE_LESS_EDGES = False
@@ -43,7 +43,7 @@ LABEL_OFFSET = 0.00  # 0.02-0.05 is usually good
 
 # Use rainbow colours - need lack of white tones or repeated tones at each
 # end of the spectrum, and strong bright variation in colour.
-CMAP = plt.cm.rainbow  # tubro, rainbow, gist_rainbow, jet
+CMAP = plt.cm.rainbow  #or append '_r'  # tubro, rainbow, gist_rainbow, jet
 SAVE_DPI = 750  # publication needs 600 or above
 
 FONT_SIZE = 5
@@ -410,7 +410,7 @@ def draw_graph_with_layout(
     ###layout = nx.shell_layout(graph, nlist=shells)  ###,scale=0.4)
     ###layout = nx.kamada_kawai_layout(graph)
     ###layout = nx.spiral_layout(graph)
-    layout = nx.circular_layout(graph)  #, scale=0.8)
+    layout = nx.circular_layout(graph, scale=0.5)
 
     # DRAW NODES AND EDGES SEPARATELY! so can control separate alpha, etc.
     nx.draw_networkx_nodes(
@@ -490,10 +490,15 @@ def create_sn_nrgam_graph(nodes, edges):
     # N. Add those edges
     add_edges_to_connect_nodes_in_graph(G, edges)
     # Use the same colours for the edges as the node pointing to:
+    take_colour_of_which_node = 0  # 0 or 1 to vary
     if LABELS_ON:
-        edge_colours = [e[1].count(" ") + 1 for e in edges]
+        edge_colours = [
+            e[take_colour_of_which_node].count(" ") + 1 for e in edges]
     else:
-        edge_colours = [nodes[e[1]][0].count(" ") + 1 for e in edges]
+        edge_colours = [
+            nodes[e[take_colour_of_which_node]][0].count(" ") + 1
+            for e in edges
+        ]
     ### print("EDGE COLOURS ARE:", edge_colours)
 
     # N-2. <Numbering>
