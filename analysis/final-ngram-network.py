@@ -32,9 +32,9 @@ SAVE_DIR = "calculated_data_to_persist"
 SAVE_DIR_PLOTS = "raw_plots"
 
 # Filename or False to re-generate the data
-# BUG WHEN SET THIS OFF?
-USE_PREV_DATA = False
-a = (
+# TODO: FIX BUG WHEN USE THIS! REALTING TO INT/STR OF NUMERIC N-GRAM N KEYS.
+# NO EDGES ARE PRODUCED ON THE GRAPH WHEN THIS IS 'False'...
+USE_PREV_DATA  = (
     f"{SAVE_DIR}/all_ngram_counts_with_cutoff_{FREQUENCY_CUTOFF}.json"
 )
 
@@ -532,6 +532,7 @@ if __name__ == "__main__":
     else:
         # Convert dict to JSON for consistency with read-in data
         orig_data = json.loads(json.dumps(define_node_input_data()))
+        print("ORIG DATA IS", orig_data)
 
         # 1. Find the minimum and maximum n-gram length i.e. length by word count
         word_length_ranges = find_min_and_max_name_length(orig_data)
