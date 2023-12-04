@@ -15,7 +15,7 @@ SHORT_CIRCUIT_TO_N_NAMES = False  #1000  # int to short circuit, or False to not
 
 # Note: ~21,000 nodes for the 2 cutoff full-dataset graph! Graphs are big!
 # CUTOFF OF 3 OR LESS IS TOO MEMORY-INTENSIVE! NEED TO USE JOB(?) ARCHER?
-FREQUENCY_CUTOFF = 15  # v >= FREQUENCY_CUTOFF for inclusion
+FREQUENCY_CUTOFF = 400  # v >= FREQUENCY_CUTOFF for inclusion
 # samples to do: 1, 2, 3, 5, 10, 15, 25, 50, 100, 250, 500
 # NEW ONES: 300 - for spiral graph to add?
 
@@ -27,14 +27,14 @@ SAVE_DIR = "calculated_data_to_persist"
 SAVE_DIR_PLOTS = "raw_plots"
 
 # Filename or False to re-generate the data
+# BUG WHEN SET THIS OFF?
 USE_PREV_DATA = (
     f"{SAVE_DIR}/all_ngram_counts_with_cutoff_{FREQUENCY_CUTOFF}.json"
 )
 
-
 # Quick graph customisation
-LABELS_ON = False
-LABEL_OFFSET = 0.01  # 0.02-0.05 is good
+LABELS_ON = True
+LABEL_OFFSET = 0.00  # 0.02-0.05 is good
 
 # Use rainbow colours - need lack of white tones or repeated tones at each
 # end of the spectrum, and strong bright variation in colour.
@@ -357,8 +357,9 @@ def draw_graph_with_layout(
     ###layout = nx.nx_agraph.graphviz_layout(graph, prog="twopi", root=0)
 
     # shell layout does concentric circles!
-    layout = nx.shell_layout(graph, nlist=shells)  ###,scale=0.4)
+    ###layout = nx.shell_layout(graph, nlist=shells)  ###,scale=0.4)
     ###layout = nx.kamada_kawai_layout(graph)
+    layout = nx.spiral_layout(graph)
 
     nx.draw(
         graph, layout, node_size=node_sizes,
@@ -487,6 +488,11 @@ if __name__ == "__main__":
 
     # N. Finally, plot the network graph!
     create_sn_nrgam_graph(ngram_data_nodes, ngram_data_edges)
+
+    # PyPlot config.
+    # Labels likely to go off the plot area unless we adjust the margins:
+    plt.margins(x=0.4, y=0.4)
+    plt.tight_layout()
 
     # Finally save and show the plot. Save per cutoff and label on/off to get
     # variety of plots to compare.
