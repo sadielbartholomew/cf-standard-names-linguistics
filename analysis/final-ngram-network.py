@@ -17,8 +17,10 @@ SHORT_CIRCUIT_TO_N_NAMES = False  #1000  # int to short circuit, or False to not
 
 # Note: ~21,000 nodes for the 2 cutoff full-dataset graph! Graphs are big!
 # CUTOFF OF 3 OR LESS IS TOO MEMORY-INTENSIVE! NEED TO USE JOB(?) ARCHER?
-FREQUENCY_CUTOFF = 300  # v >= FREQUENCY_CUTOFF for inclusion
+FREQUENCY_CUTOFF = 250  # v >= FREQUENCY_CUTOFF for inclusion
 # samples to do: 1, 2, 3, 5, 10, 15, 25, 50, 100, 250, 300, 400, 500
+
+ONLY_N_ONE_LESS_EDGES = True
 
 SN_DATA_DIR_RELATIVE = "../data/"
 SN_DATA_FILE = "all_cf_standard_names_for_table_v83_at_30_11_23.txt"
@@ -192,7 +194,10 @@ def reverse_nodes_id_dict(all_nodes_keyed_by_id):
     return {v[0]: k for k, v in all_nodes_keyed_by_id.items()}
 
 
-def generate_edges(json_ngram_data, all_nodes_keyed_by_id):
+def generate_edges(
+        json_ngram_data, all_nodes_keyed_by_id,
+        only_compare_to_one_less=True,
+):
     """TODO.
 
     Note: probably performance heavy.
@@ -203,19 +208,55 @@ def generate_edges(json_ngram_data, all_nodes_keyed_by_id):
     for n_size, n_grams in json_ngram_data.items():
         # Get the n-gram and (n-1)-gram data to compare to find links for edges
         n_size = int(n_size)  # TODO: why has this become a string?
-        n_one_less = n_size - 1
-        if n_size >= 1 and str(n_one_less) in json_ngram_data:  # else pass
-            n_grams_for_n_one_less = json_ngram_data[str(n_one_less)]
-        else:
-            continue
 
-        # Find all (n-1)-grams contained in any n-grams to add as edges
-        for smaller_ngram in n_grams_for_n_one_less.keys():
-            for larger_ngram in n_grams.keys():
-                if smaller_ngram in larger_ngram:
-                    print(
-                        "EDGE MATCH AT:\n", larger_ngram, "AND", smaller_ngram)
-                    links.append((smaller_ngram, larger_ngram))
+        if only_compare_to_one_less:
+            n_one_less = n_size - 1
+            if n_size >= 1 and str(n_one_less) in json_ngram_data:  # else pass
+                n_grams_for_n_one_less = json_ngram_data[str(n_one_less)]
+            else:
+                continue
+
+            # Find all (n-1)-grams contained in any n-grams to add as edges
+            for smaller_ngram in n_grams_for_n_one_less.keys():
+                for larger_ngram in n_grams.keys():
+                    # TODO: text-blob ify this edge analysis! don't
+                        # do manaually for the sub-grams...
+                        # CARE: avoid a bug with e.g. 'in' matching
+                        # 'intergal' by
+                        # NOTE SPACES DELIMIT AT THIS POINT
+                        if (
+                                " " + smaller_ngram in larger_ngram or
+                                smaller_ngram + " " in larger_ngram
+                        ):
+                            print(
+                                "EDGE MATCH AT:\n", larger_ngram, "AND",
+                                smaller_ngram)
+                            links.append((smaller_ngram, larger_ngram))
+        else:
+            n_links = []
+            for size in (2, n_size - 1):
+                if n_size >= 1 and str(size) in json_ngram_data:  # else pass
+                    n_grams_for_other_n = json_ngram_data[str(size)]
+                else:
+                    continue
+
+                # Find all (n-1)-grams contained in any n-grams to add as edges
+                for smaller_ngram in n_grams_for_other_n.keys():
+                    for larger_ngram in n_grams.keys():
+                        # TODO: text-blob ify this edge analysis! don't
+                        # do manaually for the sub-grams...
+                        # CARE: avoid a bug with e.g. 'in' matching
+                        # 'intergal' by
+                        # NOTE SPACES DELIMIT AT THIS POINT
+                        if (
+                                " " + smaller_ngram in larger_ngram or
+                                smaller_ngram + " " in larger_ngram
+                        ):
+                            print(
+                                "EDGE MATCH AT:\n", larger_ngram, "AND",
+                                smaller_ngram)
+                            n_links.append((smaller_ngram, larger_ngram))
+            links.extend(n_links)
 
     print("FINAL LINKS LIST IS:\n")
     pprint(links)
@@ -504,7 +545,10 @@ if __name__ == "__main__":
 
     # 4. Interface to data structure holding nodes and edge info.
     ngram_data_nodes = reformat_nodes_data(all_ngram_data)
-    ngram_data_edges = generate_edges(all_ngram_data, ngram_data_nodes)
+    ngram_data_edges = generate_edges(
+        all_ngram_data, ngram_data_nodes,
+        only_compare_to_one_less=ONLY_N_ONE_LESS_EDGES
+    )
     ### ngram_data_edges += generate_dummy_egdes(all_ngram_data, ngram_data_nodes)
 
 
