@@ -17,10 +17,11 @@ SHORT_CIRCUIT_TO_N_NAMES = False  #1000  # int to short circuit, or False to not
 
 # Note: ~21,000 nodes for the 2 cutoff full-dataset graph! Graphs are big!
 # CUTOFF OF 3 OR LESS IS TOO MEMORY-INTENSIVE! NEED TO USE JOB(?) ARCHER?
-FREQUENCY_CUTOFF = 10  # v >= FREQUENCY_CUTOFF for inclusion
+# SADES 75 for final figure 1 plot 
+FREQUENCY_CUTOFF = 75  # v >= FREQUENCY_CUTOFF for inclusion
 # samples to do: 1, 2, 3, 5, 10, 15, 25, 50, 80, 100, 250, 300, 400, 500
 
-ONLY_N_ONE_LESS_EDGES = True
+ONLY_N_ONE_LESS_EDGES = False
 HIDE_ONEGRAMS = True
 
 
@@ -39,7 +40,7 @@ USE_PREV_DATA  = (
 )
 
 # Quick graph customisation
-LABELS_ON = False
+LABELS_ON = True
 LABEL_OFFSET = 0.00  # 0.02-0.05 is usually good
 
 # Use rainbow colours - need lack of white tones or repeated tones at each
@@ -47,7 +48,7 @@ LABEL_OFFSET = 0.00  # 0.02-0.05 is usually good
 CMAP = plt.cm.rainbow  #or append '_r'  # tubro, rainbow, gist_rainbow, jet
 SAVE_DPI = 750  # publication needs 600 or above
 
-FONT_SIZE = 5
+FONT_SIZE = 8
 
 
 # ---------------------------------------------------------------------------
@@ -289,6 +290,8 @@ def generate_edges(
 
 def generate_dummy_egdes(json_ngram_data, all_nodes_keyed_by_id):
     """Create false edges not to be displayed to force a better layout."""
+
+    """
     # Only dummy egdes for now are to connect all of the n-gram central
     # n-grams together in a circle - hence need a cyclic link system
     # of (0, 1), (1, 2) ..., (N, 0).
@@ -307,6 +310,13 @@ def generate_dummy_egdes(json_ngram_data, all_nodes_keyed_by_id):
             link_start, link_end = link
             node_id_links.append(
                 (node_id_lookups[link_start], node_id_lookups[link_end]))
+
+    """
+    # Create one loop between neighbours to help colourmpa prob
+    # TODO fix this in a non-hacky way!
+    bigrams = list(json_ngram_data["2"].keys())
+    # FAKE EDGE TO SET COLOURMAP FIX, see above needs fixing
+    dummy_links = [(bigrams[0], bigrams[1]),]
 
     return dummy_links
 
@@ -376,6 +386,9 @@ def post_processing_of_graph(graph, layout):
             t.set_rotation(angle)
             t.set_rotation_mode("anchor")
 
+    # POST PROC TO HIDE ONE DUMMY EDGE NEEDED TO CALIB CMAP, SEE TODO
+    ###nx.set_edge_attributes(graph, ())
+
 
 def draw_graph_with_layout(
         graph, node_sizes, node_colours, edge_colours, shells):
@@ -400,9 +413,9 @@ def draw_graph_with_layout(
 
     # shell layout does concentric circles!
     ###layout = nx.shell_layout(graph, nlist=shells)  ###,scale=0.4)
-    layout = nx.kamada_kawai_layout(graph)
+    ###layout = nx.kamada_kawai_layout(graph)
     ###layout = nx.spiral_layout(graph)
-    ###layout = nx.circular_layout(graph, scale=0.5)
+    layout = nx.circular_layout(graph, scale=0.5)
 
     # DRAW NODES AND EDGES SEPARATELY! so can control separate alpha, etc.
     """
@@ -430,7 +443,7 @@ def draw_graph_with_layout(
     nx.draw(
         graph, layout,
         node_size=node_sizes, node_color=node_colours, # node info
-        edge_color=edge_colours, width=1,  # edge info including edge width
+        edge_color=edge_colours, width=2,  # edge info including edge width
         alpha=0.6,
         cmap=CMAP, edge_cmap=CMAP,
         **options
@@ -494,8 +507,11 @@ def create_sn_nrgam_graph(nodes, edges):
     # Use the same colours for the edges as the node pointing to:
     take_colour_of_which_node = 0  # 0 or 1 to vary
     if LABELS_ON:
+        
         edge_colours = [
-            e[take_colour_of_which_node].count(" ") + 1 for e in edges]
+            e[take_colour_of_which_node].count(" ") + 1 for e in edges
+        ]
+        print("%%%%%%%%% EGDE COLOURS ARE\n", edge_colours, "FOR\n", edges)
     else:
         edge_colours = [
             nodes[e[take_colour_of_which_node]][0].count(" ") + 1
@@ -563,13 +579,15 @@ if __name__ == "__main__":
     # 4. Interface to data structure holding nodes and edge info.
     ngram_data_nodes = reformat_nodes_data(all_ngram_data)
 
-    ngram_data_edges = generate_edges(
+    # ADD DUMMIES FIRST SO GET DUMMY GHOST EDGE NEED TO CALIBRATE CMAP ON EDGE
+    # COLOURS
+    ngram_data_edges = generate_dummy_egdes(all_ngram_data, ngram_data_nodes)
+    ngram_data_edges += generate_edges(
         all_ngram_data, ngram_data_nodes,
         only_compare_to_one_less=ONLY_N_ONE_LESS_EDGES
     )
-    ### ngram_data_edges += generate_dummy_egdes(all_ngram_data, ngram_data_nodes)
 
-    #-#-# plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(10, 6))
     # N. Finally, plot the network graph!
     create_sn_nrgam_graph(ngram_data_nodes, ngram_data_edges)
 
@@ -578,9 +596,9 @@ if __name__ == "__main__":
 
     # PyPlot config.
     # Labels likely to go off the plot area unless we adjust the margins:
-    #-#-# plt.margins(x=0.4, y=0.4)
+    plt.margins(x=0.4, y=0.4)
     plt.axis("off")
-    #-#-# plt.autoscale()
+    plt.autoscale()
     ###plt.tight_layout()
 
     # Finally save and show the plot. Save per cutoff and label on/off to get
