@@ -4,6 +4,9 @@ import json
 from pprint import pprint
 
 import matplotlib.pyplot as plt
+from matplotlib import rcParams
+##rcParams.update({'figure.autolayout': True})
+
 import networkx as nx
 import numpy as np
 from textblob import TextBlob
@@ -38,6 +41,8 @@ LABEL_OFFSET = 0.00  # 0.02-0.05 is usually good
 # end of the spectrum, and strong bright variation in colour.
 CMAP = plt.cm.rainbow  # tubro, rainbow, gist_rainbow, jet
 SAVE_DPI = 750  # publication needs 600 or above
+
+FONT_SIZE = 5
 
 
 # ---------------------------------------------------------------------------
@@ -298,6 +303,7 @@ def label_graph(graph, labels):
 
 def post_processing_of_graph(graph, layout):
     """Actions to apply to modify the graph after layout specification."""
+    # ---1. this:
     # Offset the node labels so they are above the nodes and don't cover them
     if LABELS_ON:
         offset = LABEL_OFFSET
@@ -306,7 +312,7 @@ def post_processing_of_graph(graph, layout):
         ### print("LABEL POS IS\n", label_pos)
 
         labels = nx.draw_networkx_labels(
-            graph, label_pos, font_size=6, alpha=0.8)
+            graph, label_pos, font_size=FONT_SIZE, alpha=1.0)
 
         # ROTATING THE LABELS RADIALLY. Attribution for logic:
         # https://gist.github.com/JamesPHoughton/55be4a6d30fe56ae163ada176c5c7553
@@ -328,12 +334,12 @@ def draw_graph_with_layout(
         graph, node_sizes, node_colours, edge_colours, shells):
     """Apply a layout and customisations to define how to draw the graph."""
     options = {
-        ###"node_color": "tab:red",
-        ###"node_size": 5,
-        ### "edge_color": "tab:gray",
-        "alpha": 0.6,
+        #"node_color": "tab:red",
+        #"node_size": 5,
+        # "edge_color": "tab:gray",
+        #alpha": 0.5,
         "with_labels": False,  # labels are set on later, False to avoid dupes
-        "font_size": 4,  #4
+        ###"font_size": 3,  #4
         "linewidths": 1,  # adds a border to the node colours!
         "edgecolors": "black",  # this is the colour of the node border!
     }
@@ -360,15 +366,28 @@ def draw_graph_with_layout(
     ###layout = nx.shell_layout(graph, nlist=shells)  ###,scale=0.4)
     ###layout = nx.kamada_kawai_layout(graph)
     ###layout = nx.spiral_layout(graph)
-    layout = nx.circular_layout(graph)
+    layout = nx.circular_layout(graph)  #, scale=0.8)
 
+    # DRAW NODES AND EDGES SEPARATELY! so can control separate alpha, etc.
+    nx.draw_networkx_nodes(
+        graph, layout, alpha=0.4,
+        node_size=node_sizes, node_color=node_colours, cmap=CMAP,
+        linewidths=1, edgecolors="black",
+    )
+    nx.draw_networkx_edges(
+        graph, layout, edge_color=edge_colours, alpha=0.7, width=0.8,
+        edge_cmap=CMAP,
+    )
+
+    """
     nx.draw(
-        graph, layout, node_size=node_sizes,
-        node_color=node_colours, # node info
+        graph, layout,
+        node_size=node_sizes, node_color=node_colours, # node info
         edge_color=edge_colours, width=2,  # edge info including edge width
         cmap=CMAP, edge_cmap=CMAP,
         **options
     )
+    """
 
     return graph, layout
 
@@ -438,7 +457,7 @@ def create_sn_nrgam_graph(nodes, edges):
     # N-1. Customise the layout to use and plot the graph using it
     G, layout = draw_graph_with_layout(
         G, node_sizes, node_colours, edge_colours, shells)
-
+    
     # N. Apply post-processing, e.g. to reposition node labels based on layout
     post_processing_of_graph(G, layout)
 
@@ -488,19 +507,24 @@ if __name__ == "__main__":
     ngram_data_edges = generate_edges(all_ngram_data, ngram_data_nodes)
     ### ngram_data_edges += generate_dummy_egdes(all_ngram_data, ngram_data_nodes)
 
+
+    plt.figure(figsize=(10, 6))
     # N. Finally, plot the network graph!
     create_sn_nrgam_graph(ngram_data_nodes, ngram_data_edges)
 
     # PyPlot config.
     # Labels likely to go off the plot area unless we adjust the margins:
     plt.margins(x=0.4, y=0.4)
-    plt.tight_layout()
+    plt.axis("off")
+    plt.autoscale()
+    ###plt.tight_layout()
 
     # Finally save and show the plot. Save per cutoff and label on/off to get
     # variety of plots to compare.
     plt.savefig(
         f"{SAVE_DIR_PLOTS}/"
-        f"digraph_cutoff{FREQUENCY_CUTOFF}_labels{int(LABELS_ON)}_NEWER.png",
+        f"digraph_cutoff{FREQUENCY_CUTOFF}_labels{int(LABELS_ON)}_NEWfin.png",
         dpi=SAVE_DPI,
+        bbox_inches="tight",
     )
     plt.show()
