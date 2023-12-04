@@ -12,12 +12,10 @@ from textblob import formats
 
 SHORT_CIRCUIT_TO_N_NAMES = False  #1000  # int to short circuit, or False to not
 
-
 # Note: ~21,000 nodes for the 2 cutoff full-dataset graph! Graphs are big!
 # CUTOFF OF 3 OR LESS IS TOO MEMORY-INTENSIVE! NEED TO USE JOB(?) ARCHER?
-FREQUENCY_CUTOFF = 400  # v >= FREQUENCY_CUTOFF for inclusion
-# samples to do: 1, 2, 3, 5, 10, 15, 25, 50, 100, 250, 500
-# NEW ONES: 300 - for spiral graph to add?
+FREQUENCY_CUTOFF = 300  # v >= FREQUENCY_CUTOFF for inclusion
+# samples to do: 1, 2, 3, 5, 10, 15, 25, 50, 100, 250, 300, 400, 500
 
 SN_DATA_DIR_RELATIVE = "../data/"
 SN_DATA_FILE = "all_cf_standard_names_for_table_v83_at_30_11_23.txt"
@@ -34,7 +32,7 @@ USE_PREV_DATA = (
 
 # Quick graph customisation
 LABELS_ON = True
-LABEL_OFFSET = 0.00  # 0.02-0.05 is good
+LABEL_OFFSET = 0.00  # 0.02-0.05 is usually good
 
 # Use rainbow colours - need lack of white tones or repeated tones at each
 # end of the spectrum, and strong bright variation in colour.
@@ -307,13 +305,15 @@ def post_processing_of_graph(graph, layout):
         label_pos = dict(zip(layout.keys(), label_pos_vals))
         ### print("LABEL POS IS\n", label_pos)
 
-        labels = nx.draw_networkx_labels(graph, label_pos, font_size=6, alpha=0.8)
+        labels = nx.draw_networkx_labels(
+            graph, label_pos, font_size=6, alpha=0.8)
 
         # ROTATING THE LABELS RADIALLY. Attribution for logic:
         # https://gist.github.com/JamesPHoughton/55be4a6d30fe56ae163ada176c5c7553
-        theta = {k: np.arctan2(v[1], v[0]) * 180/np.pi for k, v in layout.items()}
-        for key,t in labels.items():
-            if 90 < theta[key] or theta[key] < -90 :
+        theta = {
+            k: np.arctan2(v[1], v[0]) * 180/np.pi for k, v in layout.items()}
+        for key, t in labels.items():
+            if 90 < theta[key] or theta[key] < -90:
                 angle = 180 + theta[key]
                 t.set_ha("right")
             else:
@@ -333,7 +333,7 @@ def draw_graph_with_layout(
         ### "edge_color": "tab:gray",
         "alpha": 0.6,
         "with_labels": False,  # labels are set on later, False to avoid dupes
-        "font_size": 4,
+        "font_size": 4,  #4
         "linewidths": 1,  # adds a border to the node colours!
         "edgecolors": "black",  # this is the colour of the node border!
     }
@@ -359,11 +359,13 @@ def draw_graph_with_layout(
     # shell layout does concentric circles!
     ###layout = nx.shell_layout(graph, nlist=shells)  ###,scale=0.4)
     ###layout = nx.kamada_kawai_layout(graph)
-    layout = nx.spiral_layout(graph)
+    ###layout = nx.spiral_layout(graph)
+    layout = nx.circular_layout(graph)
 
     nx.draw(
         graph, layout, node_size=node_sizes,
-        node_color=node_colours, edge_color=edge_colours,
+        node_color=node_colours, # node info
+        edge_color=edge_colours, width=2,  # edge info including edge width
         cmap=CMAP, edge_cmap=CMAP,
         **options
     )
@@ -498,7 +500,7 @@ if __name__ == "__main__":
     # variety of plots to compare.
     plt.savefig(
         f"{SAVE_DIR_PLOTS}/"
-        f"digraph_cutoff{FREQUENCY_CUTOFF}_labels{int(LABELS_ON)}_shell.png",
+        f"digraph_cutoff{FREQUENCY_CUTOFF}_labels{int(LABELS_ON)}_NEWER.png",
         dpi=SAVE_DPI,
     )
     plt.show()
